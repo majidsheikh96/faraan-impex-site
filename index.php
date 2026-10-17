@@ -57,6 +57,8 @@ try {
 
 http_response_code($template === 'templates/404.php' ? 404 : 200);
 
+extract($data);
+
 require __DIR__ . '/templates/header.php';
 require __DIR__ . '/' . $template;
 require __DIR__ . '/templates/footer.php';
