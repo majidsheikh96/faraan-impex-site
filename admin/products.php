@@ -11,7 +11,7 @@ if (isset($_GET['delete']) && isset($_GET['csrf']) && verify_csrf($_GET['csrf'])
     $img = $stmt->fetchColumn();
     db()->prepare('DELETE FROM products WHERE id = ?')->execute([$id]);
     if ($img && str_starts_with($img, 'assets/')) {
-        @unlink(__DIR__ . '/../public/' . $img);
+        @unlink(__DIR__ . '/../' . $img);
     }
     flash_set('Product deleted.');
     header('Location: /admin/products.php');

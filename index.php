@@ -10,10 +10,10 @@
  */
 declare(strict_types=1);
 
-require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
-require_once __DIR__ . '/../includes/models.php';
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/models.php';
 
 geo_block_check();
 
@@ -57,6 +57,6 @@ try {
 
 http_response_code($template === 'templates/404.php' ? 404 : 200);
 
-require __DIR__ . '/../templates/header.php';
-require __DIR__ . '/../' . $template;
-require __DIR__ . '/../templates/footer.php';
+require __DIR__ . '/templates/header.php';
+require __DIR__ . '/' . $template;
+require __DIR__ . '/templates/footer.php';

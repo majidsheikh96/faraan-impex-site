@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($_FILES['image']['name'])) {
                 $new = handle_image_upload($_FILES['image'], $slug);
                 if ($new) {
-                    if ($image && str_starts_with($image, 'assets/')) @unlink(__DIR__ . '/../public/' . $image);
+                    if ($image && str_starts_with($image, 'assets/')) @unlink(__DIR__ . '/../' . $image);
                     $image = $new;
                 }
             }

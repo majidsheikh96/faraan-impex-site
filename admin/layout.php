@@ -69,7 +69,7 @@ function handle_image_upload(array $file, string $slug): ?string {
 
     $ext = $allowed[$mime];
     $name = make_slug($slug) . '-' . bin2hex(random_bytes(4)) . '.' . $ext;
-    $dest = __DIR__ . '/../public/assets/images/products/' . $name;
+    $dest = __DIR__ . '/../assets/images/products/' . $name;
     if (!move_uploaded_file($file['tmp_name'], $dest)) {
         throw new Exception('Could not save image.');
     }
