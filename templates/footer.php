@@ -88,6 +88,17 @@
   </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      menu.classList.toggle('hidden');
+    });
+  }
+});
+</script>
 <?php if (IMAGE_PROTECTION): ?>
 <script src="/assets/js/protect.js"></script>
 <?php endif; ?>

@@ -26,7 +26,7 @@ $catMeta = [
 ?>
 
 <!-- 3. HERO SECTION (Red & Black: Master artisan cutting racing leather in Sialkot atelier) -->
-<section class="relative bg-[#0A0A0A] text-white overflow-hidden min-h-[640px] flex items-center border-b border-[#262626]">
+<section class="relative bg-[#0A0A0A] text-white overflow-hidden min-h-[560px] sm:min-h-[640px] flex items-center border-b border-[#262626]">
   <!-- Image Background with Dark Gradient Overlay -->
   <div class="absolute inset-0 z-0">
     <img class="w-full h-full object-cover object-center filter brightness-[0.42] contrast-110" 
@@ -37,33 +37,33 @@ $catMeta = [
   </div>
 
   <!-- Hero Content Container -->
-  <div class="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 py-20 lg:py-28 w-full">
+  <div class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-28 w-full">
     <div class="max-w-3xl">
       <!-- Badge Tag -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-black/60 border border-[#E10600]/40 rounded mb-6 backdrop-blur-sm">
-        <span class="w-2 h-2 rounded-full bg-[#E10600] animate-pulse"></span>
-        <span class="text-[#FFB4A8] font-mono text-[12px] tracking-wider uppercase font-semibold">
-          ESTABLISHED IN SIALKOT, PAKISTAN — B2B GARMENT CONTRACTORS
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-black/80 border border-[#E10600]/40 rounded mb-6 backdrop-blur-sm max-w-full">
+        <span class="w-2 h-2 rounded-full bg-[#E10600] animate-pulse shrink-0"></span>
+        <span class="text-[#FFB4A8] font-mono text-[10px] sm:text-[12px] tracking-wider uppercase font-semibold">
+          SIALKOT, PAKISTAN — B2B GARMENT CONTRACTORS
         </span>
       </div>
 
       <!-- Headline -->
-      <h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight mb-6 font-extrabold leading-[1.12]">
+      <h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight mb-6 font-extrabold leading-[1.12]">
         Premium Leather Garments, <span class="text-[#E10600]">Crafted in Sialkot.</span> Shipped Worldwide.
       </h1>
 
       <!-- Subheading -->
-      <p class="font-body text-lg text-[#D1D1D1] font-normal leading-relaxed mb-10 max-w-2xl">
+      <p class="font-body text-base sm:text-lg text-[#D1D1D1] font-normal leading-relaxed mb-8 sm:mb-10 max-w-2xl">
         Direct manufacturer and OEM/ODM private-label supplier of precision-crafted leather outerwear, motorcycle jackets, technical textile apparel, and bespoke leather goods for global fashion brands.
       </p>
 
       <!-- CTA Cluster -->
-      <div class="flex flex-wrap items-center gap-4">
-        <a class="inline-flex items-center justify-center bg-[#E10600] hover:bg-[#b80500] text-white font-headline font-bold uppercase tracking-wider text-[14px] px-8 py-4 rounded shadow-md transition-all active:scale-[0.98]" href="#categories">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+        <a class="inline-flex items-center justify-center bg-[#E10600] hover:bg-[#b80500] text-white font-headline font-bold uppercase tracking-wider text-[13px] sm:text-[14px] px-8 py-3.5 sm:py-4 rounded shadow-md transition-all active:scale-[0.98]" href="#categories">
           Browse Catalog
         </a>
-        <a class="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-headline font-bold uppercase tracking-wider text-[14px] px-8 py-4 rounded shadow-md transition-colors" href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to enquire about contract manufacturing with Faraan Impex.") ?>" rel="noopener noreferrer" target="_blank">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <a class="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-headline font-bold uppercase tracking-wider text-[13px] sm:text-[14px] px-8 py-3.5 sm:py-4 rounded shadow-md transition-colors" href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to enquire about contract manufacturing with Faraan Impex.") ?>" rel="noopener noreferrer" target="_blank">
+          <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M12.031 2C6.494 2 2 6.494 2 12.031c0 1.956.564 3.782 1.542 5.334L2 22l4.789-1.517c1.498.907 3.242 1.428 5.109 1.428 5.537 0 10.031-4.494 10.031-10.031S17.568 2 12.031 2zm5.727 14.195c-.241.677-1.391 1.296-1.928 1.341-.536.046-1.196.195-3.874-.912-3.238-1.339-5.321-4.664-5.483-4.88-.16-.217-1.309-1.745-1.309-3.328 0-1.583.829-2.361 1.123-2.684.294-.323.643-.404.858-.404.214 0 .429.003.616.012.198.01.463-.075.724.551.268.643.91 2.224.991 2.385.08.161.134.349.027.563-.107.215-.16.349-.321.536-.161.188-.338.419-.482.563-.161.16-.329.335-.141.658.188.322.836 1.378 1.794 2.231 1.233 1.096 2.274 1.436 2.595 1.597.321.161.509.134.696-.08.188-.215.804-.938 1.018-1.26.214-.322.429-.268.723-.161.295.107 1.874.884 2.196 1.045.321.161.536.241.616.375.08.134.08.777-.161 1.454z"></path>
           </svg>
           <span>Chat on WhatsApp</span>
@@ -74,32 +74,32 @@ $catMeta = [
 </section>
 
 <!-- Quick Manufacturing Stats Strip -->
-<div class="bg-[#141414] border-b border-[#262626] py-4 px-6 lg:px-12">
-  <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#262626]">
+<div class="bg-[#141414] border-b border-[#262626] py-4 px-4 sm:px-6 lg:px-12">
+  <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#262626]">
     <div class="flex items-center justify-center gap-3 py-2">
       <span class="material-symbols-outlined text-[#E10600]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
-      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[13px] tracking-wider">50 Pcs Minimum OEM Order</span>
+      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[12px] sm:text-[13px] tracking-wider">50 Pcs Minimum OEM Order</span>
     </div>
     <div class="flex items-center justify-center gap-3 py-2">
       <span class="material-symbols-outlined text-[#E10600]" style="font-variation-settings: 'FILL' 1;">speed</span>
-      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[13px] tracking-wider">15-20 Days Sample Turnaround</span>
+      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[12px] sm:text-[13px] tracking-wider">15-20 Days Sample Turnaround</span>
     </div>
     <div class="flex items-center justify-center gap-3 py-2">
       <span class="material-symbols-outlined text-[#E10600]" style="font-variation-settings: 'FILL' 1;">tune</span>
-      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[13px] tracking-wider">Full Custom Labeling &amp; Hardware</span>
+      <span class="font-headline font-bold text-[#E5E2E1] uppercase text-[12px] sm:text-[13px] tracking-wider">Full Custom Labeling &amp; Hardware</span>
     </div>
   </div>
 </div>
 
 <!-- 4. CATEGORIES SECTION (Strictly 4 Cards in 4-column layout) -->
-<section class="py-20 px-6 lg:px-12 max-w-[1440px] mx-auto" id="categories">
+<section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="categories">
   <!-- Header -->
-  <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-outline-variant pb-6">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 border-b border-outline-variant pb-6">
     <div>
       <span class="font-mono text-[#E10600] text-[12px] uppercase tracking-widest block mb-2 font-bold">
         MANUFACTURING DIVISIONS
       </span>
-      <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
+      <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
         Core Product Categories
       </h2>
     </div>
@@ -113,7 +113,7 @@ $catMeta = [
     <?php foreach ($topCats as $cat): ?>
       <?php 
         $slug = $cat['slug'];
-        if ($slug === 'uncategorized') continue; // Skip uncategorized in main grid
+        if ($slug === 'uncategorized') continue;
         $meta = $catMeta[$slug] ?? [
             'image' => '/assets/images/stitch/cat-leather-wears.jpg',
             'desc'  => 'Export-grade manufacturing crafted in Sialkot.'
@@ -150,19 +150,19 @@ $catMeta = [
 
 <!-- 5. FEATURED PRODUCTS SECTION (Strictly 4 Cards, NO prices, SKU details, WhatsApp CTA) -->
 <?php if (!empty($featured)): ?>
-<section class="py-20 px-6 lg:px-12 bg-surface-container border-y border-outline-variant">
+<section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-surface-container border-y border-outline-variant">
   <div class="max-w-[1440px] mx-auto">
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
       <div>
         <span class="font-mono text-[#E10600] text-[12px] uppercase tracking-widest block mb-2 font-bold">
           FEATURED EXPORT STYLES
         </span>
-        <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
           B2B Catalog Highlights
         </h2>
       </div>
-      <div class="mt-4 md:mt-0 font-mono text-on-surface-variant text-[12px] font-semibold">
+      <div class="mt-4 md:mt-0 font-mono text-on-surface-variant text-[11px] sm:text-[12px] font-semibold">
         [MIN. ORDER QUANTITY: 50 PCS / STYLE]
       </div>
     </div>
@@ -194,7 +194,7 @@ $catMeta = [
           <a class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-2.5 px-4 font-headline font-bold uppercase tracking-wider text-[12px] rounded transition-all active:scale-[0.98]" 
              href="<?= whatsapp_link("Assalam-o-Alaikum, I am inquiring about product: " . $p['name'] . " (SKU: " . $p['sku'] . "). Please share wholesale quotation.") ?>" 
              rel="noopener noreferrer" target="_blank">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M12.031 2C6.494 2 2 6.494 2 12.031c0 1.956.564 3.782 1.542 5.334L2 22l4.789-1.517c1.498.907 3.242 1.428 5.109 1.428 5.537 0 10.031-4.494 10.031-10.031S17.568 2 12.031 2zm5.727 14.195c-.241.677-1.391 1.296-1.928 1.341-.536.046-1.196.195-3.874-.912-3.238-1.339-5.321-4.664-5.483-4.88-.16-.217-1.309-1.745-1.309-3.328 0-1.583.829-2.361 1.123-2.684.294-.323.643-.404.858-.404.214 0 .429.003.616.012.198.01.463-.075.724.551.268.643.91 2.224.991 2.385.08.161.134.349.027.563-.107.215-.16.349-.321.536-.161.188-.338.419-.482.563-.161.16-.329.335-.141.658.188.322.836 1.378 1.794 2.231 1.233 1.096 2.274 1.436 2.595 1.597.321.161.509.134.696-.08.188-.215.804-.938 1.018-1.26.214-.322.429-.268.723-.161.295.107 1.874.884 2.196 1.045.321.161.536.241.616.375.08.134.08.777-.161 1.454z"></path>
             </svg>
             <span>Enquire on WhatsApp</span>
@@ -208,34 +208,34 @@ $catMeta = [
 <?php endif; ?>
 
 <!-- 6. TRUST BAND (Dark #0A0A0A background, Red #E10600 accents, strictly 4 pillars) -->
-<section class="bg-[#0A0A0A] text-white py-16 px-6 lg:px-12 border-y border-[#262626]">
-  <div class="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <div class="border-l-2 border-[#E10600] pl-5">
-      <h3 class="font-headline font-bold text-lg text-white mb-2">
+<section class="bg-[#0A0A0A] text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-12 border-y border-[#262626]">
+  <div class="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <div class="border-l-2 border-[#E10600] pl-4 sm:pl-5">
+      <h3 class="font-headline font-bold text-base sm:text-lg text-white mb-2">
         Sialkot-Based Manufacturing
       </h3>
       <p class="font-body text-[#A0A0A0] text-[13px] leading-relaxed">
         Decades of heritage leather tailoring and generational artisan stitching passed down in Pakistan’s leather capital.
       </p>
     </div>
-    <div class="border-l-2 border-[#E10600] pl-5">
-      <h3 class="font-headline font-bold text-lg text-white mb-2">
+    <div class="border-l-2 border-[#E10600] pl-4 sm:pl-5">
+      <h3 class="font-headline font-bold text-base sm:text-lg text-white mb-2">
         Direct Factory Pricing
       </h3>
       <p class="font-body text-[#A0A0A0] text-[13px] leading-relaxed">
         Cut out middlemen with direct-from-source wholesale manufacturer rates, maximizing your retail margin.
       </p>
     </div>
-    <div class="border-l-2 border-[#E10600] pl-5">
-      <h3 class="font-headline font-bold text-lg text-white mb-2">
+    <div class="border-l-2 border-[#E10600] pl-4 sm:pl-5">
+      <h3 class="font-headline font-bold text-base sm:text-lg text-white mb-2">
         Custom OEM Orders Welcome
       </h3>
       <p class="font-body text-[#A0A0A0] text-[13px] leading-relaxed">
         Bespoke hardware, custom embossing, private woven labels, custom hangtags, and tailored sizing specs.
       </p>
     </div>
-    <div class="border-l-2 border-[#E10600] pl-5">
-      <h3 class="font-headline font-bold text-lg text-white mb-2">
+    <div class="border-l-2 border-[#E10600] pl-4 sm:pl-5">
+      <h3 class="font-headline font-bold text-base sm:text-lg text-white mb-2">
         Worldwide Shipping
       </h3>
       <p class="font-body text-[#A0A0A0] text-[13px] leading-relaxed">
@@ -246,12 +246,12 @@ $catMeta = [
 </section>
 
 <!-- 7. OEM / CUSTOM MANUFACTURING CAPABILITIES BANNER (4-step B2B process) -->
-<section class="py-20 px-6 lg:px-12 max-w-[1440px] mx-auto" id="process">
-  <div class="text-center max-w-2xl mx-auto mb-16">
+<section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="process">
+  <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
     <span class="font-mono text-[#E10600] text-[12px] uppercase tracking-widest block mb-2 font-bold">
       CONTRACT PRODUCTION WORKFLOW
     </span>
-    <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
+    <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight">
       4-Step OEM Manufacturing Process
     </h2>
     <p class="font-body text-on-surface-variant mt-3 text-sm">
@@ -259,7 +259,7 @@ $catMeta = [
     </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <!-- Step 1 -->
     <div class="bg-surface-container-low border border-outline-variant p-6 rounded flex flex-col justify-between hover:border-[#E10600] transition-colors">
       <div>
@@ -326,20 +326,20 @@ $catMeta = [
   </div>
 
   <!-- Request Sample CTA Block -->
-  <div class="mt-12 bg-[#0A0A0A] border border-[#262626] p-8 rounded flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+  <div class="mt-12 bg-[#0A0A0A] border border-[#262626] p-6 sm:p-8 rounded flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
     <div>
-      <h3 class="font-headline font-bold text-xl text-white mb-1">
+      <h3 class="font-headline font-bold text-lg sm:text-xl text-white mb-1">
         Have a Tech Pack or Specification Ready?
       </h3>
-      <p class="font-body text-[#A0A0A0] text-sm">
+      <p class="font-body text-[#A0A0A0] text-sm max-w-xl">
         Send us your measurements, sketch files, or benchmark sample requirements for an immediate B2B quotation.
       </p>
     </div>
-    <div class="flex items-center gap-4 flex-shrink-0">
-      <a class="bg-[#E10600] hover:bg-[#b80500] text-white px-6 py-3.5 font-headline font-bold uppercase tracking-wider text-[13px] rounded transition-all active:scale-[0.98]" href="/contact-us">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
+      <a class="bg-[#E10600] hover:bg-[#b80500] text-white px-6 py-3 font-headline font-bold uppercase tracking-wider text-[13px] rounded transition-all active:scale-[0.98] text-center" href="/contact-us">
         Send Tech Pack
       </a>
-      <a class="bg-[#25D366] hover:bg-[#20ba5a] text-white px-6 py-3.5 font-headline font-bold uppercase tracking-wider text-[13px] rounded transition-colors flex items-center gap-2 font-bold" href="<?= whatsapp_link("Assalam-o-Alaikum, I have a tech pack and would like an OEM quotation.") ?>" rel="noopener noreferrer" target="_blank">
+      <a class="bg-[#25D366] hover:bg-[#20ba5a] text-white px-6 py-3 font-headline font-bold uppercase tracking-wider text-[13px] rounded transition-colors flex items-center justify-center gap-2 font-bold text-center" href="<?= whatsapp_link("Assalam-o-Alaikum, I have a tech pack and would like an OEM quotation.") ?>" rel="noopener noreferrer" target="_blank">
         <span>Inquire via WhatsApp</span>
       </a>
     </div>

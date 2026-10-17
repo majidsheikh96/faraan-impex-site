@@ -13,8 +13,12 @@ function get_category_by_slug(string $slug): ?array
 function get_top_categories(): array
 {
     $stmt = db()->query(
-        "SELECT c.*, (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.is_active = 1)
-         AS live_count FROM categories c WHERE c.parent_id IS NULL ORDER BY c.sort_order"
+        "SELECT c.*, (SELECT COUNT(*) FROM products p 
+         WHERE (p.category_id = c.id OR p.category_id IN (SELECT id FROM categories WHERE parent_id = c.id)) 
+         AND p.is_active = 1) AS live_count 
+         FROM categories c 
+         WHERE c.parent_id IS NULL AND c.slug != 'uncategorized' 
+         ORDER BY c.sort_order"
     );
     return $stmt->fetchAll();
 }
