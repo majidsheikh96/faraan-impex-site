@@ -8,13 +8,13 @@ declare(strict_types=1);
 
 // ---- Database ----
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'faraan_db');
-define('DB_USER', getenv('DB_USER') ?: 'faraan_user');
-define('DB_PASS', getenv('DB_PASS') ?: 'change-me');
+define('DB_NAME', getenv('DB_NAME') ?: 'u174045762_faraanimpex');
+define('DB_USER', getenv('DB_USER') ?: 'u174045762_faraanimpex');
+define('DB_PASS', getenv('DB_PASS') ?: 'H716whwfWO6Hl8LF78IR');
 
 // ---- Site ----
 define('SITE_NAME', 'Faraan Impex');
-define('SITE_URL', getenv('SITE_URL') ?: 'https://staging.faraanimpex.com');
+define('SITE_URL', getenv('SITE_URL') ?: 'https://lightgray-fly-854392.hostingersite.com');
 define('ADMIN_PATH', '/admin'); // keep admin on a non-blocked path
 
 // ---- Contact (real data from faraanimpex.com) ----
