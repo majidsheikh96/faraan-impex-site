@@ -57,12 +57,25 @@ function get_product_by_slug(string $slug): ?array
 function get_featured_products(int $limit = 8): array
 {
     $stmt = db()->prepare(
-        'SELECT * FROM products WHERE is_active = 1 AND is_featured = 1
-         ORDER BY sort_order, name LIMIT ?'
+        'SELECT p.*, c.slug AS category_slug FROM products p JOIN categories c ON c.id = p.category_id
+         WHERE p.is_active = 1 AND p.is_featured = 1
+         ORDER BY p.sort_order, p.name LIMIT ?'
     );
     $stmt->bindValue(1, $limit, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
+    if (empty($rows)) {
+        // Fallback to active catalog items with images for homepage showcase
+        $stmt = db()->prepare(
+            'SELECT p.*, c.slug AS category_slug FROM products p JOIN categories c ON c.id = p.category_id
+             WHERE p.is_active = 1 AND p.image IS NOT NULL AND p.image != ""
+             ORDER BY p.sort_order, p.id LIMIT ?'
+        );
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+    }
+    return $rows;
 }
 
 function get_related_products(int $categoryId, int $excludeId, int $limit = 4): array
