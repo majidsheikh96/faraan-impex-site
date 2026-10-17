@@ -1,0 +1,53 @@
+services:
+  web:
+    build: .
+    container_name: faraanimpex_web
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: u174045762_faraanimpex
+      DB_USER: u174045762_faraanimpex
+      DB_PASS: H716whwfWO6Hl8LF78IR
+      SITE_URL: http://localhost:8088
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mariadb:10.11
+    container_name: faraanimpex_db
+    restart: unless-stopped
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: u174045762_faraanimpex
+      MYSQL_USER: u174045762_faraanimpex
+      MYSQL_PASSWORD: H716whwfWO6Hl8LF78IR
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql/live_dump.sql:/docker-entrypoint-initdb.d/01_live_dump.sql:ro
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 3s
+      timeout: 5s
+      retries: 15
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: faraanimpex_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+
+volumes:
+  db_data:

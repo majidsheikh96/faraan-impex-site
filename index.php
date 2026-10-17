@@ -39,6 +39,8 @@ try {
                 $data['category'] = $cat;
                 $data['products'] = get_products_by_category((int)$cat['id']);
                 $data['subcategories'] = get_subcategories((int)$cat['id']);
+                $data['page_title'] = $cat['name'] . ' — ' . SITE_NAME;
+                $data['page_description'] = $cat['meta_description'] ?: $cat['name'] . ' — wholesale B2B catalog from ' . SITE_NAME . ', Sialkot.';
             }
         }
     } elseif (count($segments) === 2) {
@@ -48,6 +50,8 @@ try {
             $template = 'templates/product.php';
             $data['product'] = $product;
             $data['related'] = get_related_products((int)$product['category_id'], (int)$product['id']);
+            $data['page_title'] = $product['name'] . ' (' . $product['sku'] . ') — ' . SITE_NAME;
+            $data['page_description'] = $product['meta_description'] ?: $product['name'] . ' — wholesale enquiry from ' . SITE_NAME . ', Sialkot.';
         }
     }
 } catch (Throwable $t) {

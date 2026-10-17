@@ -10,12 +10,18 @@ PHP + HTML + CSS + TailwindCSS catalog website for Faraan Impex (leather garment
 - `admin/` — secure admin panel (product/category CRUD)
 - `sql/` — database schema + product migration
 
+## Local Development (Docker)
+
+Run the entire stack locally with:
+
+```bash
+docker compose up -d
+```
+
+- **Website**: http://localhost:8088
+- **phpMyAdmin**: http://localhost:8085 (DB: `u174045762_faraanimpex`, User: `u174045762_faraanimpex`, Pass: `H716whwfWO6Hl8LF78IR`)
+- **MariaDB port**: `localhost:3308`
+
 ## Deployment
 
-Deployed via Hostinger Git integration. Product images (`public/assets/images/products/`) are deployed separately via File Manager (not in this repo).
-
-After deploy:
-1. Move `public/*` contents to the domain's `public_html/` root
-2. Create MySQL database and import `sql/schema.sql`, then `sql/migration_products.sql`, then `sql/migration_images.sql`
-3. Set DB credentials in `includes/config.php`
-4. Create admin user (see deploy guide)
+Deployed via Hostinger Git integration. All templates, assets, product images (`assets/images/products/`), and database seeds are version-controlled in this repository.
