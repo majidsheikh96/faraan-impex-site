@@ -80,7 +80,7 @@ LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` VALUES
 (100,'Leather Products','leather-products',NULL,0,0,NULL,'2026-10-17 20:00:07'),
-(101,'LEATHER WEARS','leather-wears',NULL,0,0,NULL,'2026-10-17 20:00:07'),
+(101,'Leather Wears','leather-wears',NULL,0,0,NULL,'2026-10-17 20:00:07'),
 (102,'Textile Wears','textile-wears',NULL,0,0,NULL,'2026-10-17 20:00:07'),
 (103,'Uncategorized','uncategorized',NULL,0,0,NULL,'2026-10-17 20:00:07'),
 (104,'Western Wears','western-wears',NULL,0,0,NULL,'2026-10-17 20:00:07'),

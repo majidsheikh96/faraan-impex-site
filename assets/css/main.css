@@ -1,17 +1,33 @@
 /* Faraan Impex — High-End Editorial Luxury CSS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
+:root {
+  --ink: #0B1623;
+  --navy: #10243B;
+  --navysoft: #18324D;
+  --ivory: #F6F3ED;
+  --paper: #FCFBF8;
+  --white: #FFFFFF;
+  --crimson: #C51E28;
+  --crimson-hover: #A81822;
+  --text: #17212B;
+  --muted: #6B7580;
+  --line: rgba(16, 36, 59, 0.12);
+  --shadow: 0 28px 80px rgba(8, 18, 29, 0.12);
+  --radius: 26px;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-color: #0B0C0E;
+  background-color: var(--paper);
 }
 
 body {
   overflow-x: hidden;
   min-width: 320px;
-  background-color: #0B0C0E;
-  color: #F8FAFC;
+  background-color: var(--paper);
+  color: var(--text);
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,6 +35,28 @@ body {
 
 h1, h2, .font-serif, .font-headline {
   font-family: Georgia, 'Times New Roman', serif;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: var(--crimson);
+  transition: right 0.22s ease-in-out;
+}
+
+.nav-link:hover::after,
+.group:hover > .nav-link::after {
+  right: 0;
 }
 
 /* Subtle carbon grain / industrial grid overlay */

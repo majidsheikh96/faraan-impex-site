@@ -3,7 +3,7 @@
 
 -- Categories
 REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (100, 'Leather Products', 'leather-products', NULL, 0);
-REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (101, 'LEATHER WEARS', 'leather-wears', NULL, 0);
+REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (101, 'Leather Wears', 'leather-wears', NULL, 0);
 REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (102, 'Textile Wears', 'textile-wears', NULL, 0);
 REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (103, 'Uncategorized', 'uncategorized', NULL, 0);
 REPLACE INTO categories (id, name, slug, parent_id, sort_order) VALUES (104, 'Western Wears', 'western-wears', NULL, 0);
