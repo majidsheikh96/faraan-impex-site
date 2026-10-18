@@ -6,10 +6,10 @@
 <title><?= e($page_title ?? 'FARAAN IMPEX — Luxury Leather & Technical Garments Manufacturer | Sialkot') ?></title>
 <meta name="description" content="<?= e($page_description ?? 'Faraan Impex — Direct B2B OEM/ODM contract manufacturer and exporter of premium leather garments, motorcycle apparel, and leather goods from Sialkot, Pakistan.') ?>">
 
-<!-- Google Fonts: Playfair Display (Serif), Inter (Sans), Space Mono -->
+<!-- Google Fonts: Inter (Sans), Space Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -39,10 +39,10 @@ tailwind.config = {
         "text-dim": "#64748B"
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        body: ["Inter", "system-ui", "sans-serif"],
-        headline: ["Playfair Display", "Georgia", "serif"],
-        serif: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+        body: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+        headline: ["Georgia", "Times New Roman", "serif"],
+        serif: ["Georgia", "Times New Roman", "serif"],
         mono: ["Space Mono", "monospace"]
       }
     }
