@@ -53,36 +53,24 @@ tailwind.config = {
 </head>
 <body class="bg-obsidian text-slate-100 antialiased font-body overflow-x-hidden min-w-[320px]">
 
-<!-- 1. LIVE ATELIER STATUS TOPBAR -->
-<aside class="bg-[#050507] text-slate-300 border-b border-white/[0.06] text-[11px] sm:text-[12px] py-2 px-4 sm:px-6 lg:px-12 select-none overflow-hidden">
-  <div class="max-w-[1440px] mx-auto flex items-center justify-between font-mono gap-2 min-w-0">
-    <!-- Factory Operational Status -->
+<!-- 1. EDITORIAL B2B TOPLINE (STAGFIELD CALIBER) -->
+<aside class="bg-[#07080A] text-[#BFC9D2] border-b border-white/[0.08] text-[11px] font-sans select-none">
+  <div class="max-w-[1440px] mx-auto min-h-[36px] px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4 tracking-[0.12em] uppercase">
+    <!-- Brand Lineage / Direct Authority -->
     <div class="flex items-center gap-2 truncate min-w-0">
-      <span class="relative flex h-2 w-2 shrink-0">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-carmine opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-carmine"></span>
-      </span>
-      <span class="tracking-wider uppercase text-slate-200 font-semibold truncate sm:hidden">
-        SIALKOT ATELIER · OEM/ODM
-      </span>
-      <span class="tracking-wider uppercase text-slate-200 font-semibold truncate hidden sm:inline">
-        SIALKOT ATELIER · DIRECT OEM/ODM CONTRACTOR
-      </span>
-      <span class="hidden lg:inline text-white/20">|</span>
-      <span class="hidden lg:inline text-text-muted">ISO &amp; CE Certified Export Facility</span>
+      <strong class="font-bold text-white tracking-[0.14em]">Faraan Impex</strong>
+      <span class="text-white/30">·</span>
+      <span class="truncate text-slate-300">Sialkot Atelier &amp; Direct OEM Contractor</span>
     </div>
 
-    <!-- Quick Direct Desk Contacts -->
-    <div class="flex items-center gap-4 sm:gap-6 text-text-muted shrink-0">
-      <a class="flex items-center gap-1.5 hover:text-white transition-colors" href="mailto:<?= e(CONTACT_EMAIL) ?>">
-        <span class="material-symbols-outlined text-[15px] text-carmine">mail</span>
-        <span class="hidden sm:inline"><?= e(CONTACT_EMAIL) ?></span>
+    <!-- Direct B2B Contact & Turnaround -->
+    <div class="hidden md:flex items-center gap-3 shrink-0 text-[#BFC9D2]">
+      <a class="flex items-center gap-1.5 hover:text-white transition-colors lowercase font-normal" href="mailto:<?= e(CONTACT_EMAIL) ?>">
+        <span class="material-symbols-outlined text-[14px] text-carmine">mail</span>
+        <span><?= e(CONTACT_EMAIL) ?></span>
       </a>
-      <span class="hidden sm:inline text-white/20">|</span>
-      <div class="hidden sm:flex items-center gap-1.5 text-slate-300">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>Avg. B2B Quote Turnaround: 2 Hours</span>
-      </div>
+      <span class="text-white/30">·</span>
+      <span class="text-slate-200">B2B Quote Turnaround: Under 2 Hours</span>
     </div>
   </div>
 </aside>
