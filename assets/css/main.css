@@ -1,16 +1,83 @@
-/* Faraan Impex — Global Clean Overrides */
+/* Faraan Impex — High-End Editorial Luxury CSS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: #0B0C0E;
 }
 
 body {
   overflow-x: hidden;
   min-width: 320px;
+  background-color: #0B0C0E;
+  color: #F8FAFC;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Material Symbols alignment helper */
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  vertical-align: middle;
+/* Subtle carbon grain / industrial grid overlay */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Glassmorphism & metallic rim lighting */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #121215;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(225, 29, 42, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 24px -6px rgba(225, 29, 42, 0.2);
+}
+
+/* Glowing precision pill */
+.glow-red {
+  box-shadow: 0 0 25px -4px rgba(225, 29, 42, 0.35);
+}
+
+.hairline {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090B;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E11D2A;
 }
