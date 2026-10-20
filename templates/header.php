@@ -53,7 +53,7 @@ tailwind.config = {
   }
 }
 </script>
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css?v=<?= file_exists(__DIR__ . '/../assets/css/main.css') ? filemtime(__DIR__ . '/../assets/css/main.css') : '2.0' ?>">
 </head>
 <body class="bg-paper text-body-text antialiased font-body overflow-x-hidden min-w-[320px]">
 
@@ -64,7 +64,7 @@ tailwind.config = {
     <div class="flex items-center gap-2 truncate min-w-0">
       <strong class="font-bold text-white tracking-[0.14em]">Faraan Impex</strong>
       <span class="text-white/30">·</span>
-      <span class="truncate text-slate-300">Sialkot Atelier &amp; Direct OEM Contractor</span>
+      <span class="truncate text-slate-300">Sialkot Factory &amp; Direct OEM/ODM Manufacturer</span>
     </div>
 
     <!-- Direct B2B Contact & Turnaround -->

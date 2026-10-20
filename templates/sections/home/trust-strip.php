@@ -17,7 +17,7 @@
         <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
         <b class="text-[#0B1623] font-sans font-bold text-[13.5px] tracking-tight">Rapid Sampling</b>
       </div>
-      <span class="text-[#64748B] font-sans text-[12.5px] leading-relaxed">Validate leather hand-feel &amp; fit before bulk order</span>
+      <span class="text-[#64748B] font-sans text-[12.5px] leading-relaxed">Validate leather hand-feel, textile weave &amp; armor fit</span>
     </div>
 
     <!-- Item 3 -->
@@ -26,7 +26,7 @@
         <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
         <b class="text-[#0B1623] font-sans font-bold text-[13.5px] tracking-tight">Private-Label Finishing</b>
       </div>
-      <span class="text-[#64748B] font-sans text-[12.5px] leading-relaxed">Custom debossed leather tags, woven labels &amp; trims</span>
+      <span class="text-[#64748B] font-sans text-[12.5px] leading-relaxed">Custom debossed badges, hardware, woven labels &amp; trims</span>
     </div>
 
     <!-- Item 4 -->

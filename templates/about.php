@@ -3,7 +3,7 @@
  * About Us — Company Heritage & Sialkot Atelier Credentials (Stagfield Sports Caliber)
  * High-contrast editorial hero, verified production statistics, and core manufacturing pillars.
  */
-$page_title = 'About FARAAN IMPEX — Direct Sialkot Leather & Technical Garments Atelier';
+$page_title = 'About FARAAN IMPEX — Direct Sialkot Leather & Technical Garments Manufacturer';
 $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufacturer and exporter of luxury leather outerwear, racing suits, and technical gear in Sialkot, Pakistan.';
 ?>
 
@@ -14,7 +14,7 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
   <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="max-w-3xl">
       <span class="font-mono text-crimson text-[11px] uppercase tracking-[0.18em] font-bold block mb-3">
-        ATELIER HERITAGE &amp; PRODUCTION DESK
+        SIALKOT FACTORY &amp; OEM MANUFACTURING
       </span>
       <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.12]">
         Commercial communication on one side. Production capability on the other.

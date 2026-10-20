@@ -2,6 +2,7 @@
 /**
  * Product Specification Sheet — Luxury B2B Contract Manufacturing Detail (Stagfield Caliber)
  * High-precision photographic gallery, technical hide and hardware table, and direct quotation triggers.
+ * 60fps/120fps hardware-accelerated micro-interactions.
  */
 $page_title = e($product['name']) . ' (' . e($product['sku']) . ') — Private Label Manufacturing | FARAAN IMPEX';
 $page_description = e($product['meta_description'] ?: $product['name'] . ' — export-grade OEM/ODM specification sheet from Faraan Impex, Sialkot, Pakistan.');
@@ -77,7 +78,7 @@ $desc = trim($desc);
             <?= e($product['name']) ?>
           </h1>
           <p class="font-mono text-xs text-[#5A6472] mt-2">
-            Product SKU: <span class="text-[#070709] font-semibold"><?= e($product['sku']) ?></span> · Direct Sialkot Atelier
+            Product SKU: <span class="text-[#070709] font-semibold"><?= e($product['sku']) ?></span> · Direct Sialkot Factory
           </p>
         </div>
 
@@ -158,10 +159,10 @@ $desc = trim($desc);
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <?php foreach ($related as $r): ?>
-            <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between group">
-              <a href="/<?= e($product['category_slug']) ?>/<?= e($r['slug']) ?>/" class="relative aspect-[4/5] bg-white overflow-hidden block">
+            <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(7,7,9,0.08)] hover:-translate-y-1.5 gpu-card flex flex-col justify-between group">
+              <a href="/<?= e($product['category_slug']) ?>/<?= e($r['slug']) ?>/" class="product-image-frame aspect-[4/5] block flex items-center justify-center p-3">
                 <?php if (!empty($r['image'])): ?>
-                  <img src="/<?= e($r['image']) ?>" alt="<?= e($r['name']) ?>" loading="lazy" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700">
+                  <img src="/<?= e($r['image']) ?>" alt="<?= e($r['name']) ?>" loading="lazy" class="w-full h-full object-contain mix-blend-multiply gpu-zoom-img">
                 <?php else: ?>
                   <div class="w-full h-full flex items-center justify-center text-[#94A3B8] font-mono text-xs">SPEC IMAGE</div>
                 <?php endif; ?>

@@ -1,7 +1,9 @@
 <?php
 /**
  * Core Manufacturing Divisions Section (Stagfield Sports Luxury Caliber)
- * 2x2 Spacious Editorial Grid — Generous breathing room, monumental typography, and uncompressed photography.
+ * 2x2 Spacious Editorial Grid featuring Authentic Production Lines:
+ * Race Suits, Technical Flannels, Western Headwear & Biker Vests.
+ * Using razor-sharp 2K+ master assets with 60fps/120fps hardware-accelerated transitions.
  */
 
 $divisions = [
@@ -9,44 +11,44 @@ $divisions = [
         'slug'        => 'leather-wears',
         'href'        => '/leather-wears/',
         'number'      => '01',
-        'kicker'      => 'FLAGSHIP ATELIER',
-        'title'       => 'Leather Outerwear & Moto Racing',
-        'image'       => '/assets/images/divisions/division-leather-wears.jpg',
-        'lead'        => 'Bespoke motorcycle racing suits, cafe racers, aviator bombers, and luxury runway outerwear tailored to exacting millimeter tolerance.',
-        'specs'       => ['1.2mm Cowhide', 'CE Level 2 Ready', 'Biker Cuts', 'YKK® Brass'],
-        'cta'         => 'Explore Leatherwear Division'
+        'kicker'      => 'MOTORCYCLE RACING',
+        'title'       => 'Motorcycle Racing Suits & Track Gear',
+        'image'       => '/assets/images/showcase/motorcycle-gear-showroom-hires.jpg',
+        'lead'        => 'Bespoke 1.3mm cowhide race suits, aerodynamic speed humps, fortified knuckle gloves, and CE Level 2 track armor built for severe slide resistance.',
+        'specs'       => ['1.3mm Race Cowhide', 'CE Level 2 Armor', 'Speed Hump Fit', 'Carbon Knuckles'],
+        'cta'         => 'Explore Racing Division'
     ],
     [
         'slug'        => 'textile-wears',
         'href'        => '/textile-wears/',
         'number'      => '02',
-        'kicker'      => 'TECHNICAL APPAREL',
-        'title'       => 'Technical All-Weather Outerwear',
-        'image'       => '/assets/images/divisions/division-textile-wears.jpg',
-        'lead'        => 'High-tenacity all-weather touring garments, waterproof adventure shells, insulated tactical gear, and reinforced fleece outerwear.',
-        'specs'       => ['Cordura® 1000D', 'DWR Water-Repellent', 'Heavy Denim', 'Ballistic Nylon'],
+        'kicker'      => 'TECHNICAL TEXTILES',
+        'title'       => 'Technical Textiles & Plaid Flannels',
+        'image'       => '/assets/images/showcase/flannel-textile-shirt-hires.jpg',
+        'lead'        => 'Heavy yarn-dyed cotton flannels, Cordura® 1000D adventure shells, ballistic denim jackets, and all-weather touring apparel built for durability.',
+        'specs'       => ['Heavy Flannel 280 GSM', 'Cordura® 1000D', 'DWR Weatherproof', 'Ballistic Denim'],
         'cta'         => 'Explore Textile Division'
     ],
     [
         'slug'        => 'western-wears',
         'href'        => '/western-wears/',
         'number'      => '03',
-        'kicker'      => 'HERITAGE CRAFT',
-        'title'       => 'Western Heritage & Frontier Suede',
-        'image'       => '/assets/images/divisions/division-western-wears.jpg',
-        'lead'        => 'Authentic hand-fringed leather coats, rugged frontier vests, heavy riding chaps, and traditional hand-blocked leather headwear.',
-        'specs'       => ['Roughout Suede', 'Hand-Cut Fringes', 'Riding Chaps', 'Cowboy Hats'],
+        'kicker'      => 'WESTERN WEAR',
+        'title'       => 'Western Heritage & Custom Headwear',
+        'image'       => '/assets/images/showcase/custom-leather-hat-hires.jpg',
+        'lead'        => 'Traditional hand-blocked leather top hats, custom cowboy headwear, fringed roughout suede jackets, and rugged rancher riding chaps.',
+        'specs'       => ['Hand-Blocked Hats', 'Roughout Suede', 'Hand-Cut Fringes', 'Riding Chaps'],
         'cta'         => 'Explore Western Division'
     ],
     [
         'slug'        => 'leather-products',
         'href'        => '/leather-products/',
         'number'      => '04',
-        'kicker'      => 'ARTISAN ATELIER',
-        'title'       => 'Artisan Goods & Workshop Gear',
-        'image'       => '/assets/images/divisions/division-leather-products.jpg',
-        'lead'        => 'Heavyweight workshop aprons, fortified motorcycle gloves, vintage biker chain wallets, and custom embossed leather accessories.',
-        'specs'       => ['Full-Grain Veg-Tan', 'Workshop Aprons', 'Riding Gloves', 'Biker Wallets'],
+        'kicker'      => 'LEATHER GOODS & VESTS',
+        'title'       => 'Biker Vests & Artisan Leather Goods',
+        'image'       => '/assets/images/showcase/leather-biker-vest-hires.jpg',
+        'lead'        => 'Heavyweight full-grain biker club vests with concho chain closures, heavy leather workshop aprons, fortified riding gloves, and leather goods.',
+        'specs'       => ['Concho Chain Vests', 'Side-Laced Cuts', 'Workshop Aprons', 'Full-Grain Veg-Tan'],
         'cta'         => 'Explore Leather Goods'
     ]
 ];
@@ -57,15 +59,15 @@ $divisions = [
   <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Heading (High Contrast Editorial) -->
-    <div class="max-w-[790px] mb-12 sm:mb-16">
+    <div class="max-w-[820px] mb-12 sm:mb-16">
       <p class="font-mono text-crimson text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.18em] mb-3">
         MANUFACTURING DIVISIONS
       </p>
       <h2 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#070709] tracking-tight leading-[1.16]">
-        Four focused ways to manufacture with us.
+        Four dedicated production divisions.
       </h2>
       <p class="text-[#5A6472] text-[15px] sm:text-[17px] leading-relaxed mt-4">
-        Our Sialkot atelier covers specialized contract leathercraft, technical outerwear, and heritage apparel. These are the core manufacturing divisions we prioritize for B2B buyer sampling, private-label lines, and repeat-order production.
+        Our Sialkot facility is equipped with dedicated cutting lines, heavy-stitch machinery, and finishing units across four specialized sectors — ensuring every order meets international export standards.
       </p>
     </div>
 
@@ -73,18 +75,18 @@ $divisions = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
       <?php foreach ($divisions as $div): ?>
         <a href="<?= e($div['href']) ?>" 
-           class="group relative overflow-hidden rounded-[24px] bg-[#070709] min-h-[520px] sm:min-h-[560px] shadow-[0_20px_50px_rgba(7,7,9,0.08)] border border-black/[0.06] flex flex-col justify-end p-8 sm:p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(7,7,9,0.18)] block">
+           class="group relative overflow-hidden rounded-[24px] bg-[#070709] min-h-[520px] sm:min-h-[560px] shadow-[0_16px_40px_rgba(7,7,9,0.08)] border border-black/[0.06] flex flex-col justify-end p-8 sm:p-10 block gpu-card hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(7,7,9,0.18)]">
           
-          <!-- Full Card Photographic Background (Unobscured Upper 65%) -->
+          <!-- Full Card Photographic Background (Hardware-Accelerated 60fps/120fps Zoom) -->
           <img src="<?= e($div['image']) ?>" 
                alt="<?= e($div['title']) ?>" 
-               class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-105"
+               class="absolute inset-0 w-full h-full object-cover object-center gpu-zoom-img"
                loading="lazy">
           
           <!-- Subtle Chiaroscuro Atmospheric Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070709] via-[#070709]/75 via-35% to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070709] via-[#070709]/80 via-40% to-transparent pointer-events-none"></div>
 
-          <!-- Card Content (Generously Spaced & Uncluttered) -->
+          <!-- Card Content -->
           <div class="relative z-10 text-white flex flex-col justify-end">
             
             <!-- Category Kicker in Brand Crimson -->
@@ -97,7 +99,7 @@ $divisions = [
               <?= e($div['title']) ?>
             </h3>
 
-            <!-- Editorial Lead (Wide & Legible) -->
+            <!-- Editorial Lead -->
             <p class="text-[#D7DEE5] text-[14px] sm:text-[15px] leading-relaxed mb-5 max-w-xl line-clamp-2">
               <?= e($div['lead']) ?>
             </p>
@@ -125,17 +127,6 @@ $divisions = [
           </div>
         </a>
       <?php endforeach; ?>
-    </div>
-
-    <!-- Secondary Capabilities Strip (Stagfield Caliber) -->
-    <div class="mt-10 p-6 sm:p-7 rounded-[20px] bg-white border border-[#E6E4DD] text-[#5A6472] text-[13px] sm:text-[14px] leading-relaxed flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
-      <div class="max-w-4xl">
-        <strong class="text-[#070709] font-semibold">Need custom specifications or another division?</strong> We also engineer ballistic Cordura tactical vests, CE Level 2 armor integration, custom heavy brass hardware, and pantone-matched drum-dyed hides. Availability is confirmed against your exact technical pack.
-      </div>
-      <a href="#inquiry" class="inline-flex items-center gap-1.5 text-crimson font-mono text-[11px] font-bold tracking-[0.1em] uppercase hover:underline whitespace-nowrap shrink-0">
-        <span>Submit Tech Pack</span>
-        <span class="font-bold">→</span>
-      </a>
     </div>
 
   </div>

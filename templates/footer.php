@@ -59,7 +59,7 @@
       <!-- Column 4: Sialkot Export Desk Contacts (4 cols) -->
       <div class="lg:col-span-4" id="about-us-info">
         <div class="font-mono text-crimson text-[11px] uppercase tracking-[0.16em] font-bold mb-5">
-          EXPORT DESK &amp; ATELIER
+          FACTORY EXPORT DESK
         </div>
         <div class="space-y-3.5 font-body text-[#AEB9C4] text-sm">
           <div class="flex items-start gap-3">

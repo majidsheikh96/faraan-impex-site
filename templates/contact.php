@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="lg:col-span-5 space-y-6">
         <div>
           <p class="font-mono text-crimson text-xs uppercase tracking-widest font-bold mb-2">
-            HEAD OFFICE &amp; ATELIER
+            HEAD OFFICE &amp; FACTORY
           </p>
           <h2 class="font-serif text-2xl sm:text-3xl text-[#070709] font-normal">
             Sialkot Manufacturing Base
@@ -75,13 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span class="material-symbols-outlined text-[20px]">mail</span>
           </div>
           <div>
-            <div class="font-mono text-xs uppercase tracking-wider text-[#070709] font-bold mb-1">Direct Commercial Email</div>
+            <div class="font-mono text-xs uppercase tracking-wider text-[#070709] font-bold mb-1">Primary Factory Email</div>
             <a href="mailto:<?= e(CONTACT_EMAIL) ?>" class="text-sm text-[#070709] font-semibold hover:text-crimson transition-colors block">
               <?= e(CONTACT_EMAIL) ?>
             </a>
             <?php if (defined('CONTACT_EMAIL_2') && CONTACT_EMAIL_2): ?>
               <a href="mailto:<?= e(CONTACT_EMAIL_2) ?>" class="text-xs text-[#5A6472] hover:text-crimson transition-colors block mt-0.5">
-                <?= e(CONTACT_EMAIL_2) ?>
+                <?= e(CONTACT_EMAIL_2) ?> (Secondary / Info)
               </a>
             <?php endif; ?>
           </div>

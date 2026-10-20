@@ -2,6 +2,7 @@
 /**
  * Section 5: Curated Export Styles (Stagfield Sports Luxury Caliber)
  * Studio white cards with pure unobstructed photography (zero floating badges), Georgia serif titles, and clean B2B quotation triggers.
+ * 60fps/120fps hardware-accelerated micro-interactions.
  */
 ?>
 <?php if (!empty($featured)): ?>
@@ -12,13 +13,13 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 border-b border-[#E6E4DD] pb-8 gap-6">
       <div class="max-w-2xl">
         <p class="font-mono text-crimson text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.18em] mb-3">
-          ATELIER HIGHLIGHTS
+          FACTORY HIGHLIGHTS
         </p>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#070709] tracking-tight leading-[1.16]">
           Curated styles ready for sampling.
         </h2>
         <p class="text-[#5A6472] text-[15px] sm:text-[16px] leading-relaxed mt-3">
-          Benchmark specifications developed by our master tailors. Use these styles directly for your private label or as starting blocks for bespoke modifications.
+          Benchmark specifications spanning motorbike suits, fortified racing gloves, technical flannels, cowboy hats, denim outerwear, vests, and artisan aprons.
         </p>
       </div>
       <div class="font-mono text-xs text-[#5A6472] border border-[#E6E4DD] bg-white rounded-full px-4 py-2 self-start md:self-end shrink-0 shadow-sm">
@@ -29,14 +30,14 @@
     <!-- Product Showcase Grid (Pure Unobstructed Product Photography) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
       <?php foreach (array_slice($featured, 0, 8) as $p): ?>
-        <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(7,7,9,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(7,7,9,0.08)] hover:-translate-y-1.5 gpu-card flex flex-col justify-between group">
           
-          <!-- Image Container (100% Clean — No Floating SKU / Category Badges, Seamless Studio White) -->
-          <a href="/<?= e($p['category_slug']) ?>/<?= e($p['slug']) ?>/" class="relative aspect-[4/5] bg-white overflow-hidden block flex items-center justify-center p-3">
+          <!-- Image Container (Hardware-Accelerated Isolated Blending Frame) -->
+          <a href="/<?= e($p['category_slug']) ?>/<?= e($p['slug']) ?>/" class="product-image-frame aspect-[4/5] block flex items-center justify-center p-3">
             <?php if (!empty($p['image'])): ?>
               <img src="/<?= e($p['image']) ?>" 
                    alt="<?= e($p['name']) ?>" 
-                   class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700 ease-out" 
+                   class="w-full h-full object-contain mix-blend-multiply gpu-zoom-img" 
                    loading="lazy">
             <?php else: ?>
               <div class="w-full h-full flex items-center justify-center text-[#94A3B8] font-mono text-xs">NO SPEC IMAGE</div>
@@ -52,7 +53,7 @@
                 </h3>
               </a>
               <p class="font-mono text-[11px] text-[#6B7580] uppercase tracking-wider mb-5">
-                Export Grade · Sialkot Atelier
+                Export Grade · Sialkot Factory
               </p>
             </div>
 

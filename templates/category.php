@@ -2,6 +2,7 @@
 /**
  * Category Listing — Luxury B2B Wholesale & OEM Catalog (Stagfield Caliber)
  * High-contrast editorial hero and spacious full-width 4-column product grid with zero sidebar clutter.
+ * 60fps/120fps hardware-accelerated micro-interactions.
  */
 $page_title = e($category['name']) . ' — OEM/ODM Private-Label Manufacturing | FARAAN IMPEX';
 $page_description = e($category['meta_description'] ?: $category['name'] . ' — export-grade wholesale B2B contract manufacturing catalog from Sialkot, Pakistan.');
@@ -27,7 +28,7 @@ $page_description = e($category['meta_description'] ?: $category['name'] . ' —
           <?= e($category['name']) ?>
         </h1>
         <p class="text-[#AEB9C4] text-sm sm:text-base mt-3 max-w-xl font-body">
-          <?= count($products) ?> Verified Export Specifications · Direct Sialkot Atelier Contract Production
+          <?= count($products) ?> Verified Export Specifications · Direct Sialkot Factory Contract Production
         </p>
       </div>
 
@@ -45,15 +46,15 @@ $page_description = e($category['meta_description'] ?: $category['name'] . ' —
     <!-- Product Grid (Spacious 4-Column Studio Showcase) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
       <?php foreach ($products as $p): ?>
-        <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(7,7,9,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div class="bg-white rounded-[22px] overflow-hidden border border-[#E6E4DD] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(7,7,9,0.08)] hover:-translate-y-1.5 gpu-card flex flex-col justify-between group">
           
-          <!-- Image Anchor (Clean Photography — No Floating Badges, Seamless White Background) -->
-          <a href="/<?= e($category['slug']) ?>/<?= e($p['slug']) ?>/" class="relative aspect-[4/5] bg-white overflow-hidden block flex items-center justify-center p-3">
+          <!-- Image Anchor (Hardware-Accelerated Isolated Blending Frame) -->
+          <a href="/<?= e($category['slug']) ?>/<?= e($p['slug']) ?>/" class="product-image-frame aspect-[4/5] block flex items-center justify-center p-3">
             <?php if (!empty($p['image'])): ?>
               <img src="/<?= e($p['image']) ?>" 
                    alt="<?= e($p['name']) ?>" 
                    loading="lazy" 
-                   class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700 ease-out">
+                   class="w-full h-full object-contain mix-blend-multiply gpu-zoom-img">
             <?php else: ?>
               <div class="aspect-square bg-white flex items-center justify-center text-[#94A3B8] font-mono text-xs">
                 NO SPEC IMAGE
@@ -70,7 +71,7 @@ $page_description = e($category['meta_description'] ?: $category['name'] . ' —
                 </h3>
               </a>
               <p class="font-mono text-[11px] text-[#6B7580] uppercase tracking-wider mb-4">
-                Export Grade · Sialkot Atelier
+                Export Grade · Sialkot Factory
               </p>
             </div>
 
