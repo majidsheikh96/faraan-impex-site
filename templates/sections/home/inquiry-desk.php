@@ -2,7 +2,15 @@
 /**
  * Section 7: Procurement & Tech Pack Inquiry Desk (Stagfield Sports Luxury Caliber)
  * High-contrast dark quote section with verified project requirements on left and crisp white RFQ form on right.
+ * 100% Admin-Controlled Content & Dynamic MOQ.
  */
+
+$heading = get_setting('inquiry_heading', 'Tell us what you want to manufacture.');
+$subheading = get_setting('inquiry_subheading', 'Share your sketches, CAD tech packs, or reference images. Our commercial engineering team will review feasibility and calculate hide consumption for a formal FOB quotation within 2 hours.');
+$email1 = get_setting('contact_email', CONTACT_EMAIL);
+$email2 = get_setting('contact_email_2', defined('CONTACT_EMAIL_2') ? CONTACT_EMAIL_2 : '');
+$phone = get_setting('contact_phone', CONTACT_PHONE);
+$moq = get_site_moq();
 ?>
 
 <!-- 7. START A PROJECT / RFQ DESK -->
@@ -19,17 +27,17 @@
           START A PROJECT
         </p>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-white tracking-tight leading-[1.16]">
-          Tell us what you want to manufacture.
+          <?= e($heading) ?>
         </h2>
         <p class="text-[#B9C4CD] text-[15px] sm:text-[17px] leading-relaxed mt-4">
-          Share your sketches, CAD tech packs, or reference images. Our commercial engineering team will review feasibility and calculate hide consumption for a formal FOB quotation within 2 hours.
+          <?= e($subheading) ?>
         </p>
 
         <!-- Requirements Checklist (Stagfield Style) -->
         <div class="mt-8 space-y-3.5 text-sm text-[#D3DAE0]">
           <div class="flex items-start gap-3">
             <span class="text-crimson font-bold text-base mt-0.5">✓</span>
-            <span>Product category and estimated order quantity (MOQ: 50 pcs)</span>
+            <span>Product category and estimated order quantity (MOQ: <?= e($moq) ?>)</span>
           </div>
           <div class="flex items-start gap-3">
             <span class="text-crimson font-bold text-base mt-0.5">✓</span>
@@ -49,14 +57,14 @@
         <div class="mt-10 pt-8 border-t border-white/10 space-y-3 font-mono text-xs text-[#AEB9C4]">
           <p>
             Direct factory email: 
-            <a href="mailto:<?= e(CONTACT_EMAIL) ?>" class="text-crimson hover:underline font-bold"><?= e(CONTACT_EMAIL) ?></a>
-            <?php if (defined('CONTACT_EMAIL_2') && CONTACT_EMAIL_2): ?>
-              <span class="text-white/40 block sm:inline sm:ml-2 text-[11px]">Alt: <?= e(CONTACT_EMAIL_2) ?></span>
+            <a href="mailto:<?= e($email1) ?>" class="text-crimson hover:underline font-bold"><?= e($email1) ?></a>
+            <?php if ($email2): ?>
+              <span class="text-white/40 block sm:inline sm:ml-2 text-[11px]">Alt: <?= e($email2) ?></span>
             <?php endif; ?>
           </p>
           <p>
             Instant WhatsApp desk? 
-            <a href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to submit an OEM tech pack inquiry.") ?>" target="_blank" rel="noopener noreferrer" class="text-white hover:text-crimson font-bold"><?= e(CONTACT_PHONE) ?></a>
+            <a href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to submit an OEM tech pack inquiry.") ?>" target="_blank" rel="noopener noreferrer" class="text-white hover:text-crimson font-bold"><?= e($phone) ?></a>
           </p>
         </div>
       </div>
@@ -101,25 +109,16 @@
             </div>
 
             <div>
-              <label class="block text-xs font-mono font-bold uppercase tracking-wider text-[#070709] mb-1.5">Estimated Quantity &amp; Target Delivery</label>
-              <input type="text" name="country" placeholder="e.g. 150 Units · Delivery by Nov 2026 · Shipping to USA" class="w-full bg-[#FCFBF8] border border-[#E6E4DD] rounded-xl px-4 py-3 text-sm text-[#070709] focus:outline-none focus:border-crimson">
+              <label class="block text-xs font-mono font-bold uppercase tracking-wider text-[#070709] mb-1.5">Project Scope &amp; Target Quantity (MOQ: <?= e($moq) ?>) *</label>
+              <textarea name="message" rows="4" required placeholder="Describe target models, leather or fabric specifications, estimated units per style, and in-hands delivery timeline..." class="w-full bg-[#FCFBF8] border border-[#E6E4DD] rounded-xl p-4 text-sm text-[#070709] focus:outline-none focus:border-crimson leading-relaxed"></textarea>
             </div>
 
-            <div>
-              <label class="block text-xs font-mono font-bold uppercase tracking-wider text-[#070709] mb-1.5">Project Details &amp; Material Preferences *</label>
-              <textarea name="message" rows="4" required placeholder="Describe your product requirements, leather gauge, hardware preference, or mention tech pack link..." class="w-full bg-[#FCFBF8] border border-[#E6E4DD] rounded-xl px-4 py-3 text-sm text-[#070709] focus:outline-none focus:border-crimson"></textarea>
-            </div>
-
-            <input type="text" name="company_website" class="hidden" tabindex="-1" autocomplete="off">
-
-            <div class="pt-2">
-              <button type="submit" class="w-full bg-crimson hover:bg-crimson-hover text-white py-4 px-6 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
-                Submit Production Inquiry →
-              </button>
-            </div>
-
-            <p class="text-center text-[11px] font-mono text-[#5A6472] mt-3">
-              Confidentiality guaranteed. We sign NDAs for all bespoke OEM proprietary patterns.
+            <button type="submit" class="w-full bg-crimson hover:bg-crimson-hover text-white py-4 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2">
+              <span>Send Specifications to Factory Desk</span>
+              <span>→</span>
+            </button>
+            <p class="text-[11px] text-[#5A6472] text-center font-mono">
+              Direct factory response from our engineering team within 2 hours.
             </p>
           </form>
         </div>

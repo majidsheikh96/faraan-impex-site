@@ -2,60 +2,26 @@
 /**
  * Hero Stage — Editorial Multi-Category Slider (Stagfield Luxury Caliber)
  * Balanced Luxury Height (~670px desktop) — Fully visible above-the-fold on 13"-16" screens.
- * 100% Authentic Client Production Photography — Zero AI-generated stock imagery.
+ * 100% Dynamic Admin-Controlled Slides — Zero AI-generated stock imagery.
  * Rock-solid CSS Grid layer stacking — Zero height jump / zero layout shift during transitions.
  */
 
-$heroSlides = [
-    [
-        'id'          => 'racing',
-        'kicker'      => 'CE LEVEL 2 CERTIFIED · TRACK RACING SUITS · SIALKOT',
-        'title'       => 'Precision racewear.<br>Built for the track.',
-        'lead'        => 'Direct private-label manufacturing of 1.3mm race cowhide suits, aerodynamic speed humps, and fortified carbon knuckle gloves tested for severe track slide resistance.',
-        'pills'       => ['CE Level 2 Armor', '1.3mm Race Cowhide', 'Aerodynamic Speed Hump', 'Carbon Knuckles'],
-        'image'       => '/assets/images/showcase/hero-slide-racing-2560.jpg',
-        'image_pos'   => 'object-cover object-center',
-        'tab_label'   => 'Motorcycle Racing',
-        'primary_cta' => ['text' => 'Explore Racing Division', 'href' => '/leather-wears/'],
-        'secondary_cta' => ['text' => 'Start an RFQ', 'href' => '/contact-us']
-    ],
-    [
-        'id'          => 'textiles',
-        'kicker'      => 'TECHNICAL APPAREL · YARN-DYED WEAVES · SIALKOT',
-        'title'       => 'Technical textiles.<br>Heavy plaid flannels.',
-        'lead'        => 'Direct OEM production of heavyweight 280 GSM cotton flannels, Cordura® 1000D adventure shells, ballistic denim, and all-weather touring apparel calibrated for durability.',
-        'pills'       => ['Heavy Flannel 280 GSM', 'Cordura® 1000D', 'DWR Weatherproof', 'Ballistic Denim'],
-        'image'       => '/assets/images/showcase/hero-slide-flannel-2560.jpg',
-        'image_pos'   => 'object-cover object-right sm:object-center',
-        'tab_label'   => 'Technical Flannels',
-        'primary_cta' => ['text' => 'Explore Textile Division', 'href' => '/textile-wears/'],
-        'secondary_cta' => ['text' => 'Start an RFQ', 'href' => '/contact-us']
-    ],
-    [
-        'id'          => 'western',
-        'kicker'      => 'HERITAGE CRAFT · HAND-BLOCKED HEADWEAR · SIALKOT',
-        'title'       => 'Western heritage.<br>Custom artisan headwear.',
-        'lead'        => 'Authentic wooden block-molded leather top hats, custom cowboy headwear, hand-cut fringed roughout suede jackets, and rugged rancher riding chaps for frontier brands.',
-        'pills'       => ['Hand-Blocked Hats', 'Roughout Suede', 'Hand-Cut Fringes', 'Riding Chaps'],
-        'image'       => '/assets/images/showcase/hero-slide-western-hat-2560.jpg',
-        'image_pos'   => 'object-cover object-right sm:object-center',
-        'tab_label'   => 'Western Headwear',
-        'primary_cta' => ['text' => 'Explore Western Division', 'href' => '/western-wears/'],
-        'secondary_cta' => ['text' => 'Start an RFQ', 'href' => '/contact-us']
-    ],
-    [
-        'id'          => 'leatherwear',
-        'kicker'      => 'MOTORCYCLE CLUB WEAR · BESPOKE LEATHER · SIALKOT',
-        'title'       => 'Biker vests.<br>Engineered to endure.',
-        'lead'        => 'Direct private-label manufacturing of heavy full-grain cowhide biker vests, authentic concho chain closures, side lacing, and rugged leather gear built to your exact tech pack.',
-        'pills'       => ['Full-Grain Cowhide', 'Concho Chain Closures', 'Side-Laced Fit', 'Workshop Aprons'],
-        'image'       => '/assets/images/showcase/hero-slide-biker-vest-2560.jpg',
-        'image_pos'   => 'object-cover object-right sm:object-center',
-        'tab_label'   => 'Biker Vests & Gear',
-        'primary_cta' => ['text' => 'Explore Leather Division', 'href' => '/leather-wears/'],
-        'secondary_cta' => ['text' => 'Start an RFQ', 'href' => '/contact-us']
-    ]
-];
+$rawSlides = get_hero_slides_data();
+$heroSlides = [];
+foreach ($rawSlides as $i => $s) {
+    $heroSlides[] = [
+        'id'            => 'slide-' . ($i + 1),
+        'kicker'        => $s['kicker'] ?? '',
+        'title'         => $s['title'] ?? '',
+        'lead'          => $s['lead'] ?? '',
+        'pills'         => $s['pills'] ?? [],
+        'image'         => $s['image'] ?? '',
+        'image_pos'     => 'object-cover ' . ($s['image_pos'] ?? 'object-center'),
+        'tab_label'     => $s['tab_label'] ?? ('Slide ' . ($i + 1)),
+        'primary_cta'   => ['text' => $s['primary_cta_text'] ?? 'Explore Division', 'href' => $s['primary_cta_url'] ?? '/contact-us'],
+        'secondary_cta' => ['text' => $s['secondary_cta_text'] ?? 'Start an RFQ', 'href' => $s['secondary_cta_url'] ?? '/contact-us']
+    ];
+}
 ?>
 
 <!-- 1. HERO STAGE — BALANCED EDITORIAL MULTI-CATEGORY SLIDER -->

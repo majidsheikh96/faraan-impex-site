@@ -2,40 +2,12 @@
 /**
  * Section 4: Manufacturing Capabilities (Stagfield Sports Minimalist Caliber)
  * Clean architectural dark grid with zero clutter — showcasing the full multi-category production scope.
+ * 100% Admin-Controlled Content.
  */
 
-$capabilities = [
-    [
-        'no'    => '01',
-        'title' => 'Multi-Hide Tanning & Grading',
-        'lead'  => 'Calibrated gauges from 0.7mm silky sheep nappa to 1.3mm drum-dyed race-grade cowhide, roughout split suede, and vegetable-tanned harness hides.'
-    ],
-    [
-        'no'    => '02',
-        'title' => 'Heavy Flannels & Cordura® 1000D',
-        'lead'  => 'Heavyweight yarn-dyed 280 GSM cotton flannels, Cordura® 1000D ballistic shells, DuPont™ Kevlar® abrasion linings, and DWR water-repellent barriers.'
-    ],
-    [
-        'no'    => '03',
-        'title' => 'CE Armor & Carbon Shielding',
-        'lead'  => 'CE Level 1 & Level 2 viscoelastic impact protectors, aerodynamic track humps, titanium elbow sliders, and carbon fiber motorcycle glove knuckles.'
-    ],
-    [
-        'no'    => '04',
-        'title' => 'Conchos, Heavy Brass & YKK® Fasteners',
-        'lead'  => 'Solid antiqued brass hardware, biker vest concho chains, heavy-gauge YKK® zippers, debossed leather patches, and custom cast hardware.'
-    ],
-    [
-        'no'    => '05',
-        'title' => 'Hand-Blocked Hats & Artisan Craft',
-        'lead'  => 'Traditional wooden block molding for leather top hats and western cowboy headwear, precision edge burnishing, and heavy-duty workshop aprons.'
-    ],
-    [
-        'no'    => '06',
-        'title' => 'Digital CAD Patterning & Rapid Sampling',
-        'lead'  => 'Digital 2D CAD grading from your sketches or reference garment. First physical production counter-sample delivered to your desk in 7–10 days.'
-    ]
-];
+$capabilities = get_capabilities_data();
+$heading = get_setting('capabilities_heading', 'Engineered around your technical pack.');
+$subheading = get_setting('capabilities_subheading', 'Our Sialkot manufacturing plant operates as your direct offshore production line. Capabilities span racing suits, technical flannels, western headwear, and bespoke leathercraft — each calibrated to your exact tolerances.');
 ?>
 
 <!-- 4. MANUFACTURING CAPABILITIES (Minimalist Dark Architectural Grid) -->
@@ -48,10 +20,10 @@ $capabilities = [
         MANUFACTURING CAPABILITIES
       </p>
       <h2 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-white tracking-tight leading-[1.16]">
-        Engineered around your technical pack.
+        <?= e($heading) ?>
       </h2>
       <p class="text-[#AEB9C4] text-[15px] sm:text-[17px] leading-relaxed mt-4">
-        Our Sialkot manufacturing plant operates as your direct offshore production line. Capabilities span racing suits, technical flannels, western headwear, and bespoke leathercraft — each calibrated to your exact tolerances.
+        <?= e($subheading) ?>
       </p>
     </div>
 
@@ -62,17 +34,17 @@ $capabilities = [
           <div>
             <!-- Number in Logo Crimson -->
             <span class="font-serif text-3xl sm:text-4xl text-crimson font-normal block mb-6">
-              <?= e($cap['no']) ?>
+              <?= e($cap['number'] ?? ($cap['no'] ?? '')) ?>
             </span>
 
             <!-- Title -->
             <h3 class="font-serif text-2xl font-normal text-white mb-3">
-              <?= e($cap['title']) ?>
+              <?= e($cap['title'] ?? '') ?>
             </h3>
 
             <!-- Description -->
             <p class="text-[#AEB9C4] text-[14px] leading-relaxed font-body">
-              <?= e($cap['lead']) ?>
+              <?= e($cap['desc'] ?? ($cap['lead'] ?? '')) ?>
             </p>
           </div>
         </div>

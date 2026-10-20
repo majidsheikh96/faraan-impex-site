@@ -2,9 +2,19 @@
 /**
  * Contact Us & Production Desk — Luxury B2B Procurement Hub (Stagfield Sports Caliber)
  * Factory credentials, direct commercial contacts, and comprehensive RFQ submission form.
+ * 100% Admin-Controlled Content via /admin/pages.php and /admin/settings.php.
  */
-$page_title = 'Contact Production Desk — OEM/ODM Sialkot Manufacturing | FARAAN IMPEX';
+$siteName = get_setting('site_name', SITE_NAME);
+$page_title = 'Contact Production Desk — OEM/ODM Sialkot Manufacturing | ' . e(strtoupper($siteName));
 $page_description = 'Submit tech packs, request wholesale leatherwear quotations, or connect with our master production desk in Sialkot, Pakistan.';
+
+$heroTitle = get_setting('contact_hero_title', 'Contact our commercial production desk.');
+$heroLead = get_setting('contact_hero_lead', 'Submit tech packs, request material swatches, or schedule a specification review with our master pattern makers. Quotations delivered within 2 hours.');
+$contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
+$contactEmail = get_setting('contact_email', CONTACT_EMAIL);
+$contactEmail2 = get_setting('contact_email_2', defined('CONTACT_EMAIL_2') ? CONTACT_EMAIL_2 : '');
+$contactPhone = get_setting('contact_phone', CONTACT_PHONE);
+$quoteTurnaround = get_setting('quote_turnaround', '2 business hours');
 
 $sent = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,10 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         DIRECT SIALKOT FACTORY ACCESS
       </span>
       <h1 class="font-serif text-3xl sm:text-5xl font-normal text-white tracking-tight leading-[1.14]">
-        Contact our commercial production desk.
+        <?= e($heroTitle) ?>
       </h1>
       <p class="text-[#AEB9C4] text-sm sm:text-base leading-relaxed mt-4 font-body">
-        Submit tech packs, request material swatches, or schedule a specification review with our master pattern makers. Quotations delivered within 2 hours.
+        <?= e($heroLead) ?>
       </p>
     </div>
   </div>
@@ -64,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <div>
             <div class="font-mono text-xs uppercase tracking-wider text-[#070709] font-bold mb-1">Factory Location</div>
-            <p class="text-sm text-[#5A6472] leading-relaxed"><?= e(CONTACT_ADDRESS) ?></p>
+            <p class="text-sm text-[#5A6472] leading-relaxed"><?= e($contactAddress) ?></p>
             <span class="inline-block mt-2 font-mono text-[11px] text-crimson">Sialkot, Punjab, Pakistan</span>
           </div>
         </div>
@@ -76,12 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <div>
             <div class="font-mono text-xs uppercase tracking-wider text-[#070709] font-bold mb-1">Primary Factory Email</div>
-            <a href="mailto:<?= e(CONTACT_EMAIL) ?>" class="text-sm text-[#070709] font-semibold hover:text-crimson transition-colors block">
-              <?= e(CONTACT_EMAIL) ?>
+            <a href="mailto:<?= e($contactEmail) ?>" class="text-sm text-[#070709] font-semibold hover:text-crimson transition-colors block">
+              <?= e($contactEmail) ?>
             </a>
-            <?php if (defined('CONTACT_EMAIL_2') && CONTACT_EMAIL_2): ?>
-              <a href="mailto:<?= e(CONTACT_EMAIL_2) ?>" class="text-xs text-[#5A6472] hover:text-crimson transition-colors block mt-0.5">
-                <?= e(CONTACT_EMAIL_2) ?> (Secondary / Info)
+            <?php if ($contactEmail2): ?>
+              <a href="mailto:<?= e($contactEmail2) ?>" class="text-xs text-[#5A6472] hover:text-crimson transition-colors block mt-0.5">
+                <?= e($contactEmail2) ?> (Secondary / Info)
               </a>
             <?php endif; ?>
           </div>
@@ -94,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <div>
             <div class="font-mono text-xs uppercase tracking-wider text-[#070709] font-bold mb-1">Phone &amp; WhatsApp Desk</div>
-            <a href="tel:<?= e(str_replace(' ', '', CONTACT_PHONE)) ?>" class="text-sm text-[#070709] font-semibold hover:text-crimson transition-colors block">
-              <?= e(CONTACT_PHONE) ?>
+            <a href="tel:<?= e(str_replace(' ', '', $contactPhone)) ?>" class="text-sm text-[#070709] font-semibold hover:text-crimson transition-colors block">
+              <?= e($contactPhone) ?>
             </a>
             <div class="mt-3">
               <a href="<?= whatsapp_link("Assalam-o-Alaikum, I would like to speak with the production desk regarding an OEM order.") ?>" 
@@ -123,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto text-xl font-bold">✓</div>
               <h3 class="font-serif text-2xl text-emerald-950 font-normal">Inquiry Successfully Received</h3>
               <p class="text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
-                Thank you, <?= e($name) ?>. Our commercial engineering desk will review your specifications and respond within 2 business hours.
+                Thank you, <?= e($name) ?>. Our commercial engineering desk will review your specifications and respond within <?= e($quoteTurnaround) ?>.
               </p>
             </div>
           <?php else: ?>
@@ -187,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
 
               <p class="text-center text-[11px] font-mono text-[#5A6472] mt-3">
-                Direct factory response within 2 hours. FOB / CIF quotes provided upon review.
+                Direct factory response within <?= e($quoteTurnaround) ?>. FOB / CIF quotes provided upon review.
               </p>
             </form>
           <?php endif; ?>

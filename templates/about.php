@@ -2,9 +2,25 @@
 /**
  * About Us — Company Heritage & Sialkot Atelier Credentials (Stagfield Sports Caliber)
  * High-contrast editorial hero, verified production statistics, and core manufacturing pillars.
+ * 100% Admin-Controlled Content via /admin/pages.php.
  */
-$page_title = 'About FARAAN IMPEX — Direct Sialkot Leather & Technical Garments Manufacturer';
-$page_description = 'Learn about Faraan Impex, a direct B2B private-label manufacturer and exporter of luxury leather outerwear, racing suits, and technical gear in Sialkot, Pakistan.';
+$siteName = get_setting('site_name', SITE_NAME);
+$page_title = 'About ' . e($siteName) . ' — Direct Sialkot Leather & Technical Garments Manufacturer';
+$page_description = 'Learn about ' . e($siteName) . ', a direct B2B private-label manufacturer and exporter of luxury leather outerwear, racing suits, and technical gear in Sialkot, Pakistan.';
+
+$heroTitle = get_setting('about_hero_title', 'Commercial communication on one side. Production capability on the other.');
+$heroLead = get_setting('about_hero_lead', 'Faraan Impex is a direct B2B leather and technical textile garments manufacturer based in Sialkot, Pakistan. We connect international fashion houses, motorcycle clubs, and volume distributors with master-grade contract manufacturing.');
+$story1 = get_setting('about_story_1', 'Founded in Sialkot, Pakistan — the global epicentre of sporting leathercraft and precision technical tailoring — Faraan Impex was established to solve the uncertainty between overseas buyers and factory floors.');
+$story2 = get_setting('about_story_2', 'We operate as your direct production partner. From selecting raw hides directly through certified local tanneries to drafting digital CAD grading templates and stitching with heavy-duty bonded nylon, every garment is managed under stringent tolerance standards.');
+
+$stat1Num = get_setting('about_stat_1_num', '200+');
+$stat1Label = get_setting('about_stat_1_label', 'Live Specifications');
+$stat2Num = get_setting('about_stat_2_num', '4');
+$stat2Label = get_setting('about_stat_2_label', 'Focused Divisions');
+$stat3Num = get_setting('about_stat_3_num', '7–10');
+$stat3Label = get_setting('about_stat_3_label', 'Days Prototype Lead');
+$stat4Num = get_setting('about_stat_4_num', '100%');
+$stat4Label = get_setting('about_stat_4_label', 'Dual Station QC');
 ?>
 
 <!-- About Hero Section -->
@@ -17,10 +33,10 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
         SIALKOT FACTORY &amp; OEM MANUFACTURING
       </span>
       <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.12]">
-        Commercial communication on one side. Production capability on the other.
+        <?= e($heroTitle) ?>
       </h1>
       <p class="text-[#AEB9C4] text-base sm:text-lg leading-relaxed mt-6 font-body">
-        Faraan Impex is a direct B2B leather and technical textile garments manufacturer based in Sialkot, Pakistan. We connect international fashion houses, motorcycle clubs, and volume distributors with master-grade contract manufacturing.
+        <?= e($heroLead) ?>
       </p>
     </div>
   </div>
@@ -43,10 +59,10 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
 
       <div class="lg:col-span-7 space-y-6 text-[#5A6472] text-[15px] sm:text-[16px] leading-relaxed font-body">
         <p>
-          Founded in Sialkot, Pakistan — the global epicentre of sporting leathercraft and precision technical tailoring — Faraan Impex was established to solve the uncertainty between overseas buyers and factory floors.
+          <?= e($story1) ?>
         </p>
         <p>
-          We operate as your direct production partner. From selecting raw hides directly through certified local tanneries to drafting digital CAD grading templates and stitching with heavy-duty bonded nylon, every garment is managed under stringent tolerance standards.
+          <?= e($story2) ?>
         </p>
         <p>
           Whether developing a boutique cafe racer collection for a US startup or fulfilling recurring 1,000-unit distributor orders for European safety wear programs, our commercial desk ensures clear milestone communication and zero broker markups.
@@ -57,23 +73,23 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
     <!-- 4 Factory Performance Metrics -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-20">
       <div class="bg-white rounded-[22px] border border-[#E6E4DD] p-7 shadow-sm">
-        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal">200+</div>
-        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2">Live Specifications</div>
+        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal"><?= e($stat1Num) ?></div>
+        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2"><?= e($stat1Label) ?></div>
         <div class="text-xs text-[#5A6472] mt-1 font-body">Ready for sampling or private label</div>
       </div>
       <div class="bg-white rounded-[22px] border border-[#E6E4DD] p-7 shadow-sm">
-        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal">4</div>
-        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2">Focused Divisions</div>
+        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal"><?= e($stat2Num) ?></div>
+        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2"><?= e($stat2Label) ?></div>
         <div class="text-xs text-[#5A6472] mt-1 font-body">Leather, Textile, Western &amp; Goods</div>
       </div>
       <div class="bg-white rounded-[22px] border border-[#E6E4DD] p-7 shadow-sm">
-        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal">7–10</div>
-        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2">Days Prototype Lead</div>
+        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal"><?= e($stat3Num) ?></div>
+        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2"><?= e($stat3Label) ?></div>
         <div class="text-xs text-[#5A6472] mt-1 font-body">Fast physical counter-sample sign-off</div>
       </div>
       <div class="bg-white rounded-[22px] border border-[#E6E4DD] p-7 shadow-sm">
-        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal">100%</div>
-        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2">Dual Station QC</div>
+        <div class="font-serif text-3xl sm:text-4xl text-crimson font-normal"><?= e($stat4Num) ?></div>
+        <div class="font-mono text-xs text-[#070709] uppercase tracking-wider font-bold mt-2"><?= e($stat4Label) ?></div>
         <div class="text-xs text-[#5A6472] mt-1 font-body">Pre-cutting &amp; final export crating</div>
       </div>
     </div>
@@ -126,7 +142,7 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
           Ready to review tech packs or request sample swatches?
         </h3>
         <p class="text-[#AEB9C4] text-sm mt-3">
-          Our engineering team reviews designs and calculates material consumption within 2 hours.
+          Our engineering team reviews designs and calculates material consumption within <?= e(get_setting('quote_turnaround', '2 hours')) ?>.
         </p>
       </div>
 
@@ -134,7 +150,7 @@ $page_description = 'Learn about Faraan Impex, a direct B2B private-label manufa
         <a href="/contact-us" class="bg-crimson hover:bg-crimson-hover text-white px-7 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-colors text-center shadow-md">
           Submit Tech Pack →
         </a>
-        <a href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to discuss contract manufacturing with Faraan Impex.") ?>" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-colors text-center">
+        <a href="<?= whatsapp_link("Assalam-o-Alaikum, I'd like to discuss contract manufacturing with " . $siteName . ".") ?>" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-colors text-center">
           Chat on WhatsApp
         </a>
       </div>

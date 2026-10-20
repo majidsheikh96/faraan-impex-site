@@ -1,5 +1,17 @@
 </main>
 
+<?php
+$footerAbout = get_setting('footer_about', 'Precision private-label leather and technical textile garments manufacturer based in Sialkot, Pakistan. Supplying motorcycle racing apparel, heritage suede outerwear, and bespoke leather goods to international distributors worldwide.');
+$footerDisclaimer = get_setting('footer_disclaimer', 'Direct Sialkot Factory | B2B Contract Export Only | CE & REACH Compliant');
+$disclaimerPills = array_filter(array_map('trim', explode('|', $footerDisclaimer)));
+$siteName = get_setting('site_name', SITE_NAME);
+$contactEmail = get_setting('contact_email', CONTACT_EMAIL);
+$contactEmail2 = get_setting('contact_email_2', defined('CONTACT_EMAIL_2') ? CONTACT_EMAIL_2 : '');
+$contactPhone = get_setting('contact_phone', CONTACT_PHONE);
+$contactPhone2 = get_setting('contact_phone_2', defined('CONTACT_PHONE_2') ? CONTACT_PHONE_2 : '');
+$contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
+?>
+
 <!-- 8. FOOTER — SIALKOT ATELIER & B2B EXPORT DESK (Stagfield Sports Luxury Caliber) -->
 <footer class="bg-[#070709] text-white border-t border-white/10" id="contact-us">
   <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -9,17 +21,17 @@
       
       <!-- Column 1: Atelier Heritage & Mission (4 cols) -->
       <div class="lg:col-span-4">
-        <a class="flex items-center shrink-0 mb-6 group" href="/" aria-label="Faraan Impex Home">
-          <img src="/assets/images/logo.png" alt="FARAAN IMPEX" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]">
+        <a class="flex items-center shrink-0 mb-6 group" href="/" aria-label="<?= e($siteName) ?> Home">
+          <img src="/assets/images/logo.png" alt="<?= e($siteName) ?>" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]">
         </a>
         
         <p class="font-body text-[#AEB9C4] leading-relaxed text-sm mb-6 max-w-sm">
-          Precision private-label leather and technical textile garments manufacturer based in Sialkot, Pakistan. Supplying motorcycle racing apparel, heritage suede outerwear, and bespoke leather goods to international distributors worldwide.
+          <?= e($footerAbout) ?>
         </p>
 
         <!-- Direct WhatsApp Concierge Link -->
         <a class="inline-flex items-center gap-2 text-white font-mono text-xs font-bold uppercase tracking-wider hover:text-crimson transition-colors" 
-           href="<?= whatsapp_link("Assalam-o-Alaikum, I would like to inquire about contract manufacturing with Faraan Impex.") ?>" 
+           href="<?= whatsapp_link("Assalam-o-Alaikum, I would like to inquire about contract manufacturing with " . $siteName . ".") ?>" 
            rel="noopener noreferrer" target="_blank">
           <span>Factory WhatsApp Desk</span>
           <span class="text-crimson font-bold">→</span>
@@ -64,22 +76,24 @@
         <div class="space-y-3.5 font-body text-[#AEB9C4] text-sm">
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-crimson text-[18px] mt-0.5 shrink-0">location_on</span>
-            <span class="leading-snug"><?= e(CONTACT_ADDRESS) ?></span>
+            <span class="leading-snug"><?= e($contactAddress) ?></span>
           </div>
           <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-crimson text-[18px] shrink-0">mail</span>
             <div class="flex flex-col">
-              <a class="hover:text-white transition-colors" href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a>
-              <?php if (defined('CONTACT_EMAIL_2') && CONTACT_EMAIL_2): ?>
-                <a class="hover:text-white transition-colors text-xs text-white/50" href="mailto:<?= e(CONTACT_EMAIL_2) ?>"><?= e(CONTACT_EMAIL_2) ?></a>
+              <a class="hover:text-white transition-colors" href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>
+              <?php if ($contactEmail2): ?>
+                <a class="hover:text-white transition-colors text-xs text-white/50" href="mailto:<?= e($contactEmail2) ?>"><?= e($contactEmail2) ?></a>
               <?php endif; ?>
             </div>
           </div>
           <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-crimson text-[18px] shrink-0">call</span>
             <div class="flex flex-col">
-              <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', CONTACT_PHONE)) ?>"><?= e(CONTACT_PHONE) ?></a>
-              <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', CONTACT_PHONE_2)) ?>"><?= e(CONTACT_PHONE_2) ?></a>
+              <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', $contactPhone)) ?>"><?= e($contactPhone) ?></a>
+              <?php if ($contactPhone2): ?>
+                <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', $contactPhone2)) ?>"><?= e($contactPhone2) ?></a>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -89,14 +103,15 @@
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-[#AEB9C4] gap-4">
       <div>
-        &copy; <?= date('Y') ?> FARAAN IMPEX. All Rights Reserved. Sialkot, Pakistan.
+        &copy; <?= date('Y') ?> <?= e(strtoupper($siteName)) ?>. All Rights Reserved. Sialkot, Pakistan.
       </div>
-      <div class="flex items-center gap-6 uppercase tracking-wider text-[10px]">
-        <span class="text-crimson font-bold">Direct Sialkot Factory</span>
-        <span class="text-white/20">|</span>
-        <span>B2B Contract Export Only</span>
-        <span class="text-white/20">|</span>
-        <span>CE &amp; REACH Compliant</span>
+      <div class="flex flex-wrap items-center gap-3 sm:gap-6 uppercase tracking-wider text-[10px]">
+        <?php foreach ($disclaimerPills as $idx => $pill): ?>
+          <?php if ($idx > 0): ?>
+            <span class="text-white/20">|</span>
+          <?php endif; ?>
+          <span class="<?= $idx === 0 ? 'text-crimson font-bold' : '' ?>"><?= e($pill) ?></span>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>

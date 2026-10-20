@@ -3,14 +3,24 @@
  * Category Listing — Luxury B2B Wholesale & OEM Catalog (Stagfield Caliber)
  * High-contrast editorial hero and spacious full-width 4-column product grid with zero sidebar clutter.
  * 60fps/120fps hardware-accelerated micro-interactions.
+ * 100% Admin-Controlled Kicker, Lead Text, Custom MOQ, and Images.
  */
 $page_title = e($category['name']) . ' — OEM/ODM Private-Label Manufacturing | FARAAN IMPEX';
 $page_description = e($category['meta_description'] ?: $category['name'] . ' — export-grade wholesale B2B contract manufacturing catalog from Sialkot, Pakistan.');
+$kicker = !empty($category['kicker']) ? $category['kicker'] : 'MANUFACTURING DIVISION';
+$leadText = !empty($category['lead_text']) ? $category['lead_text'] : (count($products) . ' Verified Export Specifications · Direct Sialkot Factory Contract Production');
+$categoryMoq = !empty($category['custom_moq']) ? $category['custom_moq'] : get_site_moq();
 ?>
 
 <!-- Category Editorial Header -->
 <section class="bg-[#070709] text-white border-b border-white/10 py-16 sm:py-20 relative overflow-hidden">
   <div class="absolute -right-32 -top-32 w-80 h-80 bg-crimson/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <?php if (!empty($category['image'])): ?>
+    <div class="absolute inset-0 opacity-15 pointer-events-none">
+      <img src="<?= e($category['image']) ?>" alt="" class="w-full h-full object-cover">
+    </div>
+  <?php endif; ?>
 
   <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <nav class="font-mono text-xs text-[#AEB9C4] uppercase tracking-wider mb-4 flex items-center gap-2">
@@ -22,18 +32,18 @@ $page_description = e($category['meta_description'] ?: $category['name'] . ' —
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
       <div>
         <span class="font-mono text-crimson text-[11px] uppercase tracking-[0.18em] font-bold block mb-2">
-          MANUFACTURING DIVISION
+          <?= e($kicker) ?>
         </span>
         <h1 class="font-serif text-3xl sm:text-5xl font-normal text-white tracking-tight leading-tight">
           <?= e($category['name']) ?>
         </h1>
         <p class="text-[#AEB9C4] text-sm sm:text-base mt-3 max-w-xl font-body">
-          <?= count($products) ?> Verified Export Specifications · Direct Sialkot Factory Contract Production
+          <?= e($leadText) ?>
         </p>
       </div>
 
       <div class="font-mono text-xs text-slate-300 border border-white/15 bg-white/5 rounded-full px-4 py-2 self-start md:self-end shrink-0">
-        <span class="text-crimson font-bold">MOQ:</span> 50 Pcs / Style · Custom Branding
+        <span class="text-crimson font-bold">MOQ:</span> <?= e($categoryMoq) ?> · Custom Branding
       </div>
     </div>
   </div>

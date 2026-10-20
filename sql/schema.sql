@@ -9,6 +9,10 @@ CREATE TABLE IF NOT EXISTS categories (
     product_count INT UNSIGNED NOT NULL DEFAULT 0,
     sort_order INT NOT NULL DEFAULT 0,
     meta_description VARCHAR(255) NULL,
+    kicker VARCHAR(120) NULL DEFAULT NULL,
+    lead_text TEXT NULL DEFAULT NULL,
+    custom_moq VARCHAR(100) NULL DEFAULT NULL,
+    image VARCHAR(255) NULL DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (parent_id) REFERENCES categories(id) ON DELETE SET NULL,
     INDEX idx_parent (parent_id),
@@ -52,9 +56,18 @@ CREATE TABLE IF NOT EXISTS login_attempts (
     INDEX idx_ip_time (ip, attempted_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Seed top-level categories (subcategories added during migration)
+CREATE TABLE IF NOT EXISTS site_settings (
+    setting_key VARCHAR(100) PRIMARY KEY,
+    setting_value LONGTEXT NULL,
+    setting_group VARCHAR(60) NOT NULL DEFAULT 'general',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_group (setting_group)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Seed top-level categories
 INSERT INTO categories (name, slug, sort_order) VALUES
     ('Leather Wears',  'leather-wears',  1),
     ('Textile Wears',  'textile-wears',  2),
     ('Western Wears',  'western-wears',  3),
-    ('Leather Products','leather-products',4);
+    ('Leather Products','leather-products',4)
+ON DUPLICATE KEY UPDATE name=VALUES(name);

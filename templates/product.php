@@ -3,11 +3,16 @@
  * Product Specification Sheet — Luxury B2B Contract Manufacturing Detail (Stagfield Caliber)
  * High-precision photographic gallery, technical hide and hardware table, and direct quotation triggers.
  * 60fps/120fps hardware-accelerated micro-interactions.
+ * 100% Admin-Controlled MOQ and Production Turnaround.
  */
 $page_title = e($product['name']) . ' (' . e($product['sku']) . ') — Private Label Manufacturing | FARAAN IMPEX';
 $page_description = e($product['meta_description'] ?: $product['name'] . ' — export-grade OEM/ODM specification sheet from Faraan Impex, Sialkot, Pakistan.');
 $specs = !empty($product['specs']) ? json_decode($product['specs'], true) : [];
 $gallery = !empty($product['gallery']) ? json_decode($product['gallery'], true) : [];
+
+$productMoq = !empty($product['custom_moq']) ? $product['custom_moq'] : get_site_moq();
+$sampleTurnaround = get_setting('sample_turnaround', '7–10 Business Days');
+$quoteTurnaround = get_setting('quote_turnaround', '2 Hours');
 
 // Clean legacy scraped script fragments if present
 $desc = $product['description'] ?? '';
@@ -101,11 +106,11 @@ $desc = trim($desc);
           <dl class="text-xs sm:text-sm divide-y divide-[#E6E4DD]">
             <div class="flex justify-between py-2.5">
               <dt class="font-mono text-[#5A6472] uppercase">Minimum Order Quantity</dt>
-              <dd class="font-mono font-bold text-[#070709]">50 Pcs / Style</dd>
+              <dd class="font-mono font-bold text-[#070709]"><?= e($productMoq) ?></dd>
             </div>
             <div class="flex justify-between py-2.5">
               <dt class="font-mono text-[#5A6472] uppercase">Sample Turnaround</dt>
-              <dd class="font-mono text-[#070709]">7–10 Business Days</dd>
+              <dd class="font-mono text-[#070709]"><?= e($sampleTurnaround) ?></dd>
             </div>
             <div class="flex justify-between py-2.5">
               <dt class="font-mono text-[#5A6472] uppercase">Private Labeling</dt>
@@ -139,7 +144,7 @@ $desc = trim($desc);
         </div>
 
         <p class="text-[11px] font-mono text-[#5A6472] leading-relaxed">
-          * Faraan Impex operates strictly as a wholesale B2B manufacturer. Retail pricing is not listed. Formal commercial quotations provided against approved bill of materials.
+          * Faraan Impex operates strictly as a wholesale B2B manufacturer. Retail pricing is not listed. Formal commercial quotations provided against approved bill of materials within <?= e($quoteTurnaround) ?>.
         </p>
       </div>
 

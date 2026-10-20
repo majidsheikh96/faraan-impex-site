@@ -3,7 +3,12 @@
  * Section 5: Curated Export Styles (Stagfield Sports Luxury Caliber)
  * Studio white cards with pure unobstructed photography (zero floating badges), Georgia serif titles, and clean B2B quotation triggers.
  * 60fps/120fps hardware-accelerated micro-interactions.
+ * 100% Admin-Controlled Content & Dynamic MOQ.
  */
+
+$heading = get_setting('curated_heading', 'Curated styles ready for sampling.');
+$subheading = get_setting('curated_subheading', 'Benchmark specifications spanning motorbike suits, fortified racing gloves, technical flannels, cowboy hats, denim outerwear, vests, and artisan aprons.');
+$moqBadge = get_setting('curated_moq_badge', get_site_moq() . ' · Custom Branding Available');
 ?>
 <?php if (!empty($featured)): ?>
 <section class="py-24 sm:py-28 bg-paper border-b border-[#E6E4DD]" id="featured-styles">
@@ -16,14 +21,14 @@
           FACTORY HIGHLIGHTS
         </p>
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#070709] tracking-tight leading-[1.16]">
-          Curated styles ready for sampling.
+          <?= e($heading) ?>
         </h2>
         <p class="text-[#5A6472] text-[15px] sm:text-[16px] leading-relaxed mt-3">
-          Benchmark specifications spanning motorbike suits, fortified racing gloves, technical flannels, cowboy hats, denim outerwear, vests, and artisan aprons.
+          <?= e($subheading) ?>
         </p>
       </div>
       <div class="font-mono text-xs text-[#5A6472] border border-[#E6E4DD] bg-white rounded-full px-4 py-2 self-start md:self-end shrink-0 shadow-sm">
-        <span class="text-crimson font-bold">MOQ:</span> 50 Pcs / Style · Custom Branding Available
+        <span class="text-crimson font-bold">MOQ:</span> <?= e($moqBadge) ?>
       </div>
     </div>
 

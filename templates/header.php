@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= e($page_title ?? 'FARAAN IMPEX — Luxury Leather & Technical Garments Manufacturer | Sialkot') ?></title>
-<meta name="description" content="<?= e($page_description ?? 'Faraan Impex — Direct B2B OEM/ODM contract manufacturer and exporter of premium leather garments, motorcycle apparel, and leather goods from Sialkot, Pakistan.') ?>">
+<title><?= e($page_title ?? (get_setting('site_name', 'FARAAN IMPEX') . ' — Luxury Leather & Technical Garments Manufacturer | Sialkot')) ?></title>
+<meta name="description" content="<?= e($page_description ?? (get_setting('site_name', 'Faraan Impex') . ' — Direct B2B OEM/ODM contract manufacturer and exporter of premium leather garments, motorcycle apparel, and leather goods from Sialkot, Pakistan.')) ?>">
 
 <!-- Favicon & Touch Icons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -53,7 +53,7 @@ tailwind.config = {
   }
 }
 </script>
-<link rel="stylesheet" href="/assets/css/main.css?v=<?= file_exists(__DIR__ . '/../assets/css/main.css') ? filemtime(__DIR__ . '/../assets/css/main.css') : '2.0' ?>">
+<link rel="stylesheet" href="/assets/css/main.css?v=<?= file_exists(__DIR__ . '/../assets/css/main.css') ? filemtime(__DIR__ . '/../assets/css/main.css') : '2.1' ?>">
 </head>
 <body class="bg-paper text-body-text antialiased font-body overflow-x-hidden min-w-[320px]">
 
@@ -62,19 +62,19 @@ tailwind.config = {
   <div class="max-w-[1440px] mx-auto min-h-[34px] px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4 tracking-[0.12em] uppercase">
     <!-- Brand Lineage / Direct Authority -->
     <div class="flex items-center gap-2 truncate min-w-0">
-      <strong class="font-bold text-white tracking-[0.14em]">Faraan Impex</strong>
+      <strong class="font-bold text-white tracking-[0.14em]"><?= e(get_setting('site_name', 'Faraan Impex')) ?></strong>
       <span class="text-white/30">·</span>
-      <span class="truncate text-slate-300">Sialkot Factory &amp; Direct OEM/ODM Manufacturer</span>
+      <span class="truncate text-slate-300"><?= e(get_setting('topbar_tagline', 'Sialkot Factory & Direct OEM/ODM Manufacturer')) ?></span>
     </div>
 
     <!-- Direct B2B Contact & Turnaround -->
     <div class="hidden md:flex items-center gap-3 shrink-0 text-[#BFC9D2]">
-      <a class="flex items-center gap-1.5 hover:text-white transition-colors lowercase font-normal" href="mailto:<?= e(CONTACT_EMAIL) ?>">
+      <a class="flex items-center gap-1.5 hover:text-white transition-colors lowercase font-normal" href="mailto:<?= e(get_setting('contact_email', CONTACT_EMAIL)) ?>">
         <span class="material-symbols-outlined text-[14px] text-crimson">mail</span>
-        <span><?= e(CONTACT_EMAIL) ?></span>
+        <span><?= e(get_setting('contact_email', CONTACT_EMAIL)) ?></span>
       </a>
       <span class="text-white/30">·</span>
-      <span class="text-slate-200">B2B Quote Turnaround: Under 2 Hours</span>
+      <span class="text-slate-200">B2B Quote Turnaround: <?= e(get_setting('quote_turnaround', 'Under 2 Hours')) ?></span>
     </div>
   </div>
 </aside>
@@ -84,7 +84,7 @@ tailwind.config = {
   <div class="w-full px-4 sm:px-6 lg:px-12 flex items-center justify-between mx-auto h-20 max-w-[1440px]">
     <!-- Brand Official Logo -->
     <a class="flex items-center shrink-0 mr-4 lg:mr-8 group" href="/" aria-label="Faraan Impex Home">
-      <img src="/assets/images/logo.png" alt="FARAAN IMPEX" class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]">
+      <img src="/assets/images/logo.png" alt="<?= e(get_setting('site_name', 'FARAAN IMPEX')) ?>" class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]">
     </a>
 
     <!-- Center Navigation Links -->
