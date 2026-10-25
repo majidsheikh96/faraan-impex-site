@@ -16,6 +16,7 @@ require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/models.php';
 
 geo_block_check();
+coming_soon_check();
 
 $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
 $segments = $path === '' ? [] : explode('/', $path);

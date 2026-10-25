@@ -12,6 +12,9 @@ $stats = [
     'featured'   => (int)db()->query('SELECT COUNT(*) FROM products WHERE is_featured = 1')->fetchColumn(),
 ];
 
+$csActive = get_setting('coming_soon_enabled', '1') === '1';
+$csKey = get_setting('coming_soon_key', 'faraan');
+
 admin_header('Dashboard');
 ?>
 
@@ -34,6 +37,32 @@ admin_header('Dashboard');
       <a href="/" target="_blank" class="px-4 py-2 rounded-xl bg-[#0B0C0E] text-white hover:bg-[#C51E28] transition-colors text-xs font-mono font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5">
         <span>View Live Site</span>
         <span>↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Coming Soon & Launch Gate Alert Banner -->
+  <div class="p-4 sm:p-5 rounded-2xl border <?= $csActive ? 'bg-amber-50/80 border-amber-300 text-amber-950' : 'bg-emerald-50/80 border-emerald-300 text-emerald-950' ?> flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs font-mono shadow-sm">
+    <div class="flex items-start sm:items-center gap-3">
+      <span class="w-3 h-3 rounded-full mt-0.5 sm:mt-0 shrink-0 <?= $csActive ? 'bg-amber-500 animate-pulse' : 'bg-emerald-500' ?>"></span>
+      <div>
+        <strong class="font-bold text-sm block"><?= $csActive ? 'Coming Soon Mode is Active' : 'Website is Live to the Public' ?></strong>
+        <span class="<?= $csActive ? 'text-amber-800' : 'text-emerald-800' ?> text-[11px] block mt-0.5">
+          <?= $csActive ? 'Public visitors are directed to the dark luxury Coming Soon page.' : 'All visitors can view the full catalog and navigation.' ?>
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-3 shrink-0">
+      <?php if ($csActive): ?>
+        <span class="text-amber-900 bg-amber-100/90 border border-amber-300 px-2.5 py-1 rounded-lg">
+          Bypass: <strong>?preview=<?= e($csKey) ?></strong>
+        </span>
+        <a href="/?preview=<?= e($csKey) ?>" target="_blank" class="px-3 py-1.5 rounded-lg bg-amber-800 text-white hover:bg-amber-900 transition-colors font-bold">
+          Test Bypass ↗
+        </a>
+      <?php endif; ?>
+      <a href="/admin/settings.php" class="px-3 py-1.5 rounded-lg bg-white border border-gray-300 text-gray-900 hover:text-[#C51E28] hover:border-[#C51E28] transition-colors font-bold shadow-xs">
+        Configure Settings →
       </a>
     </div>
   </div>
@@ -85,7 +114,7 @@ admin_header('Dashboard');
           Site Settings &amp; MOQ
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
-          Configure wholesale Minimum Order Quantity (MOQ), sample/quote turnaround SLAs, primary Gmail priority, phone numbers, and WhatsApp.
+          Configure wholesale Minimum Order Quantity (MOQ), sample/quote turnaround SLAs, primary Gmail priority, phone numbers, WhatsApp, and Coming Soon gate.
         </p>
       </a>
 

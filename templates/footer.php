@@ -60,44 +60,54 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
           OPERATIONS
         </div>
         <ul class="space-y-3 font-body text-[#AEB9C4] text-sm">
-          <li><a class="hover:text-white transition-colors" href="/about-us">Company Profile</a></li>
-          <li><a class="hover:text-white transition-colors" href="/#divisions">Manufacturing Divisions</a></li>
-          <li><a class="hover:text-white transition-colors" href="/#capabilities">Material Lab</a></li>
-          <li><a class="hover:text-white transition-colors" href="/#process">How It Works</a></li>
-          <li><a class="hover:text-white transition-colors" href="/contact-us">Request Quotation</a></li>
+          <li><a class="hover:text-white transition-colors" href="/about-us">Heritage &amp; Factory</a></li>
+          <li><a class="hover:text-white transition-colors" href="/about-us#certifications">CE &amp; Technical Specs</a></li>
+          <li><a class="hover:text-white transition-colors" href="/contact-us">Counter-Sample Request</a></li>
+          <li><a class="hover:text-white transition-colors" href="/contact-us#inquiry-form">OEM / ODM Quotation</a></li>
+          <li><a class="hover:text-white transition-colors" href="/contact-us">Global Air/Sea Freight</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Sialkot Export Desk Contacts (4 cols) -->
-      <div class="lg:col-span-4" id="about-us-info">
+      <!-- Column 4: Factory Coordinates & Hours (4 cols) -->
+      <div class="lg:col-span-4">
         <div class="font-mono text-crimson text-[11px] uppercase tracking-[0.16em] font-bold mb-5">
-          FACTORY EXPORT DESK
+          SIALKOT PRODUCTION FACILITY
         </div>
-        <div class="space-y-3.5 font-body text-[#AEB9C4] text-sm">
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-crimson text-[18px] mt-0.5 shrink-0">location_on</span>
-            <span class="leading-snug"><?= e($contactAddress) ?></span>
+        <div class="space-y-3 font-body text-sm text-[#AEB9C4]">
+          <div class="flex items-start gap-2.5">
+            <span class="text-crimson font-mono text-xs font-bold shrink-0 mt-0.5">ADDR</span>
+            <span><?= e($contactAddress) ?></span>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-crimson text-[18px] shrink-0">mail</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-crimson font-mono text-xs font-bold shrink-0">EMAIL</span>
             <div class="flex flex-col">
-              <a class="hover:text-white transition-colors" href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>
+              <a class="hover:text-white transition-colors font-mono text-xs text-white" href="mailto:<?= e($contactEmail) ?>">
+                <?= e($contactEmail) ?>
+              </a>
               <?php if ($contactEmail2): ?>
-                <a class="hover:text-white transition-colors text-xs text-white/50" href="mailto:<?= e($contactEmail2) ?>"><?= e($contactEmail2) ?></a>
+                <a class="hover:text-white transition-colors font-mono text-xs text-[#AEB9C4]" href="mailto:<?= e($contactEmail2) ?>">
+                  <?= e($contactEmail2) ?>
+                </a>
               <?php endif; ?>
             </div>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-crimson text-[18px] shrink-0">call</span>
-            <div class="flex flex-col">
-              <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', $contactPhone)) ?>"><?= e($contactPhone) ?></a>
+          <div class="flex items-center gap-2.5">
+            <span class="text-crimson font-mono text-xs font-bold shrink-0">PHONE</span>
+            <div class="flex items-center gap-2 font-mono text-xs text-white">
+              <a class="hover:text-white transition-colors" href="tel:<?= e($contactPhone) ?>"><?= e($contactPhone) ?></a>
               <?php if ($contactPhone2): ?>
-                <a class="hover:text-white transition-colors" href="tel:<?= e(str_replace(' ', '', $contactPhone2)) ?>"><?= e($contactPhone2) ?></a>
+                <span class="text-white/30">/</span>
+                <a class="hover:text-white transition-colors" href="tel:<?= e($contactPhone2) ?>"><?= e($contactPhone2) ?></a>
               <?php endif; ?>
             </div>
+          </div>
+          <div class="flex items-center gap-2.5 pt-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="font-mono text-xs text-white/80">Factory Floor Operational: Mon – Sat (08:00 – 18:00 PKT)</span>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Bottom Bar -->
@@ -116,6 +126,20 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
     </div>
   </div>
 </footer>
+
+<?php if (function_exists('is_preview_active') && is_preview_active()): ?>
+<!-- Floating Preview Mode Lock Indicator -->
+<div class="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 bg-[#0B0C0E]/95 backdrop-blur-md border border-white/20 text-white px-4 py-2.5 rounded-full shadow-2xl text-xs font-mono">
+  <span class="relative flex h-2 w-2">
+    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+  </span>
+  <span class="text-white/90 uppercase tracking-wider font-bold">Preview Active</span>
+  <a href="/?lock=1" class="ml-1 px-2.5 py-1 rounded-full bg-white/10 hover:bg-[#C51E28] text-white/90 hover:text-white transition-colors text-[11px] font-bold" title="Exit preview and lock site back to Coming Soon">
+    Lock Site 🔒
+  </a>
+</div>
+<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

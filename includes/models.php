@@ -127,7 +127,7 @@ function get_hero_slides_data(): array
             'secondary_cta_text' => 'Request Swatches',
             'secondary_cta_url' => '/contact-us',
             'image' => '/assets/images/showcase/hero-slide-flannel-2560.jpg',
-            'image_pos' => 'object-[center_28%]'
+            'image_pos' => 'object-[80%_center]'
         ],
         [
             'number' => '03',
@@ -141,7 +141,7 @@ function get_hero_slides_data(): array
             'secondary_cta_text' => 'Order Custom Hats',
             'secondary_cta_url' => '/contact-us',
             'image' => '/assets/images/showcase/hero-slide-western-hat-2560.jpg',
-            'image_pos' => 'object-[center_60%]'
+            'image_pos' => 'object-[85%_center]'
         ],
         [
             'number' => '04',
@@ -155,7 +155,7 @@ function get_hero_slides_data(): array
             'secondary_cta_text' => 'Submit Vest Tech Pack',
             'secondary_cta_url' => '/contact-us',
             'image' => '/assets/images/showcase/hero-slide-biker-vest-2560.jpg',
-            'image_pos' => 'object-center'
+            'image_pos' => 'object-[80%_center]'
         ]
     ];
 }
