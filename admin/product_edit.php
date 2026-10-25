@@ -87,7 +87,7 @@ if ($error) echo '<p class="bg-red-100 text-red-800 rounded px-4 py-2 mb-4 text-
       </select>
     </div>
   </div>
-  <div><label class="text-sm font-medium">Description</label><textarea name="description" rows="4" class="mt-1 w-full border rounded px-3 py-2"><?= $v('description') ?></textarea></div>
+  <div><label class="text-sm font-medium">Description</label><textarea name="description" rows="4" class="mt-1 w-full border rounded px-3 py-2"><?= e(clean_description($_POST['description'] ?? ($product['description'] ?? ''))) ?></textarea></div>
   <div><label class="text-sm font-medium">Meta Description (SEO)</label><input name="meta_description" value="<?= $v('meta_description') ?>" maxlength="255" class="mt-1 w-full border rounded px-3 py-2"></div>
   <div>
     <label class="text-sm font-medium">Product Image</label>
@@ -99,7 +99,7 @@ if ($error) echo '<p class="bg-red-100 text-red-800 rounded px-4 py-2 mb-4 text-
     <label><input type="checkbox" name="is_active" <?= ($_POST['is_active'] ?? $product['is_active'] ?? 1) ? 'checked' : '' ?>> Active</label>
   </div>
   <div class="flex gap-3">
-    <button class="bg-[#0A0A0A] text-white px-6 py-2 rounded font-medium">Save</button>
+    <button class="bg-[#0D0D0D] text-white px-6 py-2 rounded font-medium">Save</button>
     <a href="/admin/products.php" class="px-4 py-2 text-sm text-gray-500">Cancel</a>
   </div>
 </form>

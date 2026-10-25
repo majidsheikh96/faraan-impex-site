@@ -40,14 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Login — Faraan Impex</title>
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/css/admin.css?v=<?= (int)@filemtime(__DIR__ . '/../assets/css/admin.css') ?>">
+<meta name="robots" content="noindex, nofollow">
 </head>
-<body class="bg-[#FAF7F2] min-h-screen flex items-center justify-center p-4">
-<div class="bg-white rounded-2xl border border-[#0A0A0A]/10 p-8 w-full max-w-sm shadow-xl">
+<body class="admin-app bg-[#ECEAE6] min-h-screen flex items-center justify-center p-4">
+<div class="bg-white border border-[#0D0D0D] p-8 w-full max-w-sm" style="border-top:4px solid #C8102E">
   <div class="flex items-center gap-2 mb-6">
-    <div class="w-3 h-3 rounded-full bg-[#C51E28]"></div>
-    <h1 class="text-xl font-extrabold tracking-tight text-gray-900">Faraan Impex <span class="text-[#C51E28]">Admin</span></h1>
+    <div class="w-3 h-3 rounded-full bg-[#C8102E]"></div>
+    <h1 class="text-gray-900" style="font-size:30px !important;letter-spacing:.04em">FARAAN IMPEX <span class="text-[#C8102E]">ADMIN</span></h1>
   </div>
   <?php if ($error): ?>
     <div class="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg text-xs font-mono mb-4">
@@ -57,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <form method="post" class="space-y-4">
     <div>
       <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-1">Username</label>
-      <input name="username" required autocomplete="username" class="w-full bg-[#FAF7F2] border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#C51E28]">
+      <input name="username" required autocomplete="username" class="w-full bg-[#F4F3F1] border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#C8102E]">
     </div>
     <div>
       <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-1">Password</label>
-      <input name="password" type="password" required autocomplete="current-password" class="w-full bg-[#FAF7F2] border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#C51E28]">
+      <input name="password" type="password" required autocomplete="current-password" class="w-full bg-[#F4F3F1] border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#C8102E]">
     </div>
-    <button type="submit" class="w-full bg-[#0B0C0E] hover:bg-[#C51E28] text-white py-2.5 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
+    <button type="submit" class="w-full bg-[#0D0D0D] hover:bg-[#C8102E] text-white py-2.5 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
       Log In to Admin Desk →
     </button>
   </form>

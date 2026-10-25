@@ -101,7 +101,7 @@ admin_header('Homepage Sections Editor');
 
   <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">PAGE ARCHITECTURE</span>
+      <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">PAGE ARCHITECTURE</span>
       <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Homepage Sections Editor</h1>
       <p class="text-sm text-gray-500 mt-1">
         Edit Core Manufacturing Divisions, Material Lab Capabilities, Process Steps, Curated Styles headings, and Inquiry Desk.
@@ -125,7 +125,7 @@ admin_header('Homepage Sections Editor');
     <!-- SECTION A: CORE MANUFACTURING DIVISIONS -->
     <div class="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-6 sm:p-8 space-y-8">
       <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
-        <span class="w-3 h-3 rounded-full bg-[#C51E28]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#C8102E]"></span>
         <h2 class="text-lg font-bold text-gray-900 uppercase tracking-wide font-mono">
           Section A: 4 Core Manufacturing Divisions
         </h2>
@@ -152,7 +152,7 @@ admin_header('Homepage Sections Editor');
         <?php foreach ($divisions as $idx => $d): ?>
           <div class="p-6 rounded-xl bg-gray-50 border border-gray-200/80 space-y-4">
             <div class="flex items-center justify-between pb-2 border-b border-gray-200">
-              <span class="font-mono text-xs font-bold text-[#C51E28]">DIVISION <?= sprintf('%02d', $idx + 1) ?></span>
+              <span class="font-mono text-xs font-bold text-[#C8102E]">DIVISION <?= sprintf('%02d', $idx + 1) ?></span>
               <span class="font-mono text-xs text-gray-500">Route: <?= e($d['href'] ?? '') ?></span>
             </div>
 
@@ -232,7 +232,7 @@ admin_header('Homepage Sections Editor');
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
         <?php foreach ($capabilities as $idx => $cap): ?>
           <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 space-y-3">
-            <span class="font-mono text-xs font-bold text-[#C51E28]">CAPABILITY <?= sprintf('%02d', $idx + 1) ?></span>
+            <span class="font-mono text-xs font-bold text-[#C8102E]">CAPABILITY <?= sprintf('%02d', $idx + 1) ?></span>
             <div>
               <label class="block text-[11px] font-mono text-gray-600 mb-1">Title</label>
               <input type="text" name="cap_<?= $idx ?>_title" value="<?= e($cap['title'] ?? '') ?>" 
@@ -274,7 +274,7 @@ admin_header('Homepage Sections Editor');
           <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Curated MOQ Badge Text</label>
           <input type="text" name="curated_moq_badge" 
                  value="<?= e(get_setting('curated_moq_badge', '50 Pcs / Style · Custom Branding Available')) ?>" 
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-xs font-mono text-[#C51E28]">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-xs font-mono text-[#C8102E]">
         </div>
       </div>
 
@@ -320,7 +320,7 @@ admin_header('Homepage Sections Editor');
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
         <?php foreach ($process_steps as $idx => $step): ?>
           <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
-            <span class="font-mono text-xs font-bold text-[#C51E28]">PHASE <?= sprintf('%02d', $idx + 1) ?></span>
+            <span class="font-mono text-xs font-bold text-[#C8102E]">PHASE <?= sprintf('%02d', $idx + 1) ?></span>
             <div>
               <label class="block text-[11px] font-mono text-gray-600 mb-1">Step Title</label>
               <input type="text" name="step_<?= $idx ?>_title" value="<?= e($step['title'] ?? '') ?>" 
@@ -342,7 +342,7 @@ admin_header('Homepage Sections Editor');
         ← Back to Dashboard
       </a>
       <button type="submit" 
-              class="inline-flex items-center justify-center gap-2 bg-[#C51E28] hover:bg-[#A81822] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              class="inline-flex items-center justify-center gap-2 bg-[#C8102E] hover:bg-[#9E0C24] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
         <span>Save All Homepage Sections</span>
         <span>✓</span>
       </button>

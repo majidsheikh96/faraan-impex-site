@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         // Coming Soon & Bypass
         'coming_soon_key'   => 'coming_soon',
         'coming_soon_badge' => 'coming_soon',
+        'coming_soon_date'  => 'coming_soon',
         'coming_soon_title' => 'coming_soon',
         'coming_soon_lead'  => 'coming_soon'
     ];
@@ -57,7 +58,7 @@ admin_header('Site Settings & MOQ');
 <div class="max-w-4xl">
   
   <div class="mb-8">
-    <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">CONFIGURATION HUB</span>
+    <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">CONFIGURATION HUB</span>
     <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Site Settings &amp; Global MOQ</h1>
     <p class="text-sm text-gray-500 mt-1">
       Manage wholesale MOQ, direct factory emails, phone numbers, WhatsApp integration, turnaround SLAs, Coming Soon lock, and bypass keys.
@@ -83,7 +84,7 @@ admin_header('Site Settings & MOQ');
         <!-- Toggle Switch -->
         <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
           <input type="checkbox" id="coming_soon_enabled" name="coming_soon_enabled" value="1" <?= $comingSoonActive ? 'checked' : '' ?>
-                 class="h-5 w-5 mt-0.5 rounded border-gray-300 text-[#C51E28] focus:ring-[#C51E28]">
+                 class="h-5 w-5 mt-0.5 rounded border-gray-300 text-[#C8102E] focus:ring-[#C8102E]">
           <label for="coming_soon_enabled" class="text-sm cursor-pointer select-none">
             <strong class="font-bold text-gray-900 block">Enable "Coming Soon" Maintenance Gate</strong>
             <span class="text-gray-500 text-xs block mt-0.5">
@@ -93,7 +94,7 @@ admin_header('Site Settings & MOQ');
         </div>
 
         <!-- Bypass URL Callout -->
-        <div class="p-5 rounded-xl bg-[#0B0C0E] text-white border border-white/10 font-mono">
+        <div class="p-5 rounded-xl bg-[#0D0D0D] text-white border border-white/10 font-mono">
           <div class="flex items-center justify-between text-xs mb-2">
             <span class="text-gray-400 font-bold uppercase tracking-wider">Direct Client / VIP Bypass URL</span>
             <span class="text-emerald-400 text-[11px]">30-Day Cookie Persistence</span>
@@ -102,7 +103,7 @@ admin_header('Site Settings & MOQ');
             <code><?= e(rtrim(SITE_URL, '/')) ?>/?preview=<?= e($secretKey) ?></code>
           </div>
           <div class="mt-3 flex flex-wrap items-center gap-4 text-xs">
-            <a href="/?preview=<?= e($secretKey) ?>" target="_blank" class="text-[#C51E28] hover:text-white font-bold inline-flex items-center gap-1">
+            <a href="/?preview=<?= e($secretKey) ?>" target="_blank" class="text-[#C8102E] hover:text-white font-bold inline-flex items-center gap-1">
               <span>Test Unlock in New Tab</span>
               <span>↗</span>
             </a>
@@ -123,10 +124,18 @@ admin_header('Site Settings & MOQ');
             </label>
             <input type="text" name="coming_soon_key" 
                    value="<?= e($secretKey) ?>" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
             <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
               Key used in URL param (?preview=<?= e($secretKey) ?>) and on VIP unlock form.
             </p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">
+              Launch date (optional, shown as "LAUNCHING &lt;date&gt;")
+            </label>
+            <input type="text" name="coming_soon_date" value="<?= e(get_setting('coming_soon_date', '')) ?>" placeholder="15 November 2026"
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm">
           </div>
 
           <div>
@@ -135,7 +144,7 @@ admin_header('Site Settings & MOQ');
             </label>
             <input type="text" name="coming_soon_badge" 
                    value="<?= e(get_setting('coming_soon_badge', 'PRODUCTION FACILITY ACTIVE · SIALKOT FACTORY FLOOR OPERATIONAL')) ?>" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
             <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
               Pulsing status pill displayed in header of Coming Soon page.
             </p>
@@ -147,7 +156,7 @@ admin_header('Site Settings & MOQ');
             </label>
             <input type="text" name="coming_soon_title" 
                    value="<?= e(get_setting('coming_soon_title', 'Crafting the New Standard in OEM & Private-Label Manufacturing')) ?>" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
           </div>
 
           <div class="md:col-span-2">
@@ -155,7 +164,7 @@ admin_header('Site Settings & MOQ');
               Coming Soon Narrative Subtitle *
             </label>
             <textarea name="coming_soon_lead" rows="3" required
-                      class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm"><?= e(get_setting('coming_soon_lead', 'Our digital wholesale portal is undergoing scheduled platform deployment. Factory production lines, physical counter-sample development, and bespoke private-label orders remain in full operation.')) ?></textarea>
+                      class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm"><?= e(get_setting('coming_soon_lead', 'Our digital wholesale portal is undergoing scheduled platform deployment. Factory production lines, physical counter-sample development, and bespoke private-label orders remain in full operation.')) ?></textarea>
           </div>
         </div>
       </div>
@@ -175,7 +184,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="global_moq" 
                  value="<?= e(get_setting('global_moq', '50 Pcs / Style')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Displays on top banner, curated styles, category heroes &amp; product spec sheets.
           </p>
@@ -187,7 +196,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="sample_turnaround" 
                  value="<?= e(get_setting('sample_turnaround', '7–10 Business Days')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Physical counter-sample production lead time.
           </p>
@@ -199,7 +208,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="quote_turnaround" 
                  value="<?= e(get_setting('quote_turnaround', 'Under 2 Hours')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Displayed on header top-bar and inquiry prompts.
           </p>
@@ -211,7 +220,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="topbar_tagline" 
                  value="<?= e(get_setting('topbar_tagline', 'Sialkot Factory & Direct OEM/ODM Manufacturer')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Displayed in top black authority bar next to brand title.
           </p>
@@ -233,7 +242,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="email" name="contact_email" 
                  value="<?= e(get_setting('contact_email', 'faraanimpex@gmail.com')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Shown in topbar, contact page, and footer inquiry desk.
           </p>
@@ -245,7 +254,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="email" name="contact_email_2" 
                  value="<?= e(get_setting('contact_email_2', 'info@faraanimpex.com')) ?>"
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Secondary corporate desk email.
           </p>
@@ -257,7 +266,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="whatsapp_number" 
                  value="<?= e(get_setting('whatsapp_number', '923327464484')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
           <p class="text-[11px] text-gray-500 mt-1.5 font-mono">
             Used for 1-click WhatsApp quote buttons: wa.me/<?= e(get_setting('whatsapp_number', '923327464484')) ?>
           </p>
@@ -269,7 +278,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="contact_phone" 
                  value="<?= e(get_setting('contact_phone', '+92 332 7464484')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
         </div>
 
         <div>
@@ -278,7 +287,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="contact_phone_2" 
                  value="<?= e(get_setting('contact_phone_2', '+92 322 7464482')) ?>"
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm font-mono">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm font-mono">
         </div>
 
         <div>
@@ -287,7 +296,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="site_name" 
                  value="<?= e(get_setting('site_name', 'FARAAN IMPEX')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
         </div>
 
         <div class="md:col-span-2">
@@ -296,7 +305,7 @@ admin_header('Site Settings & MOQ');
           </label>
           <input type="text" name="contact_address" 
                  value="<?= e(get_setting('contact_address', 'P.O. 10/94, Nekapura Road, Sialkot 51310, Pakistan')) ?>" required
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm">
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm">
         </div>
       </div>
     </div>
@@ -314,7 +323,7 @@ admin_header('Site Settings & MOQ');
             Footer Company Bio / Mission Text
           </label>
           <textarea name="footer_about" rows="3" 
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm"><?= e(get_setting('footer_about', 'Direct OEM/ODM private-label manufacturer and exporter of motorcycle suits, technical flannels, western headwear, and artisan leather goods from Sialkot, Pakistan.')) ?></textarea>
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm"><?= e(get_setting('footer_about', 'Direct OEM/ODM private-label manufacturer and exporter of motorcycle suits, technical flannels, western headwear, and artisan leather goods from Sialkot, Pakistan.')) ?></textarea>
         </div>
 
         <div>
@@ -322,7 +331,7 @@ admin_header('Site Settings & MOQ');
             B2B Commercial Disclaimer
           </label>
           <textarea name="footer_disclaimer" rows="2" 
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] focus:border-transparent text-sm"><?= e(get_setting('footer_disclaimer', '* Faraan Impex operates strictly as a wholesale B2B contract manufacturer. Retail inquiries are not serviced. Production begins upon counter-sample signoff.')) ?></textarea>
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm"><?= e(get_setting('footer_disclaimer', '* Faraan Impex operates strictly as a wholesale B2B contract manufacturer. Retail inquiries are not serviced. Production begins upon counter-sample signoff.')) ?></textarea>
         </div>
       </div>
     </div>
@@ -333,7 +342,7 @@ admin_header('Site Settings & MOQ');
         ← Back to Dashboard
       </a>
       <button type="submit" 
-              class="inline-flex items-center justify-center gap-2 bg-[#C51E28] hover:bg-[#A81822] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              class="inline-flex items-center justify-center gap-2 bg-[#C8102E] hover:bg-[#9E0C24] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
         <span>Save All Settings</span>
         <span>✓</span>
       </button>

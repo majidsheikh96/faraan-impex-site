@@ -41,7 +41,7 @@ if ($flash) echo '<p class="bg-green-100 text-green-800 rounded px-4 py-2 mb-4 t
 ?>
 <div class="flex justify-between items-center mb-6">
   <h1 class="text-2xl font-extrabold">Products (<?= count($products) ?>)</h1>
-  <a href="/admin/product_edit.php" class="bg-[#0A0A0A] text-white px-4 py-2 rounded font-medium text-sm">+ Add Product</a>
+  <a href="/admin/product_edit.php" class="bg-[#0D0D0D] text-white px-4 py-2 rounded font-medium text-sm">+ Add Product</a>
 </div>
 <form method="get" class="mb-4">
   <input name="q" value="<?= e($search) ?>" placeholder="Search name or SKU..." class="border rounded px-3 py-2 w-64 text-sm">

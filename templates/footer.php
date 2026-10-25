@@ -1,157 +1,78 @@
 </main>
 
 <?php
-$footerAbout = get_setting('footer_about', 'Precision private-label leather and technical textile garments manufacturer based in Sialkot, Pakistan. Supplying motorcycle racing apparel, heritage suede outerwear, and bespoke leather goods to international distributors worldwide.');
-$footerDisclaimer = get_setting('footer_disclaimer', 'Direct Sialkot Factory | B2B Contract Export Only | CE & REACH Compliant');
-$disclaimerPills = array_filter(array_map('trim', explode('|', $footerDisclaimer)));
 $siteName = get_setting('site_name', SITE_NAME);
+$footerAbout = get_setting('footer_about', 'OEM / ODM manufacturer and exporter of leather garments, motorcycle apparel, technical textiles and western wear from Sialkot, Pakistan.');
 $contactEmail = get_setting('contact_email', CONTACT_EMAIL);
-$contactEmail2 = get_setting('contact_email_2', defined('CONTACT_EMAIL_2') ? CONTACT_EMAIL_2 : '');
-$contactPhone = get_setting('contact_phone', CONTACT_PHONE);
-$contactPhone2 = get_setting('contact_phone_2', defined('CONTACT_PHONE_2') ? CONTACT_PHONE_2 : '');
+$contactPhone = phone_display(get_setting('contact_phone', CONTACT_PHONE));
+$contactPhone2 = phone_display(get_setting('contact_phone_2', CONTACT_PHONE_2));
 $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
 ?>
-
-<!-- 8. FOOTER — SIALKOT ATELIER & B2B EXPORT DESK (Stagfield Sports Luxury Caliber) -->
-<footer class="bg-[#070709] text-white border-t border-white/10" id="contact-us">
-  <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-    
-    <!-- Top Grid: 4 Strategic Columns -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-16">
-      
-      <!-- Column 1: Atelier Heritage & Mission (4 cols) -->
-      <div class="lg:col-span-4">
-        <a class="flex items-center shrink-0 mb-6 group" href="/" aria-label="<?= e($siteName) ?> Home">
-          <img src="/assets/images/logo.png" alt="<?= e($siteName) ?>" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]">
-        </a>
-        
-        <p class="font-body text-[#AEB9C4] leading-relaxed text-sm mb-6 max-w-sm">
-          <?= e($footerAbout) ?>
-        </p>
-
-        <!-- Direct WhatsApp Concierge Link -->
-        <a class="inline-flex items-center gap-2 text-white font-mono text-xs font-bold uppercase tracking-wider hover:text-crimson transition-colors" 
-           href="<?= whatsapp_link("Assalam-o-Alaikum, I would like to inquire about contract manufacturing with " . $siteName . ".") ?>" 
-           rel="noopener noreferrer" target="_blank">
-          <span>Factory WhatsApp Desk</span>
-          <span class="text-crimson font-bold">→</span>
-        </a>
-      </div>
-
-      <!-- Column 2: Manufacturing Divisions (2 cols) -->
-      <div class="lg:col-span-2">
-        <div class="font-mono text-crimson text-[11px] uppercase tracking-[0.16em] font-bold mb-5">
-          DIVISIONS
-        </div>
-        <ul class="space-y-3 font-body text-[#AEB9C4] text-sm">
-          <?php foreach (get_top_categories() as $cat): ?>
-            <li>
-              <a class="hover:text-white transition-colors" href="/<?= e($cat['slug']) ?>/">
-                <?= e($cat['name']) ?>
-              </a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-
-      <!-- Column 3: B2B Services & Operations (2 cols) -->
-      <div class="lg:col-span-2">
-        <div class="font-mono text-crimson text-[11px] uppercase tracking-[0.16em] font-bold mb-5">
-          OPERATIONS
-        </div>
-        <ul class="space-y-3 font-body text-[#AEB9C4] text-sm">
-          <li><a class="hover:text-white transition-colors" href="/about-us">Heritage &amp; Factory</a></li>
-          <li><a class="hover:text-white transition-colors" href="/about-us#certifications">CE &amp; Technical Specs</a></li>
-          <li><a class="hover:text-white transition-colors" href="/contact-us">Counter-Sample Request</a></li>
-          <li><a class="hover:text-white transition-colors" href="/contact-us#inquiry-form">OEM / ODM Quotation</a></li>
-          <li><a class="hover:text-white transition-colors" href="/contact-us">Global Air/Sea Freight</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 4: Factory Coordinates & Hours (4 cols) -->
-      <div class="lg:col-span-4">
-        <div class="font-mono text-crimson text-[11px] uppercase tracking-[0.16em] font-bold mb-5">
-          SIALKOT PRODUCTION FACILITY
-        </div>
-        <div class="space-y-3 font-body text-sm text-[#AEB9C4]">
-          <div class="flex items-start gap-2.5">
-            <span class="text-crimson font-mono text-xs font-bold shrink-0 mt-0.5">ADDR</span>
-            <span><?= e($contactAddress) ?></span>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <span class="text-crimson font-mono text-xs font-bold shrink-0">EMAIL</span>
-            <div class="flex flex-col">
-              <a class="hover:text-white transition-colors font-mono text-xs text-white" href="mailto:<?= e($contactEmail) ?>">
-                <?= e($contactEmail) ?>
-              </a>
-              <?php if ($contactEmail2): ?>
-                <a class="hover:text-white transition-colors font-mono text-xs text-[#AEB9C4]" href="mailto:<?= e($contactEmail2) ?>">
-                  <?= e($contactEmail2) ?>
-                </a>
-              <?php endif; ?>
-            </div>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <span class="text-crimson font-mono text-xs font-bold shrink-0">PHONE</span>
-            <div class="flex items-center gap-2 font-mono text-xs text-white">
-              <a class="hover:text-white transition-colors" href="tel:<?= e($contactPhone) ?>"><?= e($contactPhone) ?></a>
-              <?php if ($contactPhone2): ?>
-                <span class="text-white/30">/</span>
-                <a class="hover:text-white transition-colors" href="tel:<?= e($contactPhone2) ?>"><?= e($contactPhone2) ?></a>
-              <?php endif; ?>
-            </div>
-          </div>
-          <div class="flex items-center gap-2.5 pt-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="font-mono text-xs text-white/80">Factory Floor Operational: Mon – Sat (08:00 – 18:00 PKT)</span>
-          </div>
-        </div>
-      </div>
-
+<footer class="site-footer">
+  <div class="wrap top">
+    <div class="col" style="flex:1 1 300px;max-width:380px;gap:14px">
+      <img src="/assets/images/logo-wordmark.png" alt="<?= e($siteName) ?>" width="1306" height="330" style="height:56px;width:auto;align-self:flex-start">
+      <p style="margin:0;font-size:15px;color:#A3A3A3"><?= e($footerAbout) ?></p>
     </div>
-
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-[#AEB9C4] gap-4">
-      <div>
-        &copy; <?= date('Y') ?> <?= e(strtoupper($siteName)) ?>. All Rights Reserved. Sialkot, Pakistan.
-      </div>
-      <div class="flex flex-wrap items-center gap-3 sm:gap-6 uppercase tracking-wider text-[10px]">
-        <?php foreach ($disclaimerPills as $idx => $pill): ?>
-          <?php if ($idx > 0): ?>
-            <span class="text-white/20">|</span>
-          <?php endif; ?>
-          <span class="<?= $idx === 0 ? 'text-crimson font-bold' : '' ?>"><?= e($pill) ?></span>
-        <?php endforeach; ?>
-      </div>
+    <div class="col">
+      <span class="h">DIVISIONS</span>
+      <?php foreach (get_top_categories() as $cat): ?>
+        <a href="/<?= e($cat['slug']) ?>/"><?= e($cat['name']) ?></a>
+      <?php endforeach; ?>
     </div>
+    <div class="col">
+      <span class="h">COMPANY</span>
+      <a href="/about-us">About</a>
+      <a href="/contact-us">Contact &amp; RFQ</a>
+      <a href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . $siteName . '.')) ?>" target="_blank" rel="noopener">WhatsApp desk</a>
+    </div>
+    <div class="col">
+      <span class="h">EXPORT DESK</span>
+      <a href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>
+      <a href="<?= e(phone_href($contactPhone)) ?>"><?= e($contactPhone) ?></a>
+      <?php if ($contactPhone2): ?><a href="<?= e(phone_href($contactPhone2)) ?>"><?= e($contactPhone2) ?></a><?php endif; ?>
+      <span style="color:#A3A3A3;max-width:240px"><?= e($contactAddress) ?></span>
+    </div>
+  </div>
+  <div class="wrap bottom">
+    <span>&copy; <?= date('Y') ?> <?= e(strtoupper($siteName)) ?></span>
+    <span>CE LEVEL 2 &middot; CE &amp; REACH COMPLIANT</span>
   </div>
 </footer>
 
+<a class="wa-float" href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . $siteName . '.')) ?>" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2C6.5 2 2 6.49 2 12.03c0 1.96.56 3.78 1.54 5.33L2 22l4.79-1.52a10 10 0 0 0 5.11 1.43C17.44 21.91 22 17.42 22 11.88 22 6.49 17.57 2 12.03 2Zm5.73 14.2c-.24.68-1.39 1.3-1.93 1.34-.54.05-1.2.2-3.87-.91-3.24-1.34-5.32-4.66-5.48-4.88-.16-.22-1.31-1.75-1.31-3.33s.83-2.36 1.12-2.68c.3-.32.64-.4.86-.4h.62c.2.01.46-.07.72.55.27.64.91 2.22.99 2.38.08.16.14.35.03.56-.1.22-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.84 1.38 1.8 2.23 1.23 1.1 2.27 1.44 2.59 1.6.32.16.51.13.7-.08.19-.22.8-.94 1.02-1.26.21-.32.43-.27.72-.16.3.11 1.87.88 2.2 1.04.32.16.54.24.62.38.08.13.08.78-.16 1.46Z"/></svg>
+  <span>WhatsApp us</span>
+</a>
+
 <?php if (function_exists('is_preview_active') && is_preview_active()): ?>
-<!-- Floating Preview Mode Lock Indicator -->
-<div class="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 bg-[#0B0C0E]/95 backdrop-blur-md border border-white/20 text-white px-4 py-2.5 rounded-full shadow-2xl text-xs font-mono">
-  <span class="relative flex h-2 w-2">
-    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-  </span>
-  <span class="text-white/90 uppercase tracking-wider font-bold">Preview Active</span>
-  <a href="/?lock=1" class="ml-1 px-2.5 py-1 rounded-full bg-white/10 hover:bg-[#C51E28] text-white/90 hover:text-white transition-colors text-[11px] font-bold" title="Exit preview and lock site back to Coming Soon">
-    Lock Site 🔒
-  </a>
-</div>
+<div class="preview-pill"><span>PREVIEW ACTIVE</span><a href="/?lock=1" title="Exit preview and lock the site again">Lock site</a></div>
 <?php endif; ?>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('mobile-menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function() {
-      menu.classList.toggle('hidden');
+// Scroll reveal: only blocks that start below the fold are hidden, then eased in as they scroll into view.
+(function () {
+  if (!('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var sel = '.sec-head, .grid-div > *, .grid-4 > *, .steps > *, .caps > *, .proof .cell, .rfq-sec .wrap > *, .cta-band .wrap, .feat-grid > *';
+  var items = [].slice.call(document.querySelectorAll(sel)).filter(function (el) { return el.getBoundingClientRect().top > innerHeight * 0.92; });
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var el = en.target; io.unobserve(el);
+      el.classList.add('is-in');
+      setTimeout(function () { el.classList.remove('reveal', 'is-in'); el.style.removeProperty('--d'); }, 1100);
     });
-  }
-});
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  items.forEach(function (el, i) {
+    var k = [].indexOf.call(el.parentNode.children, el);
+    el.style.setProperty('--d', (k % 4) * 0.08 + 's');
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
 </script>
+<script src="/assets/js/site.js?v=<?= (int)@filemtime(__DIR__ . '/../assets/js/site.js') ?>" defer></script>
 <?php if (IMAGE_PROTECTION): ?>
 <script src="/assets/js/protect.js"></script>
 <?php endif; ?>

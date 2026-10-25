@@ -1,17 +1,31 @@
-<?php $page_title = 'System Error — FARAAN IMPEX'; ?>
-<div class="bg-paper py-28 sm:py-36 border-b border-[#E6E4DD]">
-  <div class="max-w-[1360px] mx-auto px-4 text-center">
-    <p class="font-mono text-crimson text-xs uppercase tracking-widest font-bold mb-3">SYSTEM EXCEPTION</p>
-    <h1 class="font-serif text-5xl sm:text-7xl text-[#070709] font-normal tracking-tight">Production Server Error</h1>
-    <p class="mt-4 text-[#5A6472] text-base max-w-md mx-auto">An unexpected system condition occurred. Please retry your request or reach our export desk directly.</p>
-    <div class="mt-8 flex justify-center gap-4">
-      <a href="/" class="inline-flex items-center gap-2 bg-[#070709] hover:bg-crimson text-white px-7 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
-        <span>Back to Homepage</span>
-        <span>→</span>
-      </a>
-      <a href="/contact-us" class="inline-flex items-center gap-2 bg-white hover:bg-[#F6F3ED] text-[#070709] border border-[#E6E4DD] px-7 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-colors">
-        <span>Contact Desk</span>
-      </a>
+<?php
+/** Server error (design: ServerError.dc.html). Standalone: must not touch the database. */
+$email = defined('CONTACT_EMAIL') ? CONTACT_EMAIL : 'faraanimpex@gmail.com';
+$wa = defined('WHATSAPP_NUMBER') ? WHATSAPP_NUMBER : '923327464484';
+$phone = defined('CONTACT_PHONE') ? CONTACT_PHONE : '+92 332 7464484';
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server error | FARAAN IMPEX</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<section class="solo">
+  <div class="head"><a class="brand" href="/"><img src="/assets/images/logo-wordmark.png" alt="Faraan Impex" width="1306" height="330" style="height:52px;width:auto"></a></div>
+  <div class="mid">
+    <span class="eyebrow on-dark">ERROR 500 &middot; SERVER ERROR</span>
+    <h1 class="h-display h-xl" style="max-width:900px">Something went wrong on our side</h1>
+    <p>The page didn&rsquo;t load. Try again in a moment. If it keeps happening, message the factory desk and we&rsquo;ll sort it out.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="/">Reload the page</a>
+      <a class="btn btn-light" href="https://wa.me/<?= htmlspecialchars($wa) ?>">WhatsApp <?= htmlspecialchars($phone) ?></a>
     </div>
   </div>
-</div>
+  <div class="foot"><span><?= htmlspecialchars($email) ?></span><span>&copy; <?= date('Y') ?> FARAAN IMPEX</span></div>
+</section>
+</body>
+</html>
