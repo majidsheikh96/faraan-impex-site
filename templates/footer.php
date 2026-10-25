@@ -35,7 +35,12 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
       <?php endif; ?>
       <?php if ($soc): ?>
         <span class="h" style="margin-top:10px">FOLLOW US</span>
-        <?php foreach ($soc as $s): ?><a href="<?= e($s['url']) ?>" target="_blank" rel="noopener me"><?= e($s['label']) ?> &#8599;</a><?php endforeach; ?>
+        <?php foreach ($soc as $s): ?>
+          <a class="soc-link" href="<?= e($s['url']) ?>" target="_blank" rel="noopener me">
+            <?= social_icon($s['key']) ?>
+            <span><?= e($s['label']) ?></span>
+          </a>
+        <?php endforeach; ?>
       <?php endif; ?>
     </div>
     <?php endif; ?>
