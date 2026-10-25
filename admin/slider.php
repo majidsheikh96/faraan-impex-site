@@ -63,7 +63,7 @@ admin_header('Hero Slider Editor');
 
   <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">HOMEPAGE SHOWCASE</span>
+      <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">HOMEPAGE SHOWCASE</span>
       <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Hero Slider Editor (4 Slides)</h1>
       <p class="text-sm text-gray-500 mt-1">
         Update headlines, technical specification tags, call-to-actions, and 2K high-resolution master banners.
@@ -88,9 +88,9 @@ admin_header('Hero Slider Editor');
       <div class="bg-white rounded-2xl border border-gray-200/80 shadow-sm overflow-hidden">
         
         <!-- Slide Header Ribbon -->
-        <div class="bg-[#0B0C0E] text-white px-6 py-4 flex items-center justify-between border-b border-white/10">
+        <div class="bg-[#0D0D0D] text-white px-6 py-4 flex items-center justify-between border-b border-white/10">
           <div class="flex items-center gap-3">
-            <span class="font-mono text-xs px-2.5 py-1 rounded bg-[#C51E28] text-white font-bold tracking-wider">
+            <span class="font-mono text-xs px-2.5 py-1 rounded bg-[#C8102E] text-white font-bold tracking-wider">
               SLIDE <?= sprintf('%02d', $idx + 1) ?>
             </span>
             <span class="font-serif text-lg font-normal text-white">
@@ -112,7 +112,7 @@ admin_header('Hero Slider Editor');
               </label>
               <input type="text" name="slide_<?= $idx ?>_tab_label" 
                      value="<?= e($s['tab_label'] ?? '') ?>" required
-                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] text-sm">
+                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] text-sm">
               <p class="text-[11px] text-gray-500 mt-1 font-mono">Appears on the bottom slide selector pill.</p>
             </div>
 
@@ -122,7 +122,7 @@ admin_header('Hero Slider Editor');
               </label>
               <input type="text" name="slide_<?= $idx ?>_kicker" 
                      value="<?= e($s['kicker'] ?? '') ?>" required
-                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] text-sm font-mono text-crimson">
+                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] text-sm font-mono text-crimson">
               <p class="text-[11px] text-gray-500 mt-1 font-mono">Red uppercase specification badge above headline.</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ admin_header('Hero Slider Editor');
             </label>
             <input type="text" name="slide_<?= $idx ?>_title" 
                    value="<?= e($s['title'] ?? '') ?>" required
-                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] text-base font-serif">
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] text-base font-serif">
           </div>
 
           <div>
@@ -142,7 +142,7 @@ admin_header('Hero Slider Editor');
               Editorial Lead Paragraph *
             </label>
             <textarea name="slide_<?= $idx ?>_lead" rows="3" required
-                      class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] text-sm leading-relaxed"><?= e($s['lead'] ?? '') ?></textarea>
+                      class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] text-sm leading-relaxed"><?= e($s['lead'] ?? '') ?></textarea>
           </div>
 
           <!-- Technical Pills (Comma Separated) -->
@@ -152,14 +152,14 @@ admin_header('Hero Slider Editor');
             </label>
             <input type="text" name="slide_<?= $idx ?>_pills" 
                    value="<?= e(implode(', ', $s['pills'] ?? [])) ?>" 
-                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C51E28] text-sm font-mono">
+                   class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] text-sm font-mono">
             <p class="text-[11px] text-gray-500 mt-1 font-mono">Example: CE Level 2 Armor, 1.3mm Race Cowhide, Aerodynamic Speed Hump</p>
           </div>
 
           <!-- Call to Action Buttons -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
             <div class="space-y-3">
-              <span class="block text-xs font-mono font-bold uppercase tracking-wider text-[#C51E28]">Primary CTA Button</span>
+              <span class="block text-xs font-mono font-bold uppercase tracking-wider text-[#C8102E]">Primary CTA Button</span>
               <div>
                 <label class="block text-[11px] font-mono text-gray-600 mb-1">Button Text</label>
                 <input type="text" name="slide_<?= $idx ?>_primary_cta_text" 
@@ -224,7 +224,7 @@ admin_header('Hero Slider Editor');
                   Upload Replacement High-Res Banner (JPG/PNG/WebP)
                 </label>
                 <input type="file" name="slide_<?= $idx ?>_file" accept="image/jpeg,image/png,image/webp"
-                       class="block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-mono file:font-semibold file:bg-gray-900 file:text-white hover:file:bg-[#C51E28]">
+                       class="block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-mono file:font-semibold file:bg-gray-900 file:text-white hover:file:bg-[#C8102E]">
               </div>
 
               <div>
@@ -250,7 +250,7 @@ admin_header('Hero Slider Editor');
         ← Back to Dashboard
       </a>
       <button type="submit" 
-              class="inline-flex items-center justify-center gap-2 bg-[#C51E28] hover:bg-[#A81822] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              class="inline-flex items-center justify-center gap-2 bg-[#C8102E] hover:bg-[#9E0C24] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
         <span>Save All 4 Slides</span>
         <span>✓</span>
       </button>

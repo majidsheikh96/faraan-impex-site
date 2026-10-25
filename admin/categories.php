@@ -88,13 +88,13 @@ admin_header('Categories & MOQ');
 
 <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
   <div>
-    <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">CATALOG TAXONOMY</span>
+    <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">CATALOG TAXONOMY</span>
     <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Categories &amp; Custom MOQs</h1>
     <p class="text-sm text-gray-500 mt-1">
       Manage manufacturing divisions, product lines, custom category MOQs, editorial kickers, and hero descriptions.
     </p>
   </div>
-  <a href="/admin/categories.php" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#C51E28] text-white rounded-xl text-xs font-mono font-bold tracking-wider uppercase shadow-sm hover:bg-[#A81822]">
+  <a href="/admin/categories.php" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#C8102E] text-white rounded-xl text-xs font-mono font-bold tracking-wider uppercase shadow-sm hover:bg-[#9E0C24]">
     <span>+ New Category</span>
   </a>
 </div>
@@ -128,12 +128,12 @@ admin_header('Categories & MOQ');
           <?php foreach ($cats as $c): ?>
             <tr class="hover:bg-gray-50/80 transition-colors <?= ($edit['id'] ?? 0) === $c['id'] ? 'bg-amber-50/60' : '' ?>">
               <td class="p-3.5">
-                <a href="/<?= e($c['slug']) ?>/" target="_blank" class="font-semibold text-gray-900 hover:text-[#C51E28] flex items-center gap-1.5">
+                <a href="/<?= e($c['slug']) ?>/" target="_blank" class="font-semibold text-gray-900 hover:text-[#C8102E] flex items-center gap-1.5">
                   <span><?= e($c['name']) ?></span>
                   <span class="text-xs text-gray-400">↗</span>
                 </a>
                 <?php if (!empty($c['kicker'])): ?>
-                  <span class="font-mono text-[10px] text-[#C51E28] uppercase tracking-wider block mt-0.5"><?= e($c['kicker']) ?></span>
+                  <span class="font-mono text-[10px] text-[#C8102E] uppercase tracking-wider block mt-0.5"><?= e($c['kicker']) ?></span>
                 <?php endif; ?>
               </td>
               <td class="p-3.5 text-xs text-gray-500 font-mono">
@@ -141,7 +141,7 @@ admin_header('Categories & MOQ');
               </td>
               <td class="p-3.5 text-xs font-mono">
                 <?php if (!empty($c['custom_moq'])): ?>
-                  <span class="px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-[#C51E28] font-bold"><?= e($c['custom_moq']) ?></span>
+                  <span class="px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-[#C8102E] font-bold"><?= e($c['custom_moq']) ?></span>
                 <?php else: ?>
                   <span class="text-gray-400"><?= e(get_site_moq()) ?> (Global)</span>
                 <?php endif; ?>
@@ -178,12 +178,12 @@ admin_header('Categories & MOQ');
       <div>
         <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-1">Category Name *</label>
         <input name="name" value="<?= e($edit['name'] ?? '') ?>" required 
-               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-sm font-medium focus:ring-2 focus:ring-[#C51E28]">
+               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-sm font-medium focus:ring-2 focus:ring-[#C8102E]">
       </div>
 
       <div>
         <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-1">Parent Hierarchy</label>
-        <select name="parent_id" class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-[#C51E28]">
+        <select name="parent_id" class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-[#C8102E]">
           <option value="0">— Top Level Manufacturing Division —</option>
           <?php foreach ($tops as $t): ?>
             <?php if (($edit['id'] ?? 0) != $t['id']): ?>
@@ -198,14 +198,14 @@ admin_header('Categories & MOQ');
           Custom Category MOQ (Overrides Global Default)
         </label>
         <input name="custom_moq" value="<?= e($edit['custom_moq'] ?? '') ?>" placeholder="e.g. 50 Pcs / Style (Leave empty to use global)" 
-               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-xs font-mono focus:ring-2 focus:ring-[#C51E28]">
+               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-xs font-mono focus:ring-2 focus:ring-[#C8102E]">
         <p class="text-[11px] text-gray-500 mt-1 font-mono">Current global default: <?= e(get_site_moq()) ?></p>
       </div>
 
       <div>
         <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-1">Editorial Red Kicker</label>
         <input name="kicker" value="<?= e($edit['kicker'] ?? '') ?>" placeholder="e.g. MOTORCYCLE RACING" 
-               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-xs font-mono text-[#C51E28] focus:ring-2 focus:ring-[#C51E28]">
+               class="w-full px-3.5 py-2 rounded-xl border border-gray-300 text-xs font-mono text-[#C8102E] focus:ring-2 focus:ring-[#C8102E]">
       </div>
 
       <div>
@@ -236,7 +236,7 @@ admin_header('Categories & MOQ');
       </div>
 
       <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
-        <button type="submit" class="bg-[#C51E28] hover:bg-[#A81822] text-white px-6 py-2.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider shadow-sm transition-colors">
+        <button type="submit" class="bg-[#C8102E] hover:bg-[#9E0C24] text-white px-6 py-2.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider shadow-sm transition-colors">
           <?= $edit ? 'Save Changes' : 'Create Category' ?>
         </button>
         <?php if ($edit): ?>

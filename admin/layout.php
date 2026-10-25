@@ -13,94 +13,71 @@ require_once __DIR__ . '/auth.php';
 require_admin_login();
 
 function admin_header(string $title, string $activeNav = ''): void {
-    $currentUri = $_SERVER['SCRIPT_NAME'] ?? '';
+    $uri = $_SERVER['SCRIPT_NAME'] ?? '';
+    $nav = [
+        ['/admin/dashboard.php', 'Dashboard', 'dashboard', 'M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10'],
+        ['/admin/settings.php', 'Site Settings &amp; MOQ', 'settings', 'M4 6h16M4 12h16M4 18h16'],
+        ['/admin/slider.php', 'Hero Slider', 'slider', 'M3 5h18v14H3zM8 12l3 3 5-6'],
+        ['/admin/homepage.php', 'Homepage Sections', 'homepage', 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z'],
+        ['/admin/pages.php', 'Pages &amp; Text', 'pages', 'M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7'],
+        ['/admin/categories.php', 'Categories &amp; MOQs', 'categories', 'M4 6h16M4 12h10M4 18h6'],
+        ['/admin/products.php', 'Products', 'product', 'M12 3l9 5v8l-9 5-9-5V8zM3 8l9 5 9-5M12 13v8'],
+    ];
+    $icon = fn(string $d) => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' . $d . '"/></svg>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= e($title) ?> — Faraan Impex Control Panel</title>
+<meta name="robots" content="noindex, nofollow">
+<title><?= e($title) ?> — Faraan Impex Admin</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/css/admin.css?v=<?= (int)@filemtime(__DIR__ . '/../assets/css/admin.css') ?>">
 </head>
-<body class="bg-[#F8F7F4] text-[#111827] min-h-screen font-sans antialiased">
+<body class="admin-app">
 
-<!-- Admin Top Navigation Bar -->
-<header class="bg-[#0B0C0E] text-white border-b border-white/10 sticky top-0 z-50 shadow-md">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-    
-    <!-- Brand / Control Center Title -->
-    <div class="flex items-center gap-6">
-      <a href="/admin/dashboard.php" class="flex items-center gap-2.5 font-mono text-sm tracking-widest uppercase font-bold text-white hover:text-white/90">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#C51E28]"></span>
-        <span>FARAAN <span class="text-[#C51E28]">CONTROL</span></span>
-      </a>
+<div class="admin-top">
+  <div class="bar"><span>FARAAN IMPEX</span><a href="/admin/logout.php" style="font-family:var(--f-body);font-size:14px;font-weight:500;letter-spacing:0">Log out</a></div>
+  <nav aria-label="Admin">
+    <?php foreach ($nav as [$href, $label, $key]): ?>
+      <a href="<?= $href ?>"<?= str_contains($uri, $key) ? ' aria-current="page"' : '' ?>><?= $label ?></a>
+    <?php endforeach; ?>
+  </nav>
+</div>
 
-      <!-- Primary Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-1 text-[13px] font-medium">
-        <a href="/admin/dashboard.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'dashboard') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Dashboard</a>
-        <a href="/admin/products.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'product') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Products</a>
-        <a href="/admin/categories.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'categories') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Categories &amp; MOQ</a>
-        <a href="/admin/slider.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'slider') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Hero Slider</a>
-        <a href="/admin/homepage.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'homepage') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Homepage Sections</a>
-        <a href="/admin/pages.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'pages') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Pages &amp; Text</a>
-        <a href="/admin/settings.php" class="px-3 py-1.5 rounded-md transition-colors <?= str_contains($currentUri, 'settings') ? 'bg-white/15 text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/5' ?>">Site Settings</a>
+<div class="admin-shell">
+  <aside class="admin-side">
+    <div>
+      <a class="admin-brand" href="/admin/dashboard.php"><b>FARAAN IMPEX</b><small>ADMIN PANEL</small></a>
+      <nav class="admin-nav" aria-label="Admin">
+        <?php foreach ($nav as [$href, $label, $key, $d]): ?>
+          <a href="<?= $href ?>"<?= str_contains($uri, $key) ? ' aria-current="page"' : '' ?>><?= $icon($d) ?><span><?= $label ?></span></a>
+        <?php endforeach; ?>
       </nav>
     </div>
-
-    <!-- Actions: Live Site View & Logout -->
-    <div class="flex items-center gap-4 text-xs font-mono">
-      <a href="/" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-md transition-colors">
-        <span>View Live Site</span>
-        <span>↗</span>
-      </a>
-      <a href="/admin/logout.php" class="text-rose-400 hover:text-rose-300 transition-colors uppercase tracking-wider font-semibold">
-        Log Out
-      </a>
+    <div class="admin-foot">
+      <a href="/" target="_blank" rel="noopener"><?= $icon('M14 4h6v6M20 4l-9 9M18 14v6H4V6h6') ?><span>View site</span></a>
+      <a href="/admin/logout.php"><?= $icon('M9 4H4v16h5M16 8l4 4-4 4M20 12H9') ?><span>Log out</span></a>
     </div>
+  </aside>
 
-  </div>
-
-  <!-- Mobile Secondary Menu Bar -->
-  <div class="lg:hidden flex items-center overflow-x-auto px-4 py-2 border-t border-white/10 gap-2 text-xs font-mono bg-black/40">
-    <a href="/admin/dashboard.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Dashboard</a>
-    <a href="/admin/products.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Products</a>
-    <a href="/admin/categories.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Categories</a>
-    <a href="/admin/slider.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Slider</a>
-    <a href="/admin/homepage.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Homepage</a>
-    <a href="/admin/pages.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Pages</a>
-    <a href="/admin/settings.php" class="px-2.5 py-1 rounded text-slate-300 hover:text-white whitespace-nowrap">Settings</a>
-  </div>
-</header>
-
-<!-- Main Admin Content Container -->
-<main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <main class="admin-main"><div class="admin-inner">
 <?php
     $flash = flash_get();
     if ($flash) {
-        echo '<div class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-900 px-4 py-3 text-sm flex items-center justify-between shadow-sm">';
-        echo '<span>' . e($flash) . '</span>';
-        echo '<span class="text-xs font-mono text-emerald-700">✓ Updated</span>';
-        echo '</div>';
+        echo '<div class="admin-flash" role="status"><span>' . e($flash) . '</span><span class="font-mono" style="font-size:12px;color:#1F7A3A">✓ UPDATED</span></div>';
     }
 }
 
 function admin_footer(): void {
 ?>
-</main>
-
-<footer class="border-t border-gray-200 bg-white py-6 mt-16 text-center text-xs text-gray-500 font-mono">
-  <div class="max-w-[1400px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-    <div>Faraan Impex CMS Control Panel · Direct Sialkot Factory Administration</div>
-    <div>Strictly Wholesale B2B · All Changes Instant Live</div>
-  </div>
-</footer>
-
+  </div></main>
+</div>
 </body>
 </html>
 <?php

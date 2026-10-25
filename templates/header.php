@@ -1,177 +1,120 @@
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<?php
+$siteName = get_setting('site_name', SITE_NAME);
+$topCats = get_top_categories();
+$waNumber = get_setting('whatsapp_number', WHATSAPP_NUMBER);
+$contactEmail = get_setting('contact_email', CONTACT_EMAIL);
+$contactPhone = phone_display(get_setting('contact_phone', CONTACT_PHONE));
+$cssFile = __DIR__ . '/../assets/css/main.css';
+?><!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= e($page_title ?? (get_setting('site_name', 'FARAAN IMPEX') . ' — Luxury Leather & Technical Garments Manufacturer | Sialkot')) ?></title>
-<meta name="description" content="<?= e($page_description ?? (get_setting('site_name', 'Faraan Impex') . ' — Direct B2B OEM/ODM contract manufacturer and exporter of premium leather garments, motorcycle apparel, and leather goods from Sialkot, Pakistan.')) ?>">
+<title><?= e($page_title ?? ($siteName . ' — OEM / ODM Leather Garments Manufacturer, Sialkot')) ?></title>
+<meta name="description" content="<?= e($page_description ?? ($siteName . ' — OEM / ODM manufacturer and exporter of leather garments, motorcycle apparel, technical textiles and western wear from Sialkot, Pakistan.')) ?>">
 
-<!-- Favicon & Touch Icons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<!-- Google Fonts: Inter (Sans), Space Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-<!-- Tailwind CSS v3 via CDN configured with Luxury Editorial Tokens -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        paper: "#FCFBF8",
-        ivory: "#F6F3ED",
-        ink: "#0B1623",
-        navy: "#10243B",
-        navysoft: "#18324D",
-        crimson: "#C51E28",
-        "crimson-hover": "#A81822",
-        carmine: "#C51E28",
-        "carmine-hover": "#A81822",
-        "body-text": "#17212B",
-        muted: "#6B7580",
-        line: "rgba(16, 36, 59, 0.12)",
-        obsidian: "#0B0C0E",
-        "text-muted": "#64748B",
-        "text-dim": "#94A3B8"
-      },
-      fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
-        body: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
-        headline: ["Georgia", "Times New Roman", "serif"],
-        serif: ["Georgia", "Times New Roman", "serif"],
-        mono: ["Space Mono", "monospace"]
-      }
-    }
-  }
-}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { accent: '#C8102E', ink: '#0D0D0D', paper: '#F4F3F1', line: '#D9D7D3', muted: '#565656', 'red-dark': '#FF5C61' },
+  fontFamily: { display: ['Barlow Condensed', 'sans-serif'], sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'], mono: ['IBM Plex Mono', 'monospace'] }
+} } };
 </script>
-<link rel="stylesheet" href="/assets/css/main.css?v=<?= file_exists(__DIR__ . '/../assets/css/main.css') ? filemtime(__DIR__ . '/../assets/css/main.css') : '2.1' ?>">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/assets/css/main.css?v=<?= is_file($cssFile) ? filemtime($cssFile) : '1' ?>">
 </head>
-<body class="bg-paper text-body-text antialiased font-body overflow-x-hidden min-w-[320px]">
+<body>
 
-<!-- 1. EDITORIAL B2B TOPLINE (STAGFIELD CALIBER) -->
-<aside class="bg-[#070709] text-[#BFC9D2] border-b border-white/[0.08] text-[11px] font-sans select-none">
-  <div class="max-w-[1440px] mx-auto min-h-[34px] px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4 tracking-[0.12em] uppercase">
-    <!-- Brand Lineage / Direct Authority -->
-    <div class="flex items-center gap-2 truncate min-w-0">
-      <strong class="font-bold text-white tracking-[0.14em]"><?= e(get_setting('site_name', 'Faraan Impex')) ?></strong>
-      <span class="text-white/30">·</span>
-      <span class="truncate text-slate-300"><?= e(get_setting('topbar_tagline', 'Sialkot Factory & Direct OEM/ODM Manufacturer')) ?></span>
-    </div>
-
-    <!-- Direct B2B Contact & Turnaround -->
-    <div class="hidden md:flex items-center gap-3 shrink-0 text-[#BFC9D2]">
-      <a class="flex items-center gap-1.5 hover:text-white transition-colors lowercase font-normal" href="mailto:<?= e(get_setting('contact_email', CONTACT_EMAIL)) ?>">
-        <span class="material-symbols-outlined text-[14px] text-crimson">mail</span>
-        <span><?= e(get_setting('contact_email', CONTACT_EMAIL)) ?></span>
+<div class="topbar">
+  <div class="wrap">
+    <a class="tb-quote" href="/contact-us">B2B QUOTE TURNAROUND &middot; <?= e(strtoupper(get_setting('quote_turnaround', 'UNDER 2 HOURS'))) ?></a>
+    <span class="tb-contact">
+      <a href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . $siteName . '.')) ?>" target="_blank" rel="noopener" aria-label="WhatsApp <?= e($contactPhone) ?>">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2C6.5 2 2 6.49 2 12.03c0 1.96.56 3.78 1.54 5.33L2 22l4.79-1.52a10 10 0 0 0 5.11 1.43C17.44 21.91 22 17.42 22 11.88 22 6.49 17.57 2 12.03 2Zm5.73 14.2c-.24.68-1.39 1.3-1.93 1.34-.54.05-1.2.2-3.87-.91-3.24-1.34-5.32-4.66-5.48-4.88-.16-.22-1.31-1.75-1.31-3.33s.83-2.36 1.12-2.68c.3-.32.64-.4.86-.4h.62c.2.01.46-.07.72.55.27.64.91 2.22.99 2.38.08.16.14.35.03.56-.1.22-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.84 1.38 1.8 2.23 1.23 1.1 2.27 1.44 2.59 1.6.32.16.51.13.7-.08.19-.22.8-.94 1.02-1.26.21-.32.43-.27.72-.16.3.11 1.87.88 2.2 1.04.32.16.54.24.62.38.08.13.08.78-.16 1.46Z"/></svg>
+        <span>WhatsApp <?= e($contactPhone) ?></span>
       </a>
-      <span class="text-white/30">·</span>
-      <span class="text-slate-200">B2B Quote Turnaround: <?= e(get_setting('quote_turnaround', 'Under 2 Hours')) ?></span>
-    </div>
+      <span class="tb-sep" aria-hidden="true">&middot;</span>
+      <a href="mailto:<?= e($contactEmail) ?>" aria-label="Email <?= e($contactEmail) ?>">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+        <span><?= e($contactEmail) ?></span>
+      </a>
+    </span>
   </div>
-</aside>
+</div>
 
-<!-- 2. STAGFIELD-CALIBER EDITORIAL MAIN NAVBAR -->
-<header class="sticky top-0 z-50 bg-[#FCFBF8]/95 backdrop-blur-md border-b border-[#10243B]/10 shadow-[0_4px_25px_rgba(8,18,29,0.03)] w-full transition-all duration-300">
-  <div class="w-full px-4 sm:px-6 lg:px-12 flex items-center justify-between mx-auto h-20 max-w-[1440px]">
-    <!-- Brand Official Logo -->
-    <a class="flex items-center shrink-0 mr-4 lg:mr-8 group" href="/" aria-label="Faraan Impex Home">
-      <img src="/assets/images/logo.png" alt="<?= e(get_setting('site_name', 'FARAAN IMPEX')) ?>" class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="<?= e($siteName) ?> home">
+      <img src="/assets/images/logo-wordmark.png" alt="<?= e($siteName) ?>" width="1306" height="330" style="height:44px;width:auto">
     </a>
 
-    <!-- Center Navigation Links -->
-    <div class="hidden xl:flex items-center space-x-7 text-[13.5px] font-sans font-bold text-[#2A3642]">
-      <?php foreach (get_top_categories() as $cat): ?>
-        <?php if ($cat['slug'] === 'uncategorized') continue; ?>
-        <?php $subs = get_subcategories((int)$cat['id']); ?>
-        <div class="relative group py-6">
-          <a href="/<?= e($cat['slug']) ?>/" class="nav-link flex items-center gap-1 text-[#2A3642] group-hover:text-crimson transition-colors whitespace-nowrap">
-            <span><?= e(ucwords(strtolower($cat['name']))) ?></span>
-            <?php if ($subs): ?>
-              <svg class="w-3.5 h-3.5 text-[#64748B] group-hover:text-crimson transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
-              </svg>
-            <?php endif; ?>
+    <nav class="nav" aria-label="Primary">
+      <?php foreach ($topCats as $cat):
+        $subs = get_subcategories((int)$cat['id']);
+        [$headline, $blurb] = division_blurb($cat);
+        $lines = $subs ? count($subs) : 0;
+      ?>
+        <div class="dd">
+          <a class="dd-trigger" href="/<?= e($cat['slug']) ?>/"><?= e($cat['name']) ?>
+            <?php if ($subs): ?><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg><?php endif; ?>
           </a>
-          
           <?php if ($subs): ?>
-            <div class="absolute left-0 top-full pt-1 hidden group-hover:block min-w-[250px] z-50">
-              <div class="bg-white rounded-xl p-3 shadow-[0_20px_50px_rgba(8,18,29,0.12)] border border-[#10243B]/10">
-                <div class="text-[10px] text-[#64748B] px-3 py-1.5 border-b border-gray-100 uppercase tracking-widest font-bold">
-                  <?= e($cat['name']) ?> Lines
+          <div class="dd-panel">
+            <div class="wrap">
+              <div class="dd-inner">
+                <div class="dd-lead">
+                  <span class="eyebrow on-dark"><?= str_pad((string)$lines, 2, '0', STR_PAD_LEFT) ?> PRODUCT LINES</span>
+                  <span class="big"><?= e($headline) ?></span>
+                  <p><?= e($blurb) ?></p>
+                  <a class="btn btn-primary" href="/<?= e($cat['slug']) ?>/"><span>View all <?= e(strtolower($cat['name'])) ?></span><?= icon_arrow() ?></a>
                 </div>
-                <div class="mt-1 space-y-0.5">
+                <div class="dd-links">
                   <?php foreach ($subs as $sub): ?>
-                    <a href="/<?= e($sub['slug']) ?>/" class="group/sub block px-3 py-2 rounded-lg text-[13px] text-[#2A3642] hover:text-crimson hover:bg-[#F6F3ED] transition-colors flex items-center justify-between font-medium">
-                      <span><?= e($sub['name']) ?></span>
-                      <span class="material-symbols-outlined text-[14px] text-crimson opacity-0 group-hover/sub:opacity-100 transition-opacity">arrow_forward</span>
-                    </a>
+                    <a class="dd-link" href="/<?= e($sub['slug']) ?>/"><span><?= e($sub['name']) ?></span><?= icon_arrow() ?></a>
                   <?php endforeach; ?>
                 </div>
               </div>
             </div>
+          </div>
           <?php endif; ?>
         </div>
       <?php endforeach; ?>
+      <a class="dd-trigger" href="/about-us">About</a>
+      <a class="dd-trigger" href="/contact-us">Contact</a>
+    </nav>
 
-      <div class="relative group py-6">
-        <a class="nav-link text-[#2A3642] group-hover:text-crimson transition-colors whitespace-nowrap" href="/about-us">
-          About Us
-        </a>
+    <a class="btn btn-primary hdr-cta" href="/contact-us" style="padding:13px 24px">Request a quote</a>
+
+    <!-- Mobile drawer: pure <details>, no JavaScript -->
+    <details class="m-menu">
+      <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="m-drawer">
+        <?php foreach ($topCats as $cat): $subs = get_subcategories((int)$cat['id']); ?>
+          <?php if ($subs): ?>
+            <details class="m-sub">
+              <summary><span><?= e($cat['name']) ?></span><small class="mono" style="font-size:11.5px;color:var(--muted);font-weight:400"><?= count($subs) ?> lines</small></summary>
+              <a href="/<?= e($cat['slug']) ?>/" style="font-weight:600">All <?= e($cat['name']) ?></a>
+              <?php foreach ($subs as $sub): ?><a href="/<?= e($sub['slug']) ?>/"><?= e($sub['name']) ?></a><?php endforeach; ?>
+            </details>
+          <?php else: ?>
+            <a class="m-row" href="/<?= e($cat['slug']) ?>/"><span><?= e($cat['name']) ?></span></a>
+          <?php endif; ?>
+        <?php endforeach; ?>
+        <a class="m-row" href="/about-us"><span>About</span></a>
+        <a class="m-row" href="/contact-us"><span>Contact</span></a>
+        <a class="btn btn-primary" href="/contact-us" style="margin-top:16px;width:100%">Request a quote</a>
       </div>
-
-      <div class="relative group py-6">
-        <a class="nav-link text-[#2A3642] group-hover:text-crimson transition-colors whitespace-nowrap" href="/contact-us">
-          Contact
-        </a>
-      </div>
-    </div>
-
-    <!-- Right Header Action (Single Confident CTA like Stagfield) -->
-    <div class="hidden sm:flex items-center shrink-0">
-      <a class="inline-flex items-center justify-center bg-crimson hover:bg-crimson-hover text-white px-6 py-2.5 rounded-full font-bold text-[13px] tracking-wide shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98]" href="/contact-us">
-        <span>Request a Quote</span>
-      </a>
-    </div>
-
-    <!-- Mobile Navigation Trigger (< xl) -->
-    <div class="flex xl:hidden items-center gap-2">
-      <a class="sm:hidden inline-flex items-center justify-center bg-crimson text-white px-4 py-2 rounded-full font-bold text-[12px] shadow-sm" href="/contact-us">
-        Quote
-      </a>
-      <button id="mobile-menu-toggle" type="button" class="p-2 text-[#0B1623] hover:text-crimson focus:outline-none transition-colors" aria-label="Toggle Navigation">
-        <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Dropdown Drawer -->
-  <div id="mobile-menu" class="hidden xl:hidden bg-[#FCFBF8] border-b border-[#10243B]/10 px-6 py-6 space-y-3 font-sans font-bold text-[14px]">
-    <?php foreach (get_top_categories() as $cat): ?>
-      <?php if ($cat['slug'] === 'uncategorized') continue; ?>
-      <a href="/<?= e($cat['slug']) ?>/" class="block py-2.5 text-[#2A3642] hover:text-crimson border-b border-gray-100 flex items-center justify-between">
-        <span><?= e(ucwords(strtolower($cat['name']))) ?></span>
-        <span class="text-[11px] text-[#64748B] font-mono"><?= (int)$cat['live_count'] ?> Styles</span>
-      </a>
-    <?php endforeach; ?>
-    <a href="/about-us" class="block py-2.5 text-[#2A3642] hover:text-crimson border-b border-gray-100">About Us</a>
-    <a href="/contact-us" class="block py-2.5 text-[#2A3642] hover:text-crimson border-b border-gray-100">Contact</a>
-    <div class="pt-3">
-      <a class="block text-center bg-crimson text-white py-3 rounded-full text-[13px] font-bold shadow-sm" href="/contact-us">
-        Request a Quote
-      </a>
-    </div>
+    </details>
   </div>
 </header>
 
-<main class="w-full overflow-x-hidden">
+<main>

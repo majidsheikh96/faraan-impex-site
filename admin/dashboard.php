@@ -23,7 +23,7 @@ admin_header('Dashboard');
   <!-- Welcome & Live Overview -->
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-gray-200">
     <div>
-      <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">ADMINISTRATION DASHBOARD</span>
+      <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">ADMINISTRATION DASHBOARD</span>
       <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Faraan Impex Control Center</h1>
       <p class="text-sm text-gray-500 mt-1">
         Direct management of wholesale MOQs, catalog categories, 4-slide hero banner, homepage sections, and page narratives.
@@ -32,9 +32,9 @@ admin_header('Dashboard');
     <div class="flex items-center gap-3">
       <div class="px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm text-xs font-mono">
         <span class="text-gray-500">Global Default MOQ:</span>
-        <strong class="text-[#C51E28] font-bold ml-1"><?= e(get_site_moq()) ?></strong>
+        <strong class="text-[#C8102E] font-bold ml-1"><?= e(get_site_moq()) ?></strong>
       </div>
-      <a href="/" target="_blank" class="px-4 py-2 rounded-xl bg-[#0B0C0E] text-white hover:bg-[#C51E28] transition-colors text-xs font-mono font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+      <a href="/" target="_blank" class="px-4 py-2 rounded-xl bg-[#0D0D0D] text-white hover:bg-[#C8102E] transition-colors text-xs font-mono font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5">
         <span>View Live Site</span>
         <span>↗</span>
       </a>
@@ -61,7 +61,7 @@ admin_header('Dashboard');
           Test Bypass ↗
         </a>
       <?php endif; ?>
-      <a href="/admin/settings.php" class="px-3 py-1.5 rounded-lg bg-white border border-gray-300 text-gray-900 hover:text-[#C51E28] hover:border-[#C51E28] transition-colors font-bold shadow-xs">
+      <a href="/admin/settings.php" class="px-3 py-1.5 rounded-lg bg-white border border-gray-300 text-gray-900 hover:text-[#C8102E] hover:border-[#C8102E] transition-colors font-bold shadow-xs">
         Configure Settings →
       </a>
     </div>
@@ -74,7 +74,7 @@ admin_header('Dashboard');
         <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-400 block mb-1">Live Products</span>
         <div class="text-4xl font-extrabold text-gray-900 font-mono"><?= $stats['products'] ?></div>
       </div>
-      <a href="/admin/products.php" class="text-xs font-mono text-[#C51E28] font-bold hover:underline">Manage →</a>
+      <a href="/admin/products.php" class="text-xs font-mono text-[#C8102E] font-bold hover:underline">Manage →</a>
     </div>
 
     <div class="bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm flex items-center justify-between">
@@ -82,7 +82,7 @@ admin_header('Dashboard');
         <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-400 block mb-1">Taxonomy Divisions</span>
         <div class="text-4xl font-extrabold text-gray-900 font-mono"><?= $stats['categories'] ?></div>
       </div>
-      <a href="/admin/categories.php" class="text-xs font-mono text-[#C51E28] font-bold hover:underline">Manage →</a>
+      <a href="/admin/categories.php" class="text-xs font-mono text-[#C8102E] font-bold hover:underline">Manage →</a>
     </div>
 
     <div class="bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm flex items-center justify-between">
@@ -90,7 +90,7 @@ admin_header('Dashboard');
         <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-400 block mb-1">Featured Styles</span>
         <div class="text-4xl font-extrabold text-gray-900 font-mono"><?= $stats['featured'] ?></div>
       </div>
-      <a href="/admin/products.php" class="text-xs font-mono text-[#C51E28] font-bold hover:underline">Manage →</a>
+      <a href="/admin/products.php" class="text-xs font-mono text-[#C8102E] font-bold hover:underline">Manage →</a>
     </div>
   </div>
 
@@ -103,14 +103,14 @@ admin_header('Dashboard');
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- Card 1: Settings & MOQ -->
-      <a href="/admin/settings.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/settings.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
-          <span class="w-10 h-10 rounded-xl bg-rose-50 text-[#C51E28] flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
+          <span class="w-10 h-10 rounded-xl bg-rose-50 text-[#C8102E] flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             ⚡
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Site Settings &amp; MOQ
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
@@ -119,14 +119,14 @@ admin_header('Dashboard');
       </a>
 
       <!-- Card 2: Hero Slider -->
-      <a href="/admin/slider.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/slider.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
           <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             🎬
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Hero Slider (4 Slides)
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
@@ -135,14 +135,14 @@ admin_header('Dashboard');
       </a>
 
       <!-- Card 3: Homepage Sections -->
-      <a href="/admin/homepage.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/homepage.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
           <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             🏛️
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Homepage Sections
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
@@ -151,14 +151,14 @@ admin_header('Dashboard');
       </a>
 
       <!-- Card 4: Pages & Text Content -->
-      <a href="/admin/pages.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/pages.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
           <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             📄
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Pages &amp; Text Content
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
@@ -167,14 +167,14 @@ admin_header('Dashboard');
       </a>
 
       <!-- Card 5: Categories & Custom MOQs -->
-      <a href="/admin/categories.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/categories.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
           <span class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             🏷️
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Categories &amp; MOQs
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">
@@ -183,14 +183,14 @@ admin_header('Dashboard');
       </a>
 
       <!-- Card 6: Products Catalog -->
-      <a href="/admin/products.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C51E28]/40 transition-all block">
+      <a href="/admin/products.php" class="group bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-md hover:border-[#C8102E]/40 transition-all block">
         <div class="flex items-center justify-between mb-4">
           <span class="w-10 h-10 rounded-xl bg-stone-100 text-stone-800 flex items-center justify-center font-mono font-bold text-base group-hover:scale-110 transition-transform">
             🧥
           </span>
-          <span class="text-xs font-mono text-[#C51E28] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
+          <span class="text-xs font-mono text-[#C8102E] font-bold group-hover:translate-x-1 transition-transform">Edit →</span>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C51E28] transition-colors">
+        <h3 class="text-lg font-bold text-gray-900 mb-1.5 font-serif group-hover:text-[#C8102E] transition-colors">
           Products Catalog
         </h3>
         <p class="text-xs text-gray-500 leading-relaxed">

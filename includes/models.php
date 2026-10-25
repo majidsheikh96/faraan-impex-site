@@ -94,167 +94,87 @@ function get_site_moq(): string
     return get_setting('global_moq', '50 Pcs / Style');
 }
 
-/** Hero Slides data getter with resilient fallback */
+/** Hero Slides data getter with resilient fallback (copy from the approved design). */
 function get_hero_slides_data(): array
 {
     $slides = get_json_setting('hero_slides_json', []);
     if (!empty($slides)) return $slides;
 
     return [
-        [
-            'number' => '01',
-            'tab_label' => 'Motorcycle Racing',
-            'kicker' => 'CE LEVEL 2 CERTIFIED · TRACK RACING SUITS · SIALKOT',
-            'title' => 'Precision racewear. Built for the track.',
-            'lead' => 'Direct private-label manufacturing of 1.3mm race cowhide suits, aerodynamic speed humps, and fortified carbon knuckle gloves tested for severe track slide resistance.',
-            'pills' => ['CE Level 2 Armor', '1.3mm Race Cowhide', 'Aerodynamic Speed Hump', 'Carbon Knuckles'],
-            'primary_cta_text' => 'Explore Racing Division',
-            'primary_cta_url' => '/leather-wears/',
-            'secondary_cta_text' => 'Start an RFQ',
-            'secondary_cta_url' => '/contact-us',
-            'image' => '/assets/images/showcase/hero-slide-racing-2560.jpg',
-            'image_pos' => 'object-center'
-        ],
-        [
-            'number' => '02',
-            'tab_label' => 'Technical Flannels',
-            'kicker' => 'DWR WEATHERPROOF · CORDURA® 1000D APPAREL · SIALKOT',
-            'title' => 'Technical flannels & all-weather shells.',
-            'lead' => 'Heavyweight 280 GSM yarn-dyed cotton flannels, Cordura® 1000D adventure touring jackets, and ballistic denim outer shells engineered for extreme durability.',
-            'pills' => ['Heavy 280 GSM Flannel', 'Cordura® 1000D Shell', 'DWR Water-Repellent', 'Ballistic Denim'],
-            'primary_cta_text' => 'Explore Textile Division',
-            'primary_cta_url' => '/textile-wears/',
-            'secondary_cta_text' => 'Request Swatches',
-            'secondary_cta_url' => '/contact-us',
-            'image' => '/assets/images/showcase/hero-slide-flannel-2560.jpg',
-            'image_pos' => 'object-[80%_center]'
-        ],
-        [
-            'number' => '03',
-            'tab_label' => 'Western Headwear',
-            'kicker' => 'HAND-BLOCKED LEATHER · FRONTIER CRAFT · SIALKOT',
-            'title' => 'Artisanal western hats & heritage suede.',
-            'lead' => 'Custom hand-blocked leather top hats, custom-blocked cowboy headwear, fringed roughout suede jackets, and heavy rancher riding chaps built by master craftsmen.',
-            'pills' => ['Hand-Blocked Leather', 'Roughout Suede', 'Hand-Cut Fringes', 'Ranch Riding Chaps'],
-            'primary_cta_text' => 'Explore Western Division',
-            'primary_cta_url' => '/western-wears/',
-            'secondary_cta_text' => 'Order Custom Hats',
-            'secondary_cta_url' => '/contact-us',
-            'image' => '/assets/images/showcase/hero-slide-western-hat-2560.jpg',
-            'image_pos' => 'object-[85%_center]'
-        ],
-        [
-            'number' => '04',
-            'tab_label' => 'Biker Vests & Gear',
-            'kicker' => 'FULL-GRAIN VEG-TAN · BIKER CUTS & GOODS · SIALKOT',
-            'title' => 'Biker club vests & heavy leather goods.',
-            'lead' => 'Heavyweight full-grain cowhide biker cuts with concho chain closures, fortified riding gloves, artisan workshop aprons, and custom embossed leather accessories.',
-            'pills' => ['Concho Chain Vests', 'Full-Grain Veg-Tan', 'Workshop Aprons', 'Side-Laced Cuts'],
-            'primary_cta_text' => 'Explore Leather Goods',
-            'primary_cta_url' => '/leather-products/',
-            'secondary_cta_text' => 'Submit Vest Tech Pack',
-            'secondary_cta_url' => '/contact-us',
-            'image' => '/assets/images/showcase/hero-slide-biker-vest-2560.jpg',
-            'image_pos' => 'object-[80%_center]'
-        ]
+        ['number' => '01', 'tab_label' => 'Racing', 'kicker' => 'RACING DIVISION',
+         'title' => 'Precision racewear. Built for the track.',
+         'lead' => '1.3mm race cowhide suits, speed humps and carbon knuckle gloves, built around CE Level 2 armor.',
+         'pills' => [], 'primary_cta_text' => 'Explore Racing Division', 'primary_cta_url' => '/leather-wears/',
+         'secondary_cta_text' => 'Start an RFQ', 'secondary_cta_url' => '/contact-us',
+         'image' => '/assets/images/client/hero-rider.jpg', 'image_pos' => 'object-center'],
+        ['number' => '02', 'tab_label' => 'Textiles', 'kicker' => 'TEXTILE DIVISION',
+         'title' => 'Technical flannels & all-weather shells.',
+         'lead' => '280 GSM flannels and Cordura® 1000D jackets, cut and sewn to your tech pack.',
+         'pills' => [], 'primary_cta_text' => 'Explore Textile Division', 'primary_cta_url' => '/textile-wears/',
+         'secondary_cta_text' => 'Request Swatches', 'secondary_cta_url' => '/contact-us',
+         'image' => '/assets/images/client/hero-flannel.jpg', 'image_pos' => 'object-[80%_center]'],
+        ['number' => '03', 'tab_label' => 'Western', 'kicker' => 'WESTERN DIVISION',
+         'title' => 'Artisanal western hats & heritage suede.',
+         'lead' => 'Hand-blocked hats and fringed suede jackets for western labels.',
+         'pills' => [], 'primary_cta_text' => 'Explore Western Division', 'primary_cta_url' => '/western-wears/',
+         'secondary_cta_text' => 'Order Custom Hats', 'secondary_cta_url' => '/contact-us',
+         'image' => '/assets/images/client/hero-hat.jpg', 'image_pos' => 'object-[85%_center]'],
+        ['number' => '04', 'tab_label' => 'Leather goods', 'kicker' => 'LEATHER GOODS DIVISION',
+         'title' => 'Biker club vests & heavy leather goods.',
+         'lead' => 'Concho-chain vests and workshop aprons, made to spec with your branding.',
+         'pills' => [], 'primary_cta_text' => 'Explore Leather Goods', 'primary_cta_url' => '/leather-products/',
+         'secondary_cta_text' => 'Submit Vest Tech Pack', 'secondary_cta_url' => '/contact-us',
+         'image' => '/assets/images/client/hero-vest.jpg', 'image_pos' => 'object-[80%_center]'],
     ];
 }
 
-/** 4 Core Divisions data getter with fallback */
+/** Homepage divisions getter with fallback. */
 function get_divisions_data(): array
 {
     $divs = get_json_setting('divisions_json', []);
     if (!empty($divs)) return $divs;
 
     return [
-        [
-            'slug'        => 'leather-wears',
-            'href'        => '/leather-wears/',
-            'number'      => '01',
-            'kicker'      => 'MOTORCYCLE RACING',
-            'title'       => 'Motorcycle Racing Suits & Track Gear',
-            'image'       => '/assets/images/showcase/motorcycle-gear-showroom-hires.jpg',
-            'lead'        => 'Bespoke 1.3mm cowhide race suits, aerodynamic speed humps, fortified knuckle gloves, and CE Level 2 track armor built for severe slide resistance.',
-            'specs'       => ['1.3mm Race Cowhide', 'CE Level 2 Armor', 'Speed Hump Fit', 'Carbon Knuckles'],
-            'cta'         => 'Explore Racing Division'
-        ],
-        [
-            'slug'        => 'textile-wears',
-            'href'        => '/textile-wears/',
-            'number'      => '02',
-            'kicker'      => 'TECHNICAL TEXTILES',
-            'title'       => 'Technical Textiles & Plaid Flannels',
-            'image'       => '/assets/images/showcase/flannel-textile-shirt-hires.jpg',
-            'lead'        => 'Heavy yarn-dyed cotton flannels, Cordura® 1000D adventure shells, ballistic denim jackets, and all-weather touring apparel built for durability.',
-            'specs'       => ['Heavy Flannel 280 GSM', 'Cordura® 1000D', 'DWR Weatherproof', 'Ballistic Denim'],
-            'cta'         => 'Explore Textile Division'
-        ],
-        [
-            'slug'        => 'western-wears',
-            'href'        => '/western-wears/',
-            'number'      => '03',
-            'kicker'      => 'WESTERN WEAR',
-            'title'       => 'Western Heritage & Custom Headwear',
-            'image'       => '/assets/images/showcase/custom-leather-hat-hires.jpg',
-            'lead'        => 'Traditional hand-blocked leather top hats, custom cowboy headwear, fringed roughout suede jackets, and rugged rancher riding chaps.',
-            'specs'       => ['Hand-Blocked Hats', 'Roughout Suede', 'Hand-Cut Fringes', 'Riding Chaps'],
-            'cta'         => 'Explore Western Division'
-        ],
-        [
-            'slug'        => 'leather-products',
-            'href'        => '/leather-products/',
-            'number'      => '04',
-            'kicker'      => 'LEATHER GOODS & VESTS',
-            'title'       => 'Biker Vests & Artisan Leather Goods',
-            'image'       => '/assets/images/showcase/leather-biker-vest-hires.jpg',
-            'lead'        => 'Heavyweight full-grain biker club vests with concho chain closures, heavy leather workshop aprons, fortified riding gloves, and leather goods.',
-            'specs'       => ['Concho Chain Vests', 'Side-Laced Cuts', 'Workshop Aprons', 'Full-Grain Veg-Tan'],
-            'cta'         => 'Explore Leather Goods'
-        ]
+        ['slug' => 'leather-wears', 'href' => '/leather-wears/', 'number' => '01', 'kicker' => 'MOTORCYCLE RACING',
+         'title' => 'Motorcycle Racing Suits & Track Gear',
+         'image' => '/assets/images/client/card-racing.jpg',
+         'lead' => '1.3mm race cowhide suits, speed humps and carbon knuckle gloves, built around CE Level 2 armor.',
+         'specs' => ['Cowhide', 'CE Armor', 'Gloves'], 'cta' => 'Explore'],
+        ['slug' => 'textile-wears', 'href' => '/textile-wears/', 'number' => '02', 'kicker' => 'TECHNICAL TEXTILES',
+         'title' => 'Technical Textiles & Plaid Flannels',
+         'image' => '/assets/images/client/card-flannel.jpg',
+         'lead' => '280 GSM flannels, denim, and Cordura® 1000D all-weather jackets and pilot shells.',
+         'specs' => ['Flannel', 'Cordura®', 'Denim'], 'cta' => 'Explore'],
+        ['slug' => 'western-wears', 'href' => '/western-wears/', 'number' => '03', 'kicker' => 'WESTERN WEAR',
+         'title' => 'Western Heritage & Custom Headwear',
+         'image' => '/assets/images/client/card-hat.jpg',
+         'lead' => 'Hand-blocked hats, fringed suede jackets, chaps and saddlery for western labels.',
+         'specs' => ['Hats', 'Suede', 'Chaps'], 'cta' => 'Explore'],
+        ['slug' => 'leather-products', 'href' => '/leather-products/', 'number' => '04', 'kicker' => 'LEATHER GOODS & VESTS',
+         'title' => 'Biker Vests & Artisan Leather Goods',
+         'image' => '/assets/images/client/card-vest.jpg',
+         'lead' => 'Concho-chain club vests, workshop aprons, wallets, bags and heavy leather goods.',
+         'specs' => ['Vests', 'Aprons', 'Bags'], 'cta' => 'Explore'],
     ];
 }
 
-/** Material Lab capabilities getter */
+/** Capabilities getter (dark section). */
 function get_capabilities_data(): array
 {
     $caps = get_json_setting('capabilities_json', []);
     if (!empty($caps)) return $caps;
 
     return [
-        [
-            'number' => '01',
-            'title' => 'Multi-Hide Tanning & Grading',
-            'desc' => 'Calibrated gauges from 0.7mm silky sheep nappa to 1.3mm drum-dyed race-grade cowhide, roughout split suede, and vegetable-tanned harness hides.'
-        ],
-        [
-            'number' => '02',
-            'title' => 'Heavy Flannels & Cordura® 1000D',
-            'desc' => 'Heavyweight yarn-dyed 280 GSM cotton flannels, Cordura® 1000D ballistic shells, DuPont™ Kevlar® abrasion linings, and DWR water-repellent barriers.'
-        ],
-        [
-            'number' => '03',
-            'title' => 'CE Armor & Carbon Shielding',
-            'desc' => 'CE Level 1 & Level 2 viscoelastic impact protectors, aerodynamic track humps, titanium elbow sliders, and carbon fiber motorcycle glove knuckles.'
-        ],
-        [
-            'number' => '04',
-            'title' => 'Conchos, Heavy Brass & YKK® Fasteners',
-            'desc' => 'Solid antiqued brass hardware, biker vest concho chains, heavy-gauge YKK® zippers, debossed leather patches, and custom cast hardware.'
-        ],
-        [
-            'number' => '05',
-            'title' => 'Hand-Blocked Hats & Artisan Craft',
-            'desc' => 'Traditional wooden block molding for leather top hats and western cowboy headwear, precision edge burnishing, and heavy-duty workshop aprons.'
-        ],
-        [
-            'number' => '06',
-            'title' => 'Digital CAD Patterning & Rapid Sampling',
-            'desc' => 'Digital 2D CAD grading from your sketches or reference garment. First physical production counter-sample delivered to your desk in 7–10 days.'
-        ]
+        ['number' => '01', 'title' => 'Multi-hide tanning & grading', 'desc' => 'Hides sorted and graded before cutting, so panels match across the batch.'],
+        ['number' => '02', 'title' => 'Heavy flannels & Cordura® 1000D', 'desc' => '280 GSM flannel and 1000D shells for outerwear that takes weather.'],
+        ['number' => '03', 'title' => 'CE armor & carbon shielding', 'desc' => 'CE Level 2 armor and carbon protection fitted into racewear patterns.'],
+        ['number' => '04', 'title' => 'Conchos & YKK® fasteners', 'desc' => 'Hardware sourced to spec for vests, jackets and leather goods.'],
+        ['number' => '05', 'title' => 'Hand-blocked hats', 'desc' => 'Custom crowns and brims shaped by hand for western headwear.'],
+        ['number' => '06', 'title' => 'Digital CAD & rapid sampling', 'desc' => 'CAD patterning turns your tech pack into a counter-sample in 7–10 days.'],
     ];
 }
 
-/** Trust strip data getter */
+/** Trust points getter (kept for the admin editor). */
 function get_trust_points_data(): array
 {
     $points = get_json_setting('trust_points_json', []);
@@ -264,37 +184,21 @@ function get_trust_points_data(): array
         ['title' => 'Specification Review', 'desc' => 'Reference image, CAD tech pack or design brief'],
         ['title' => 'Rapid Sampling', 'desc' => 'Validate leather hand-feel, textile weave & armor fit'],
         ['title' => 'Private-Label Finishing', 'desc' => 'Custom debossed badges, hardware, woven labels & trims'],
-        ['title' => 'Direct Factory Export', 'desc' => 'Door-to-door air freight & sea cargo to US & Europe']
+        ['title' => 'Direct Factory Export', 'desc' => 'Door-to-door air freight & sea cargo to US & Europe'],
     ];
 }
 
-/** OEM Process steps getter */
+/** OEM Process steps getter. */
 function get_process_steps_data(): array
 {
     $steps = get_json_setting('process_steps_json', []);
     if (!empty($steps)) return $steps;
 
     return [
-        [
-            'num' => '01',
-            'title' => 'Tech Pack & Material Grading',
-            'desc' => 'Submit your sketches, vector patterns, or physical garment counter-sample. Our pattern-masters grade sizes and source certified 1.3mm cowhide, heavy cotton flannels, or Cordura®.'
-        ],
-        [
-            'num' => '02',
-            'title' => 'Precision Counter-Sample',
-            'desc' => 'A physical production prototype is engineered at our Sialkot factory within 7 to 10 working days, incorporating your private branding, custom lining, and hardware for fit approval.'
-        ],
-        [
-            'num' => '03',
-            'title' => 'Batch Cutting & Precision Assembly',
-            'desc' => 'Approved patterns proceed to specialized automated cutting stations, reinforced heavy nylon stitching lines, and laser-guided embroidery or embossed patch attachment.'
-        ],
-        [
-            'num' => '04',
-            'title' => 'Dual-Station QC & Global Export',
-            'desc' => 'Every garment undergoes a 100% two-stage technical check for seam integrity, armor placement, and zip alignment before export packaging and air/sea dispatch.'
-        ]
+        ['num' => '01', 'title' => 'Tech pack & material grading', 'desc' => 'Send your pack. We grade hides and fabrics against it before anything is cut.'],
+        ['num' => '02', 'title' => 'Precision counter-sample', 'desc' => 'Your first sample in 7–10 days. Production starts only after you sign it off.'],
+        ['num' => '03', 'title' => 'Batch cutting & assembly', 'desc' => 'The batch is cut and stitched to the approved sample, style by style.'],
+        ['num' => '04', 'title' => 'Dual-station QC & export', 'desc' => 'Two inspection stations, then door-to-door air or ocean freight.'],
     ];
 }
 
@@ -337,9 +241,9 @@ function get_subcategories(int $parentId): array
 function get_products_by_category(int $categoryId, int $limit = 48, int $offset = 0): array
 {
     $stmt = db()->prepare(
-        'SELECT * FROM products WHERE is_active = 1
+        "SELECT * FROM products WHERE is_active = 1
          AND (category_id = ? OR category_id IN (SELECT id FROM categories WHERE parent_id = ?))
-         ORDER BY sort_order, name LIMIT ? OFFSET ?'
+         ORDER BY (image IS NULL OR image = '') ASC, sort_order, name LIMIT ? OFFSET ?"
     );
     $stmt->bindValue(1, $categoryId, PDO::PARAM_INT);
     $stmt->bindValue(2, $categoryId, PDO::PARAM_INT);
@@ -387,12 +291,55 @@ function get_featured_products(int $limit = 8): array
 function get_related_products(int $categoryId, int $excludeId, int $limit = 4): array
 {
     $stmt = db()->prepare(
-        'SELECT * FROM products WHERE is_active = 1 AND category_id = ? AND id != ?
-         ORDER BY sort_order, name LIMIT ?'
+        "SELECT * FROM products WHERE is_active = 1 AND category_id = ? AND id != ?
+         ORDER BY (image IS NULL OR image = '') ASC, sort_order, name LIMIT ?"
     );
     $stmt->bindValue(1, $categoryId, PDO::PARAM_INT);
     $stmt->bindValue(2, $excludeId, PDO::PARAM_INT);
     $stmt->bindValue(3, $limit, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll();
+}
+
+function get_category_by_id(int $id): ?array
+{
+    $stmt = db()->prepare('SELECT * FROM categories WHERE id = ? LIMIT 1');
+    $stmt->execute([$id]);
+    $row = $stmt->fetch();
+    return $row ?: null;
+}
+
+/** Number of active products in a category + its subcategories. */
+function count_products_by_category(int $categoryId): int
+{
+    $stmt = db()->prepare(
+        'SELECT COUNT(*) FROM products WHERE is_active = 1
+         AND (category_id = ? OR category_id IN (SELECT id FROM categories WHERE parent_id = ?))'
+    );
+    $stmt->execute([$categoryId, $categoryId]);
+    return (int)$stmt->fetchColumn();
+}
+
+/** Active products across every division (for /all-styles/ and the homepage "browse all" button). */
+function count_all_products(): int
+{
+    return (int)db()->query('SELECT COUNT(*) FROM products WHERE is_active = 1')->fetchColumn();
+}
+
+function get_all_products(int $limit = 24, int $offset = 0): array
+{
+    $stmt = db()->prepare(
+        "SELECT p.*, c.slug AS category_slug FROM products p JOIN categories c ON c.id = p.category_id
+         WHERE p.is_active = 1 ORDER BY (p.image IS NULL OR p.image = '') ASC, p.is_featured DESC, p.sort_order, p.name LIMIT ? OFFSET ?"
+    );
+    $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+    $stmt->bindValue(2, $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+/** Product lines = sub-categories (for the catalogue stat line). */
+function count_product_lines(): int
+{
+    return (int)db()->query('SELECT COUNT(*) FROM categories WHERE parent_id IS NOT NULL')->fetchColumn();
 }

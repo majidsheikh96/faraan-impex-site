@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         // About Page
         'about_hero_title'   => 'about',
         'about_hero_lead'    => 'about',
+        'about_hero_image'   => 'about',
         'about_story_1'      => 'about',
         'about_story_2'      => 'about',
         'about_stat_1_num'   => 'about',
@@ -25,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         'about_stat_4_label' => 'about',
         // Contact Page
         'contact_hero_title' => 'contact',
-        'contact_hero_lead'  => 'contact'
+        'contact_hero_lead'  => 'contact',
+        'contact_intro'      => 'contact'
     ];
 
     foreach ($fields as $key => $group) {
@@ -46,7 +48,7 @@ admin_header('Pages & Text Editor');
 
   <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <span class="font-mono text-xs uppercase tracking-widest text-[#C51E28] font-bold">PAGE TEXT &amp; NARRATIVES</span>
+      <span class="font-mono text-xs uppercase tracking-widest text-[#C8102E] font-bold">PAGE TEXT &amp; NARRATIVES</span>
       <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Pages &amp; Text Content</h1>
       <p class="text-sm text-gray-500 mt-1">
         Update editorial narratives, factory capacity figures, quality control standards, and contact page introductions.
@@ -70,7 +72,7 @@ admin_header('Pages & Text Editor');
     <!-- 1. ABOUT US PAGE -->
     <div class="bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-8 shadow-sm space-y-6">
       <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
-        <span class="w-3 h-3 rounded-full bg-[#C51E28]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#C8102E]"></span>
         <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide font-mono">1. About Us Page Content</h2>
       </div>
 
@@ -94,18 +96,27 @@ admin_header('Pages & Text Editor');
 
         <div>
           <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">
-            Factory Story &amp; Origins (Paragraph 1) *
+            About hero photo (path or URL of a real factory photo)
           </label>
-          <textarea name="about_story_1" rows="3" required
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm leading-relaxed"><?= e(get_setting('about_story_1', 'Established in Sialkot, Pakistan — the global epicenter of athletic leathercraft and precision stitching — Faraan Impex manufactures exclusively for private-label brands, international importers, motorcycle clubs, and enterprise apparel distributors across North America, Europe, and Australasia.')) ?></textarea>
+          <input type="text" name="about_hero_image" value="<?= e(get_setting('about_hero_image', '')) ?>" placeholder="/assets/images/factory/floor.jpg"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+          <p class="text-[11px] text-gray-500 mt-1.5 font-mono">Leave empty to hide the photo. Use a real photo of your own factory (wide, 2000px+).</p>
         </div>
 
         <div>
           <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">
-            Production &amp; Tannery Operations (Paragraph 2) *
+            Factory Story &amp; Origins (Paragraph 1)
           </label>
-          <textarea name="about_story_2" rows="3" required
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm leading-relaxed"><?= e(get_setting('about_story_2', 'Our multi-disciplinary facility integrates high-precision cutting, computerized heavy-stitch sewing stations, dedicated lining and insulation tables, and dual-station quality control benches. We hold direct tannery contracts ensuring calibrated cowhide, sheep nappa, and buffalo hides meet REACH and CE standards.')) ?></textarea>
+          <textarea name="about_story_1" rows="3"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm leading-relaxed"><?= e(get_setting('about_story_1', '')) ?></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">
+            Production &amp; Tannery Operations (Paragraph 2)
+          </label>
+          <textarea name="about_story_2" rows="3"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm leading-relaxed"><?= e(get_setting('about_story_2', '')) ?></textarea>
         </div>
 
         <!-- 4 Key Factory Statistics -->
@@ -173,6 +184,14 @@ admin_header('Pages & Text Editor');
           <textarea name="contact_hero_lead" rows="2" required
                     class="w-full px-4 py-2 rounded-xl border border-gray-300 text-sm"><?= e(get_setting('contact_hero_lead', 'Direct contract manufacturing desk. Submit your technical drawings, bill of materials, or sample inquiries for immediate factory costing and leather hide validation.')) ?></textarea>
         </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">
+            Contact page intro line (optional, shown above the contact details)
+          </label>
+          <input type="text" name="contact_intro" value="<?= e(get_setting('contact_intro', '')) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm">
+        </div>
       </div>
     </div>
 
@@ -182,7 +201,7 @@ admin_header('Pages & Text Editor');
         ← Back to Dashboard
       </a>
       <button type="submit" 
-              class="inline-flex items-center justify-center gap-2 bg-[#C51E28] hover:bg-[#A81822] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              class="inline-flex items-center justify-center gap-2 bg-[#C8102E] hover:bg-[#9E0C24] text-white px-8 py-3.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
         <span>Save All Pages Content</span>
         <span>✓</span>
       </button>
