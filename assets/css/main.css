@@ -291,6 +291,9 @@ a.card:hover .go svg { transform: translateX(4px); }
 .site-footer .col { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
 .site-footer .col .h { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; color: var(--red-dark); }
 .site-footer a:hover { color: #fff; text-decoration: underline; }
+.soc-link { display: inline-flex !important; align-items: center; gap: 8px; }
+.soc-link svg { flex-shrink: 0; opacity: .7; transition: opacity .2s; }
+.soc-link:hover svg { opacity: 1; }
 .site-footer .bottom { border-top: 1px solid #333; padding-top: 24px; padding-bottom: 32px; font-family: var(--f-mono); font-size: 12px; color: #A3A3A3; display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; }
 .preview-pill { position: fixed; right: 20px; bottom: 20px; z-index: 9999; background: var(--ink); color: #fff; border: 1px solid #555; padding: 10px 16px; font-family: var(--f-mono); font-size: 12px; display: flex; gap: 12px; align-items: center; }
 .preview-pill a { background: var(--accent); padding: 4px 10px; }
