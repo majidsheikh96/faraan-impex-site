@@ -19,37 +19,98 @@ function product_whatsapp_link(string $name, string $sku): string
     return whatsapp_link("Hello, I'm interested in: {$name} (SKU: {$sku}). Please share details.");
 }
 
+/** Best-effort real visitor IP behind Hostinger's CDN / proxies. */
+function client_ip(): string
+{
+    $candidates = [$_SERVER['HTTP_CF_CONNECTING_IP'] ?? '', $_SERVER['HTTP_X_REAL_IP'] ?? ''];
+    foreach (explode(',', (string)($_SERVER['HTTP_X_FORWARDED_FOR'] ?? '')) as $p) {
+        $candidates[] = trim($p);
+    }
+    $candidates[] = $_SERVER['REMOTE_ADDR'] ?? '';
+    foreach ($candidates as $ip) {
+        if ($ip !== '' && filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+            return $ip;
+        }
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '';
+}
+
+/** True when $ip falls in the bundled range list for ISO country code $cc (includes/geo/<cc>.bin, see tools/build-geo-ranges.py). */
+function ip_in_country(string $ip, string $cc): bool
+{
+    $file = __DIR__ . '/geo/' . strtolower($cc) . '.bin';
+    $bin = @inet_pton($ip);
+    if ($bin === false || !is_file($file)) {
+        return false;
+    }
+    if (strlen($bin) === 4) {
+        $bin = str_repeat("\0", 10) . "\xff\xff" . $bin;
+    }
+    $fh = fopen($file, 'rb');
+    if (!$fh) {
+        return false;
+    }
+    $lo = 0;
+    $hi = intdiv((int)filesize($file), 32) - 1;
+    $found = false;
+    while ($lo <= $hi) {
+        $mid = intdiv($lo + $hi, 2);
+        fseek($fh, $mid * 32);
+        $rec = fread($fh, 32);
+        if (strlen($rec) < 32) {
+            break;
+        }
+        $start = substr($rec, 0, 16);
+        $end = substr($rec, 16, 16);
+        if (strcmp($bin, $start) < 0) {
+            $hi = $mid - 1;
+        } elseif (strcmp($bin, $end) > 0) {
+            $lo = $mid + 1;
+        } else {
+            $found = true;
+            break;
+        }
+    }
+    fclose($fh);
+    return $found;
+}
+
 /**
- * Geo-block check. Runs before any page output.
- * - Disabled unless GEO_BLOCK_ENABLED is true.
- * - Admin path is never blocked (owner needs access from Pakistan).
- * - Uses MaxMind GeoLite2-Country if present; fails OPEN (no block) if DB missing.
+ * Country block (Admin > Site Settings > Geo-blocking; defaults in config.php).
+ * Never blocks: the admin panel, a logged-in admin, or a visitor holding the preview / geo-bypass cookie.
+ * Bypass link for staff in a blocked country: /?geo_bypass=<coming-soon key> (sets a 30-day cookie).
+ * Fails open (no block) if the range files are missing. A VPN gets around any IP-based block.
  */
 function geo_block_check(): void
 {
-    if (!GEO_BLOCK_ENABLED) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $enabled = get_setting('geo_block_enabled', GEO_BLOCK_ENABLED ? '1' : '0') === '1';
+    if (!$enabled) {
         return;
     }
-    $uri = $_SERVER['REQUEST_URI'] ?? '/';
-    $path = parse_url($uri, PHP_URL_PATH) ?? '/';
-    if (str_starts_with($path, ADMIN_PATH) || str_starts_with($path, '/admin')) {
-        return; // owner allowlist
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
+    if (str_starts_with($path, '/admin') || !empty($_SESSION['admin_id']) || str_starts_with($path, '/assets/')) {
+        return;
     }
-    $mmdb = __DIR__ . '/geo/GeoLite2-Country.mmdb';
-    if (!is_file($mmdb) || !class_exists('GeoIp2\Database\Reader')) {
-        return; // fail open when DB/reader unavailable
+    if (isset($_GET['geo_bypass']) && hash_equals(strtolower(trim(get_setting('coming_soon_key', 'faraan')) ?: 'faraan'), strtolower((string)$_GET['geo_bypass']))) {
+        setcookie('geo_bypass', '1', ['expires' => time() + 86400 * 30, 'path' => '/', 'httponly' => true, 'samesite' => 'Lax', 'secure' => !empty($_SERVER['HTTPS'])]);
+        return;
     }
-    try {
-        $reader = new GeoIp2\Database\Reader($mmdb);
-        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '';
-        $country = $reader->country($ip)->country->isoCode;
-        if (in_array($country, GEO_BLOCKED_COUNTRIES, true)) {
+    if (($_COOKIE['geo_bypass'] ?? '') === '1' || ($_COOKIE['preview_access'] ?? '') === '1' || !empty($_SESSION['preview_access'])) {
+        return;
+    }
+    $codes = array_filter(array_map('trim', explode(',', get_setting('geo_blocked_countries', implode(',', GEO_BLOCKED_COUNTRIES)))));
+    $ip = client_ip();
+    foreach ($codes as $cc) {
+        if (ip_in_country($ip, $cc)) {
             http_response_code(403);
-            echo '<h1>Not available in your region</h1>';
+            header('Cache-Control: no-store');
+            header('X-Robots-Tag: noindex');
+            require __DIR__ . '/../templates/blocked.php';
             exit;
         }
-    } catch (Throwable $t) {
-        // fail open on lookup errors
     }
 }
 
@@ -185,15 +246,15 @@ function icon_arrow(int $size = 16, string $class = ''): string
 function division_blurb(array $cat): array
 {
     $map = [
-        'leather-products' => ['Leather goods, made to order', 'Wholesale contract production from the Sialkot factory. MOQ 50 pieces per style, custom branding on every line.'],
-        'leather-wears'    => ['Leather garments and racewear', 'Jackets, suits, vests and gloves cut from graded hides. MOQ 50 pieces per style, custom branding available.'],
-        'textile-wears'    => ['Technical and everyday textiles', 'Denim, flannel and weatherproof outerwear sewn to your tech pack. MOQ 50 pieces per style.'],
-        'western-wears'    => ['Western heritage, hand finished', 'Hats, fringed jackets, chaps and saddlery for western labels. MOQ 50 pieces per style.'],
+        'leather-products' => ['Leather goods, made to order', 'Wholesale contract production from the Sialkot factory. Custom branding on every line.'],
+        'leather-wears'    => ['Leather garments and racewear', 'Jackets, suits, vests and gloves cut from graded hides. Custom branding available.'],
+        'textile-wears'    => ['Technical and everyday textiles', 'Denim, flannel and weatherproof outerwear sewn to your tech pack.'],
+        'western-wears'    => ['Western heritage, hand finished', 'Hats, fringed jackets, chaps and saddlery for western labels.'],
     ];
     if (isset($map[$cat['slug']])) {
         return $map[$cat['slug']];
     }
-    return [$cat['name'], (string)($cat['lead_text'] ?? 'Wholesale contract production from the Sialkot factory. MOQ 50 pieces per style.')];
+    return [$cat['name'], (string)($cat['lead_text'] ?? 'Wholesale contract production from the Sialkot factory.')];
 }
 
 /** Request-quote form token (session based). */
@@ -292,4 +353,38 @@ function clean_description(?string $s): string
     $s = preg_replace("/[ \t]+/", ' ', $s);
     $s = preg_replace("/\n\s*\n+/", "\n", $s);
     return trim($s);
+}
+
+/** Consistent Title Case for category names in menus, chips and headings ("Travel bags" -> "Travel Bags"). */
+function display_name(string $s): string
+{
+    $t = mb_convert_case(trim($s), MB_CASE_TITLE, 'UTF-8');
+    return preg_replace_callback('/\s(And|Of|The|For|In|To|&Amp;)\b/u', fn($m) => ' ' . strtolower($m[1]) === ' &amp;' ? ' &' : ' ' . strtolower($m[1]), $t);
+}
+
+/** The two Alibaba storefronts (Gold Supplier). URLs/labels can be changed in Admin > Site Settings. */
+function alibaba_links(): array
+{
+    $out = [];
+    $defaults = [1 => ['Faraan Impex', 'https://faraanimpex.trustpass.alibaba.com'], 2 => ['Namra Leather', 'https://namraleather.trustpass.alibaba.com']];
+    foreach ($defaults as $i => [$label, $url]) {
+        $u = trim(get_setting("alibaba_{$i}_url", $url));
+        if ($u !== '' && preg_match('#^https?://#i', $u)) {
+            $out[] = ['label' => trim(get_setting("alibaba_{$i}_label", $label)) ?: $label, 'url' => $u];
+        }
+    }
+    return $out;
+}
+
+/** Social profile links; only the ones filled in under Admin > Site Settings are shown. */
+function social_links(): array
+{
+    $out = [];
+    foreach (['facebook' => 'Facebook', 'instagram' => 'Instagram', 'linkedin' => 'LinkedIn', 'youtube' => 'YouTube', 'tiktok' => 'TikTok', 'x' => 'X'] as $key => $label) {
+        $u = trim(get_setting('social_' . $key, $key === 'instagram' ? 'https://www.instagram.com/faraan_impex' : ''));
+        if ($u !== '' && preg_match('#^https?://#i', $u)) {
+            $out[] = ['label' => $label, 'url' => $u];
+        }
+    }
+    return $out;
 }

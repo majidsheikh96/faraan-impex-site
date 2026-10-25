@@ -17,7 +17,7 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
     <div class="col">
       <span class="h">DIVISIONS</span>
       <?php foreach (get_top_categories() as $cat): ?>
-        <a href="/<?= e($cat['slug']) ?>/"><?= e($cat['name']) ?></a>
+        <a href="/<?= e($cat['slug']) ?>/"><?= e(display_name($cat['name'])) ?></a>
       <?php endforeach; ?>
     </div>
     <div class="col">
@@ -26,6 +26,19 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
       <a href="/contact-us">Contact &amp; RFQ</a>
       <a href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . $siteName . '.')) ?>" target="_blank" rel="noopener">WhatsApp desk</a>
     </div>
+    <?php $ali = alibaba_links(); $soc = social_links(); ?>
+    <?php if ($ali || $soc): ?>
+    <div class="col">
+      <?php if ($ali): ?>
+        <span class="h">GOLD SUPPLIER ON ALIBABA</span>
+        <?php foreach ($ali as $a): ?><a href="<?= e($a['url']) ?>" target="_blank" rel="noopener"><?= e($a['label']) ?> &#8599;</a><?php endforeach; ?>
+      <?php endif; ?>
+      <?php if ($soc): ?>
+        <span class="h" style="margin-top:10px">FOLLOW US</span>
+        <?php foreach ($soc as $s): ?><a href="<?= e($s['url']) ?>" target="_blank" rel="noopener me"><?= e($s['label']) ?> &#8599;</a><?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+    <?php endif; ?>
     <div class="col">
       <span class="h">EXPORT DESK</span>
       <a href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>

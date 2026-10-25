@@ -9,6 +9,6 @@
     <a class="btn btn-ghost" href="/contact-us">Request a quote</a>
   </div>
   <div class="chips" style="margin-top:16px">
-    <?php foreach (get_top_categories() as $c): ?><a class="chip" href="/<?= e($c['slug']) ?>/"><?= e($c['name']) ?></a><?php endforeach; ?>
+    <?php foreach (get_top_categories() as $c): ?><a class="chip" href="/<?= e($c['slug']) ?>/"><?= e(display_name($c['name'])) ?></a><?php endforeach; ?>
   </div>
 </section>

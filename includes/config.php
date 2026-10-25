@@ -26,10 +26,10 @@ define('CONTACT_ADDRESS', 'P.O. 10/94, Nekapura Road, Sialkot 51310, Pakistan');
 define('WHATSAPP_NUMBER', '923327464484'); // wa.me format, no +
 
 // ---- Geo-blocking ----
-// Block visitors from these ISO country codes (empty array = disabled).
-// Requires MaxMind GeoLite2-Country.mmdb at includes/geo/ (see README).
-// Admin panel path is NEVER blocked (owner allowlist).
-define('GEO_BLOCK_ENABLED', false); // enable on production
+// Visitors from these ISO country codes see a 403 page (can be changed in Admin > Site Settings).
+// Uses the range files in includes/geo/<cc>.bin (build them with tools/build-geo-ranges.py).
+// The admin panel and logged-in admins are never blocked.
+define('GEO_BLOCK_ENABLED', true);
 define('GEO_BLOCKED_COUNTRIES', ['PK', 'IN']);
 
 // ---- Image protection ----

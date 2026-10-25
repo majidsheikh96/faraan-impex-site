@@ -64,7 +64,7 @@ tailwind.config = { theme: { extend: {
         $lines = $subs ? count($subs) : 0;
       ?>
         <div class="dd">
-          <a class="dd-trigger" href="/<?= e($cat['slug']) ?>/"><?= e($cat['name']) ?>
+          <a class="dd-trigger" href="/<?= e($cat['slug']) ?>/"><?= e(display_name($cat['name'])) ?>
             <?php if ($subs): ?><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg><?php endif; ?>
           </a>
           <?php if ($subs): ?>
@@ -75,11 +75,11 @@ tailwind.config = { theme: { extend: {
                   <span class="eyebrow on-dark"><?= str_pad((string)$lines, 2, '0', STR_PAD_LEFT) ?> PRODUCT LINES</span>
                   <span class="big"><?= e($headline) ?></span>
                   <p><?= e($blurb) ?></p>
-                  <a class="btn btn-primary" href="/<?= e($cat['slug']) ?>/"><span>View all <?= e(strtolower($cat['name'])) ?></span><?= icon_arrow() ?></a>
+                  <a class="btn btn-primary" href="/<?= e($cat['slug']) ?>/"><span>View all <?= e(display_name($cat['name'])) ?></span><?= icon_arrow() ?></a>
                 </div>
                 <div class="dd-links">
                   <?php foreach ($subs as $sub): ?>
-                    <a class="dd-link" href="/<?= e($sub['slug']) ?>/"><span><?= e($sub['name']) ?></span><?= icon_arrow() ?></a>
+                    <a class="dd-link" href="/<?= e($sub['slug']) ?>/"><span><?= e(display_name($sub['name'])) ?></span><?= icon_arrow() ?></a>
                   <?php endforeach; ?>
                 </div>
               </div>
@@ -101,12 +101,12 @@ tailwind.config = { theme: { extend: {
         <?php foreach ($topCats as $cat): $subs = get_subcategories((int)$cat['id']); ?>
           <?php if ($subs): ?>
             <details class="m-sub">
-              <summary><span><?= e($cat['name']) ?></span><small class="mono" style="font-size:11.5px;color:var(--muted);font-weight:400"><?= count($subs) ?> lines</small></summary>
-              <a href="/<?= e($cat['slug']) ?>/" style="font-weight:600">All <?= e($cat['name']) ?></a>
-              <?php foreach ($subs as $sub): ?><a href="/<?= e($sub['slug']) ?>/"><?= e($sub['name']) ?></a><?php endforeach; ?>
+              <summary><span><?= e(display_name($cat['name'])) ?></span><small class="mono" style="font-size:11.5px;color:var(--muted);font-weight:400"><?= count($subs) ?> lines</small></summary>
+              <a href="/<?= e($cat['slug']) ?>/" style="font-weight:600">All <?= e(display_name($cat['name'])) ?></a>
+              <?php foreach ($subs as $sub): ?><a href="/<?= e($sub['slug']) ?>/"><?= e(display_name($sub['name'])) ?></a><?php endforeach; ?>
             </details>
           <?php else: ?>
-            <a class="m-row" href="/<?= e($cat['slug']) ?>/"><span><?= e($cat['name']) ?></span></a>
+            <a class="m-row" href="/<?= e($cat['slug']) ?>/"><span><?= e(display_name($cat['name'])) ?></span></a>
           <?php endif; ?>
         <?php endforeach; ?>
         <a class="m-row" href="/about-us"><span>About</span></a>

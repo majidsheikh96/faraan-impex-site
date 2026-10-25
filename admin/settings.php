@@ -24,6 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         'whatsapp_number'   => 'general',
         'contact_address'   => 'general',
         // Footer & Legal
+        'alibaba_1_label'   => 'links',
+        'alibaba_1_url'     => 'links',
+        'alibaba_2_label'   => 'links',
+        'alibaba_2_url'     => 'links',
+        'social_facebook'   => 'links',
+        'social_instagram'  => 'links',
+        'social_linkedin'   => 'links',
+        'social_youtube'    => 'links',
+        'social_tiktok'     => 'links',
+        'social_x'          => 'links',
+        'geo_blocked_countries' => 'security',
         'footer_about'      => 'footer',
         'footer_disclaimer' => 'footer',
         // Coming Soon & Bypass
@@ -40,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         }
     }
 
+    // Geo-blocking switch
+    update_setting('geo_block_enabled', isset($_POST['geo_block_enabled']) ? '1' : '0', 'security');
     // Checkbox for coming soon enabled
     $isComingSoon = isset($_POST['coming_soon_enabled']) ? '1' : '0';
     update_setting('coming_soon_enabled', $isComingSoon, 'coming_soon');
@@ -334,6 +347,90 @@ admin_header('Site Settings & MOQ');
                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8102E] focus:border-transparent text-sm"><?= e(get_setting('footer_disclaimer', '* Faraan Impex operates strictly as a wholesale B2B contract manufacturer. Retail inquiries are not serviced. Production begins upon counter-sample signoff.')) ?></textarea>
         </div>
       </div>
+    </div>
+
+    <!-- 5. Alibaba & Social -->
+    <div class="bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center gap-3 pb-4 mb-6 border-b border-gray-100">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide font-mono">5. Alibaba Storefronts &amp; Social Links</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:col-span-2">
+          <div>
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Alibaba account 1 name</label>
+            <input type="text" name="alibaba_1_label" value="<?= e(get_setting('alibaba_1_label', 'Faraan Impex')) ?>" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Alibaba account 1 URL (empty = hide)</label>
+            <input type="url" name="alibaba_1_url" value="<?= e(get_setting('alibaba_1_url', 'https://faraanimpex.trustpass.alibaba.com')) ?>" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:col-span-2">
+          <div>
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Alibaba account 2 name</label>
+            <input type="text" name="alibaba_2_label" value="<?= e(get_setting('alibaba_2_label', 'Namra Leather')) ?>" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Alibaba account 2 URL (empty = hide)</label>
+            <input type="url" name="alibaba_2_url" value="<?= e(get_setting('alibaba_2_url', 'https://namraleather.trustpass.alibaba.com')) ?>" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+          </div>
+        </div>
+
+      </div>
+      <p class="text-[11px] text-gray-500 mt-5 mb-5 font-mono">Social links only appear in the footer when a URL is filled in.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Facebook URL</label>
+          <input type="url" name="social_facebook" value="<?= e(get_setting('social_facebook', '')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Instagram URL</label>
+          <input type="url" name="social_instagram" value="<?= e(get_setting('social_instagram', 'https://www.instagram.com/faraan_impex')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">LinkedIn URL</label>
+          <input type="url" name="social_linkedin" value="<?= e(get_setting('social_linkedin', '')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">YouTube URL</label>
+          <input type="url" name="social_youtube" value="<?= e(get_setting('social_youtube', '')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">TikTok URL</label>
+          <input type="url" name="social_tiktok" value="<?= e(get_setting('social_tiktok', '')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">X (Twitter) URL</label>
+          <input type="url" name="social_x" value="<?= e(get_setting('social_x', '')) ?>" placeholder="https://" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 6. Geo-blocking -->
+    <div class="bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center gap-3 pb-4 mb-6 border-b border-gray-100">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide font-mono">6. Country Blocking</h2>
+      </div>
+      <label class="flex items-start gap-3 mb-5">
+        <input type="checkbox" name="geo_block_enabled" value="1" <?= get_setting('geo_block_enabled', GEO_BLOCK_ENABLED ? '1' : '0') === '1' ? 'checked' : '' ?> class="mt-1">
+        <span class="text-sm"><strong>Block visitors from the countries below</strong><br><span class="text-gray-500">They see a "Not available in your region" page. The admin panel and logged-in admins are never blocked.</span></span>
+      </label>
+      <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">Blocked country codes (comma separated)</label>
+      <input type="text" name="geo_blocked_countries" value="<?= e(get_setting('geo_blocked_countries', implode(',', GEO_BLOCKED_COUNTRIES))) ?>" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" placeholder="PK,IN">
+      <p class="text-[11px] text-gray-500 mt-2 font-mono leading-relaxed">
+        Only countries that have a range file in includes/geo/ work (now: PK, IN; add more with tools/build-geo-ranges.py).
+        Staff in a blocked country: open <?= e(SITE_URL) ?>/?geo_bypass=<?= e(get_setting('coming_soon_key', 'faraan')) ?> once (30-day cookie).
+        A VPN gets around any IP-based block.
+      </p>
     </div>
 
     <!-- Save Button Bar -->

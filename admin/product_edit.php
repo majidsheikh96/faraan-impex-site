@@ -2,6 +2,7 @@
 /** Admin: add/edit product. */
 declare(strict_types=1);
 require_once __DIR__ . '/layout.php';
+ensure_settings_schema(); // adds products.moq on first use
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $product = null;
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $category_id = (int)($_POST['category_id'] ?? 0);
             $description = trim($_POST['description'] ?? '');
             $meta_description = trim($_POST['meta_description'] ?? '');
+            $moq = trim($_POST['moq'] ?? '');
             $is_featured = isset($_POST['is_featured']) ? 1 : 0;
             $is_active = isset($_POST['is_active']) ? 1 : 0;
             if ($name === '' || $category_id === 0) throw new Exception('Name and category are required.');
@@ -50,14 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($id) {
                 $stmt = db()->prepare(
-                    'UPDATE products SET name=?, sku=?, slug=?, category_id=?, description=?, image=?, meta_description=?, is_featured=?, is_active=? WHERE id=?'
+                    'UPDATE products SET name=?, sku=?, slug=?, category_id=?, description=?, image=?, meta_description=?, moq=?, is_featured=?, is_active=? WHERE id=?'
                 );
-                $stmt->execute([$name, $sku, $slug, $category_id, $description, $image, $meta_description, $is_featured, $is_active, $id]);
+                $stmt->execute([$name, $sku, $slug, $category_id, $description, $image, $meta_description, $moq !== '' ? $moq : null, $is_featured, $is_active, $id]);
             } else {
                 $stmt = db()->prepare(
-                    'INSERT INTO products (name, sku, slug, category_id, description, image, meta_description, is_featured, is_active) VALUES (?,?,?,?,?,?,?,?,?)'
+                    'INSERT INTO products (name, sku, slug, category_id, description, image, meta_description, moq, is_featured, is_active) VALUES (?,?,?,?,?,?,?,?,?,?)'
                 );
-                $stmt->execute([$name, $sku, $slug, $category_id, $description, $image, $meta_description, $is_featured, $is_active]);
+                $stmt->execute([$name, $sku, $slug, $category_id, $description, $image, $meta_description, $moq !== '' ? $moq : null, $is_featured, $is_active]);
                 $id = (int)db()->lastInsertId();
             }
             flash_set('Product saved.');
@@ -88,6 +90,7 @@ if ($error) echo '<p class="bg-red-100 text-red-800 rounded px-4 py-2 mb-4 text-
     </div>
   </div>
   <div><label class="text-sm font-medium">Description</label><textarea name="description" rows="4" class="mt-1 w-full border rounded px-3 py-2"><?= e(clean_description($_POST['description'] ?? ($product['description'] ?? ''))) ?></textarea></div>
+  <div><label class="text-sm font-medium">MOQ for this product <span class="text-gray-500 font-normal">(optional, e.g. "50 pcs per style". Empty = shows "On request — contact us")</span></label><input name="moq" value="<?= e((string)($_POST['moq'] ?? $product['moq'] ?? '')) ?>" maxlength="60" class="mt-1 w-full border rounded px-3 py-2"></div>
   <div><label class="text-sm font-medium">Meta Description (SEO)</label><input name="meta_description" value="<?= $v('meta_description') ?>" maxlength="255" class="mt-1 w-full border rounded px-3 py-2"></div>
   <div>
     <label class="text-sm font-medium">Product Image</label>

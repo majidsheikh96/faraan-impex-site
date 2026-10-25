@@ -3,7 +3,7 @@
 $specs = !empty($product['specs']) ? (json_decode($product['specs'], true) ?: []) : [];
 $gallery = !empty($product['gallery']) ? (json_decode($product['gallery'], true) ?: []) : [];
 $images = array_values(array_filter(array_merge([$product['image'] ?? ''], $gallery)));
-$productMoq = !empty($product['custom_moq']) ? $product['custom_moq'] : '50 pcs per style';
+$productMoq = !empty($product['moq']) ? $product['moq'] : (!empty($product['custom_moq']) ? $product['custom_moq'] : '');
 $sampleTurnaround = get_setting('sample_turnaround', '7–10 days');
 $quoteTurnaround = get_setting('quote_turnaround', 'Under 2 hours') ;
 
@@ -19,8 +19,8 @@ $catUrl = '/' . $product['category_slug'] . '/';
 <section class="wrap" style="padding-top:28px">
   <nav class="crumbs" aria-label="Breadcrumb" style="color:var(--muted)">
     <a href="/">Home</a> <span aria-hidden="true">/</span>
-    <?php if ($parent): ?><a href="/<?= e($parent['slug']) ?>/"><?= e($parent['name']) ?></a> <span aria-hidden="true">/</span><?php endif; ?>
-    <a href="<?= e($catUrl) ?>"><?= e($product['category_name']) ?></a> <span aria-hidden="true">/</span>
+    <?php if ($parent): ?><a href="/<?= e($parent['slug']) ?>/"><?= e(display_name($parent['name'])) ?></a> <span aria-hidden="true">/</span><?php endif; ?>
+    <a href="<?= e($catUrl) ?>"><?= e(display_name($product['category_name'])) ?></a> <span aria-hidden="true">/</span>
     <span style="color:var(--ink);font-weight:500"><?= e($product['sku']) ?></span>
   </nav>
 </section>
@@ -53,7 +53,7 @@ $catUrl = '/' . $product['category_slug'] . '/';
       <h1 class="h-display h-lg"><?= e($product['name']) ?></h1>
       <p class="lede" style="margin:0"><?= nl2br(e($desc)) ?></p>
       <div class="facts">
-        <div><div class="k">MOQ</div><div class="v"><?= e($productMoq) ?></div></div>
+        <div><div class="k">MOQ</div><div class="v"><?= $productMoq !== '' ? e($productMoq) : '<a href="/contact-us" style="text-decoration:underline;text-underline-offset:3px">On request &mdash; contact us</a>' ?></div></div>
         <div><div class="k">First counter-sample</div><div class="v"><?= e($sampleTurnaround) ?></div></div>
         <div><div class="k">Branding</div><div class="v">Custom labels &amp; hardware</div></div>
         <div><div class="k">Quotation</div><div class="v"><?= e($quoteTurnaround) ?>, FOB</div></div>
@@ -86,7 +86,7 @@ $catUrl = '/' . $product['category_slug'] . '/';
 <?php if (!empty($related)): ?>
 <section class="wrap sec-tight">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
-    <span class="eyebrow">MORE FROM <?= e(strtoupper($product['category_name'])) ?></span>
+    <span class="eyebrow">MORE FROM <?= e(strtoupper(display_name($product['category_name']))) ?></span>
     <h2 class="h-display h-md">Related styles</h2>
   </div>
   <div class="grid-4">

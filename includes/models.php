@@ -31,6 +31,10 @@ function ensure_settings_schema(): void
         if (!in_array('lead_text', $cols, true)) {
             db()->exec("ALTER TABLE categories ADD COLUMN lead_text TEXT NULL AFTER kicker");
         }
+        $pcols = db()->query("SHOW COLUMNS FROM products")->fetchAll(PDO::FETCH_COLUMN);
+        if (!in_array('moq', $pcols, true)) {
+            db()->exec("ALTER TABLE products ADD COLUMN moq VARCHAR(60) NULL DEFAULT NULL");
+        }
         if (!in_array('custom_moq', $cols, true)) {
             db()->exec("ALTER TABLE categories ADD COLUMN custom_moq VARCHAR(60) NULL AFTER lead_text");
         }
@@ -104,25 +108,25 @@ function get_hero_slides_data(): array
         ['number' => '01', 'tab_label' => 'Racing', 'kicker' => 'RACING DIVISION',
          'title' => 'Precision racewear. Built for the track.',
          'lead' => '1.3mm race cowhide suits, speed humps and carbon knuckle gloves, built around CE Level 2 armor.',
-         'pills' => [], 'primary_cta_text' => 'Explore Racing Division', 'primary_cta_url' => '/leather-wears/',
+         'pills' => [], 'primary_cta_text' => 'Explore Racing Suits', 'primary_cta_url' => '/motorbike-suit/',
          'secondary_cta_text' => 'Start an RFQ', 'secondary_cta_url' => '/contact-us',
          'image' => '/assets/images/client/hero-rider.jpg', 'image_pos' => 'object-center'],
         ['number' => '02', 'tab_label' => 'Textiles', 'kicker' => 'TEXTILE DIVISION',
          'title' => 'Technical flannels & all-weather shells.',
          'lead' => '280 GSM flannels and Cordura® 1000D jackets, cut and sewn to your tech pack.',
-         'pills' => [], 'primary_cta_text' => 'Explore Textile Division', 'primary_cta_url' => '/textile-wears/',
+         'pills' => [], 'primary_cta_text' => 'Explore Textile Wears', 'primary_cta_url' => '/textile-wears/',
          'secondary_cta_text' => 'Request Swatches', 'secondary_cta_url' => '/contact-us',
          'image' => '/assets/images/client/hero-flannel.jpg', 'image_pos' => 'object-[80%_center]'],
         ['number' => '03', 'tab_label' => 'Western', 'kicker' => 'WESTERN DIVISION',
          'title' => 'Artisanal western hats & heritage suede.',
          'lead' => 'Hand-blocked hats and fringed suede jackets for western labels.',
-         'pills' => [], 'primary_cta_text' => 'Explore Western Division', 'primary_cta_url' => '/western-wears/',
-         'secondary_cta_text' => 'Order Custom Hats', 'secondary_cta_url' => '/contact-us',
+         'pills' => [], 'primary_cta_text' => 'Explore Western Wears', 'primary_cta_url' => '/western-wears/',
+         'secondary_cta_text' => 'Browse Cowboy Hats', 'secondary_cta_url' => '/cowboy-hats/',
          'image' => '/assets/images/client/hero-hat.jpg', 'image_pos' => 'object-[85%_center]'],
         ['number' => '04', 'tab_label' => 'Leather goods', 'kicker' => 'LEATHER GOODS DIVISION',
          'title' => 'Biker club vests & heavy leather goods.',
          'lead' => 'Concho-chain vests and workshop aprons, made to spec with your branding.',
-         'pills' => [], 'primary_cta_text' => 'Explore Leather Goods', 'primary_cta_url' => '/leather-products/',
+         'pills' => [], 'primary_cta_text' => 'Explore Biker Vests', 'primary_cta_url' => '/leather-vests/',
          'secondary_cta_text' => 'Submit Vest Tech Pack', 'secondary_cta_url' => '/contact-us',
          'image' => '/assets/images/client/hero-vest.jpg', 'image_pos' => 'object-[80%_center]'],
     ];
@@ -135,7 +139,7 @@ function get_divisions_data(): array
     if (!empty($divs)) return $divs;
 
     return [
-        ['slug' => 'leather-wears', 'href' => '/leather-wears/', 'number' => '01', 'kicker' => 'MOTORCYCLE RACING',
+        ['slug' => 'motorbike-suit', 'href' => '/motorbike-suit/', 'number' => '01', 'kicker' => 'MOTORCYCLE RACING',
          'title' => 'Motorcycle Racing Suits & Track Gear',
          'image' => '/assets/images/client/card-racing.jpg',
          'lead' => '1.3mm race cowhide suits, speed humps and carbon knuckle gloves, built around CE Level 2 armor.',
@@ -150,7 +154,7 @@ function get_divisions_data(): array
          'image' => '/assets/images/client/card-hat.jpg',
          'lead' => 'Hand-blocked hats, fringed suede jackets, chaps and saddlery for western labels.',
          'specs' => ['Hats', 'Suede', 'Chaps'], 'cta' => 'Explore'],
-        ['slug' => 'leather-products', 'href' => '/leather-products/', 'number' => '04', 'kicker' => 'LEATHER GOODS & VESTS',
+        ['slug' => 'leather-vests', 'href' => '/leather-vests/', 'number' => '04', 'kicker' => 'LEATHER GOODS & VESTS',
          'title' => 'Biker Vests & Artisan Leather Goods',
          'image' => '/assets/images/client/card-vest.jpg',
          'lead' => 'Concho-chain club vests, workshop aprons, wallets, bags and heavy leather goods.',

@@ -8,7 +8,7 @@
       <div class="checklist">
         <span class="mono" style="font-size:12px;letter-spacing:.1em;font-weight:500">HELPFUL TO INCLUDE</span>
         <div class="row"><b>&mdash;</b><span>Tech pack, sketch or reference images</span></div>
-        <div class="row"><b>&mdash;</b><span>Target quantity per style (MOQ 50)</span></div>
+        <div class="row"><b>&mdash;</b><span>Target quantity per style</span></div>
         <div class="row"><b>&mdash;</b><span>Material, hide or fabric preferences</span></div>
         <div class="row"><b>&mdash;</b><span>Branding, labels and packaging needs</span></div>
       </div>
