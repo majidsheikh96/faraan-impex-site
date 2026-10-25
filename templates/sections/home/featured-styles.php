@@ -6,7 +6,7 @@
       <span class="eyebrow">04 &mdash; FACTORY HIGHLIGHTS</span>
       <h2 class="h-display h-lg">Styles ready for sampling</h2>
     </div>
-    <p style="max-width:380px">MOQ 50 pieces per style. Custom branding available on every line.</p>
+    <p style="max-width:380px">Custom branding on every style. Contact us for MOQ and pricing.</p>
   </div>
   <div class="grid-4">
     <?php foreach ($featured as $p):

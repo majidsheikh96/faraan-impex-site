@@ -456,3 +456,10 @@ html { scroll-padding-top: 96px; }
   .page-hero .wrap { padding-bottom: 40px; gap: 28px; }
   .hero-stats .v { font-size: 38px; }
 }
+
+/* Alibaba band */
+.ali-band { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ali-band .wrap { padding-top: 56px; padding-bottom: 56px; display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; align-items: center; }
+.ali-band h2 { margin: 8px 0 8px; }
+.ali-band p { margin: 0; color: #333; font-size: 17px; max-width: 520px; }
+.ali-links { display: flex; flex-wrap: wrap; gap: 14px; }

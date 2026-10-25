@@ -31,6 +31,7 @@ $rfqFull = true;
       <div><span class="k">WHATSAPP / PHONE</span><span class="v"><a href="<?= e(phone_href($phone)) ?>"><?= e($phone) ?></a><?= $phone2 ? '<br><a href="' . e(phone_href($phone2)) . '">' . e($phone2) . '</a>' : '' ?></span></div>
       <div><span class="k">FACTORY ADDRESS</span><span class="v"><?= e($address) ?></span></div>
       <div><span class="k">QUOTE TURNAROUND</span><span class="v">Formal FOB quotation within 2 hours</span></div>
+      <?php if ($ali = alibaba_links()): ?><div><span class="k">GOLD SUPPLIER ON ALIBABA</span><span class="v"><?php foreach ($ali as $i => $a): ?><?= $i ? '<br>' : '' ?><a href="<?= e($a['url']) ?>" target="_blank" rel="noopener"><?= e($a['label']) ?> &#8599;</a><?php endforeach; ?></span></div><?php endif; ?>
     </div>
     <a class="btn btn-ghost" style="align-self:flex-start" href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . SITE_NAME . '.')) ?>" target="_blank" rel="noopener">Message on WhatsApp</a>
   </div>

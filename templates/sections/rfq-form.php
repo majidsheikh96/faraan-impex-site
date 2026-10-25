@@ -17,7 +17,7 @@ $divisionOptions = ['Motorcycle racing & track gear', 'Technical textiles & flan
   </div>
   <?php if ($rfqFull): ?>
   <div class="form-row">
-    <div class="field"><label for="<?= $rfqId ?>-qty">Target quantity per style (MOQ 50)</label><input id="<?= $rfqId ?>-qty" name="quantity" type="text"></div>
+    <div class="field"><label for="<?= $rfqId ?>-qty">Target quantity per style</label><input id="<?= $rfqId ?>-qty" name="quantity" type="text"></div>
     <div class="field"><label for="<?= $rfqId ?>-file">Tech pack or reference images</label><input id="<?= $rfqId ?>-file" name="techpack" type="file" accept=".pdf,.jpg,.jpeg,.png,.zip,.doc,.docx,.xls,.xlsx"></div>
   </div>
   <?php endif; ?>

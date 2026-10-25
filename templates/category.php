@@ -5,7 +5,7 @@ $root = $parent ?: $category;
 $chips = $parent ? get_subcategories((int)$parent['id']) : $subcategories;
 $kicker = !empty($category['kicker']) ? $category['kicker'] : 'DIRECT SIALKOT FACTORY CONTRACT PRODUCTION';
 $lead = !empty($category['lead_text']) ? $category['lead_text'] : 'Made to your pattern from graded materials, with custom branding on every line. Send a tech pack and the factory desk quotes within two hours.';
-$moq = !empty($category['custom_moq']) ? $category['custom_moq'] : '50 pcs';
+$moq = !empty($category['custom_moq']) ? $category['custom_moq'] : '';
 $statCount = $subcategories ? count($subcategories) : $total;
 $statLabel = $category['stat_label'] ?? ($subcategories ? 'Product lines' : 'Styles');
 $shown = count($products);
@@ -14,18 +14,18 @@ $shown = count($products);
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a> <span aria-hidden="true">/</span>
-      <?php if ($parent): ?><a href="/<?= e($parent['slug']) ?>/"><?= e($parent['name']) ?></a> <span aria-hidden="true">/</span><?php endif; ?>
-      <span><?= e($category['name']) ?></span>
+      <?php if ($parent): ?><a href="/<?= e($parent['slug']) ?>/"><?= e(display_name($parent['name'])) ?></a> <span aria-hidden="true">/</span><?php endif; ?>
+      <span><?= e(display_name($category['name'])) ?></span>
     </nav>
     <div class="hero-split">
       <div class="l">
         <span class="eyebrow on-dark"><?= e($kicker) ?></span>
-        <h1 class="h-display h-xl"><?= e($category['name']) ?></h1>
+        <h1 class="h-display h-xl"><?= e(display_name($category['name'])) ?></h1>
         <p><?= e($lead) ?></p>
       </div>
       <div class="hero-stats">
         <div><div class="v"><?= (int)$statCount ?></div><div class="c"><?= e($statLabel) ?></div></div>
-        <div><div class="v"><?= e($moq) ?></div><div class="c">MOQ per style</div></div>
+        <?php if ($moq !== ''): ?><div><div class="v"><?= e($moq) ?></div><div class="c">MOQ</div></div><?php else: ?><div><div class="v">&lt; 2 hrs</div><div class="c">Formal FOB quote</div></div><?php endif; ?>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ $shown = count($products);
   <div class="chips" aria-label="Product lines">
     <a class="chip<?= $parent ? '' : ' is-on' ?>" href="/<?= e($root['slug']) ?>/">All</a>
     <?php foreach ($chips as $c): ?>
-      <a class="chip<?= $c['id'] == $category['id'] ? ' is-on' : '' ?>" href="/<?= e($c['slug']) ?>/"><?= e($c['name']) ?></a>
+      <a class="chip<?= $c['id'] == $category['id'] ? ' is-on' : '' ?>" href="/<?= e($c['slug']) ?>/"><?= e(display_name($c['name'])) ?></a>
     <?php endforeach; ?>
   </div>
 </section>
