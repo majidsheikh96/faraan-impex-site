@@ -7,7 +7,7 @@
 declare(strict_types=1);
 
 // ---- Database ----
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
 define('DB_NAME', getenv('DB_NAME') ?: 'u174045762_faraanimpex');
 define('DB_USER', getenv('DB_USER') ?: 'u174045762_faraanimpex');
 define('DB_PASS', getenv('DB_PASS') ?: 'H716whwfWO6Hl8LF78IR');
