@@ -62,6 +62,7 @@ function admin_header(string $title, string $activeNav = ''): void {
     </div>
     <div class="admin-foot">
       <a href="/" target="_blank" rel="noopener"><?= $icon('M14 4h6v6M20 4l-9 9M18 14v6H4V6h6') ?><span>View site</span></a>
+      <a href="/admin/profile.php"><?= $icon('M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z') ?><span>Change password</span></a>
       <a href="/admin/logout.php"><?= $icon('M9 4H4v16h5M16 8l4 4-4 4M20 12H9') ?><span>Log out</span></a>
     </div>
   </aside>
