@@ -7,8 +7,9 @@
 declare(strict_types=1);
 
 // ---- Database ----
-// 127.0.0.1 forces TCP; avoids IPv6 ::1 socket grant issue on Hostinger.
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+// This Hostinger account's MySQL runs on a separate server — srv1294.hstgr.io,
+// not localhost/127.0.0.1. All databases on this plan share that host.
+define('DB_HOST', getenv('DB_HOST') ?: 'srv1294.hstgr.io');
 define('DB_NAME', getenv('DB_NAME') ?: 'u174045762_faraanimpex');
 define('DB_USER', getenv('DB_USER') ?: 'u174045762_faraanimpex');
 define('DB_PASS', getenv('DB_PASS') ?: 'H716whwfWO6Hl8LF78IR');
