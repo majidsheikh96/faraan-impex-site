@@ -271,7 +271,8 @@ function rfq_token(): string
 
 /**
  * Handle an RFQ POST (home page form and /contact-us share it).
- * Returns ['ok' => bool, 'error' => string]. Mails CONTACT_EMAIL; optional tech-pack attachment.
+ * Returns ['ok' => bool, 'error' => string]. Sends via SMTP (PHPMailer) when configured,
+ * falls back to mail() when SMTP_PASS is empty.
  */
 function rfq_handle_post(): array
 {
@@ -293,33 +294,91 @@ function rfq_handle_post(): array
         return ['ok' => false, 'error' => 'Please enter your name, a valid business email and your project scope.'];
     }
 
-    $to = get_setting('contact_email', CONTACT_EMAIL);
+    $to      = get_setting('contact_email', CONTACT_EMAIL);
     $subject = 'RFQ from ' . $f['name'] . ($f['company'] !== '' ? ' (' . $f['company'] . ')' : '');
-    $body = "Name: {$f['name']}\nEmail: {$f['email']}\nCompany: {$f['company']}\nDivision: {$f['division']}\n"
-          . "Target quantity: {$f['quantity']}\n\n{$f['message']}\n";
+    $body    = "Name:            {$f['name']}\nEmail:           {$f['email']}\nCompany:         {$f['company']}\n"
+             . "Division:        {$f['division']}\nTarget quantity: {$f['quantity']}\n\n{$f['message']}\n";
 
-    $headers = ['From: ' . SITE_NAME . ' <no-reply@' . (parse_url(SITE_URL, PHP_URL_HOST) ?: 'localhost') . '>', 'Reply-To: ' . $f['email'], 'MIME-Version: 1.0'];
-    $upload = $_FILES['techpack'] ?? null;
+    $upload  = $_FILES['techpack'] ?? null;
     $allowed = ['pdf', 'jpg', 'jpeg', 'png', 'zip', 'doc', 'docx', 'xls', 'xlsx'];
+    $attachPath = $attachName = null;
     if ($upload && ($upload['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($upload['name'], PATHINFO_EXTENSION));
         if (!in_array($ext, $allowed, true) || $upload['size'] > 5 * 1024 * 1024) {
             return ['ok' => false, 'error' => 'Attachment must be PDF, image, Office or ZIP and under 5 MB.'];
         }
+        $attachPath = $upload['tmp_name'];
+        $attachName = preg_replace('/[^A-Za-z0-9._-]/', '_', $upload['name']);
+    }
+
+    // DB settings override config.php constants
+    $smtpPass = get_setting('smtp_pass', defined('SMTP_PASS') ? SMTP_PASS : '');
+    if ($smtpPass !== '') {
+        $smtpHost = get_setting('smtp_host', defined('SMTP_HOST') ? SMTP_HOST : 'smtp.gmail.com');
+        $smtpPort = (int)get_setting('smtp_port', (string)(defined('SMTP_PORT') ? SMTP_PORT : 587));
+        $smtpUser = get_setting('smtp_user', defined('SMTP_USER') ? SMTP_USER : CONTACT_EMAIL);
+        $smtpFrom = get_setting('smtp_from', defined('SMTP_FROM') ? SMTP_FROM : CONTACT_EMAIL);
+        $smtpName = get_setting('smtp_from_name', defined('SMTP_FROM_NAME') ? SMTP_FROM_NAME : (SITE_NAME . ' Website'));
+        return rfq_send_smtp($to, $subject, $body, $f['email'], $f['name'], $attachPath, $attachName, $smtpHost, $smtpPort, $smtpUser, $smtpPass, $smtpFrom, $smtpName);
+    }
+    return rfq_send_mail($to, $subject, $body, $f['email'], $attachPath, $attachName);
+}
+
+/** Send via PHPMailer + SMTP. */
+function rfq_send_smtp(string $to, string $subject, string $body, string $replyEmail, string $replyName, ?string $attachPath, ?string $attachName, string $smtpHost = 'smtp.gmail.com', int $smtpPort = 587, string $smtpUser = '', string $smtpPass = '', string $fromAddr = '', string $fromName = ''): array
+{
+    $lib = __DIR__ . '/phpmailer/';
+    require_once $lib . 'Exception.php';
+    require_once $lib . 'PHPMailer.php';
+    require_once $lib . 'SMTP.php';
+
+    if ($smtpUser  === '') $smtpUser  = CONTACT_EMAIL;
+    if ($fromAddr  === '') $fromAddr  = CONTACT_EMAIL;
+    if ($fromName  === '') $fromName  = SITE_NAME . ' Website';
+
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = $smtpHost;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $smtpUser;
+        $mail->Password   = $smtpPass;
+        $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = $smtpPort;
+        $mail->setFrom($fromAddr, $fromName);
+        $mail->addAddress($to);
+        $mail->addReplyTo($replyEmail, $replyName);
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+        if ($attachPath !== null && $attachName !== null) {
+            $mail->addAttachment($attachPath, $attachName);
+        }
+        $mail->send();
+        unset($_SESSION['rfq_token']);
+        return ['ok' => true, 'error' => ''];
+    } catch (\PHPMailer\PHPMailer\Exception $e) {
+        error_log('RFQ SMTP error: ' . $mail->ErrorInfo);
+        return ['ok' => false, 'error' => 'We could not send your request. Please email ' . $to . ' or message us on WhatsApp.'];
+    }
+}
+
+/** Fallback: send via PHP mail(). Used when SMTP is not configured. */
+function rfq_send_mail(string $to, string $subject, string $body, string $replyEmail, ?string $attachPath, ?string $attachName): array
+{
+    $headers = ['From: ' . SITE_NAME . ' <no-reply@' . (parse_url(SITE_URL, PHP_URL_HOST) ?: 'localhost') . '>', 'Reply-To: ' . $replyEmail, 'MIME-Version: 1.0'];
+    if ($attachPath !== null && $attachName !== null) {
         $b = bin2hex(random_bytes(8));
         $headers[] = "Content-Type: multipart/mixed; boundary=\"$b\"";
-        $name = preg_replace('/[^A-Za-z0-9._-]/', '_', $upload['name']);
         $msg = "--$b\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n$body\r\n--$b\r\n"
-             . "Content-Type: application/octet-stream; name=\"$name\"\r\nContent-Transfer-Encoding: base64\r\n"
-             . "Content-Disposition: attachment; filename=\"$name\"\r\n\r\n"
-             . chunk_split(base64_encode((string)file_get_contents($upload['tmp_name']))) . "--$b--";
+             . "Content-Type: application/octet-stream; name=\"$attachName\"\r\nContent-Transfer-Encoding: base64\r\n"
+             . "Content-Disposition: attachment; filename=\"$attachName\"\r\n\r\n"
+             . chunk_split(base64_encode((string)file_get_contents($attachPath))) . "--$b--";
     } else {
         $headers[] = 'Content-Type: text/plain; charset=UTF-8';
         $msg = $body;
     }
-
     if (!@mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $msg, implode("\r\n", $headers))) {
-        error_log('RFQ mail() failed for ' . $f['email']);
+        error_log('RFQ mail() failed to ' . $to);
         return ['ok' => false, 'error' => 'We could not send your request. Please email ' . $to . ' or message us on WhatsApp.'];
     }
     unset($_SESSION['rfq_token']);
