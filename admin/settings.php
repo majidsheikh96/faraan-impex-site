@@ -35,6 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         'social_tiktok'     => 'links',
         'social_x'          => 'links',
         'geo_blocked_countries' => 'security',
+        // SMTP (outgoing email)
+        'smtp_host'     => 'smtp',
+        'smtp_port'     => 'smtp',
+        'smtp_user'     => 'smtp',
+        'smtp_from'     => 'smtp',
+        'smtp_from_name'=> 'smtp',
+        'smtp_pass'     => 'smtp',
         'footer_about'      => 'footer',
         'footer_disclaimer' => 'footer',
         // Coming Soon & Bypass
@@ -51,6 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf($_POST['csrf'] ?? '')) 
         }
     }
 
+    // SMTP password: only overwrite if the field is non-empty (prevents accidental blank)
+    if (trim((string)($_POST['smtp_pass'] ?? '')) !== '') {
+        update_setting('smtp_pass', trim((string)$_POST['smtp_pass']), 'smtp');
+    }
     // Geo-blocking switch
     update_setting('geo_block_enabled', isset($_POST['geo_block_enabled']) ? '1' : '0', 'security');
     // Checkbox for coming soon enabled
@@ -431,6 +442,62 @@ admin_header('Site Settings & MOQ');
         Staff in a blocked country: open <?= e(SITE_URL) ?>/?geo_bypass=<?= e(get_setting('coming_soon_key', 'faraan')) ?> once (30-day cookie).
         A VPN gets around any IP-based block.
       </p>
+    </div>
+
+    <!-- 7. SMTP OUTGOING EMAIL -->
+    <div class="bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-8 shadow-sm space-y-5">
+      <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
+        <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+        <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide font-mono">7. Outgoing Email (SMTP)</h2>
+      </div>
+      <p class="text-sm text-gray-500">Used to send RFQ form submissions to your inbox. Recommended: Gmail with an App Password.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">SMTP Host</label>
+          <input type="text" name="smtp_host" value="<?= e(get_setting('smtp_host', 'smtp.gmail.com')) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" placeholder="smtp.gmail.com">
+        </div>
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">SMTP Port</label>
+          <input type="number" name="smtp_port" value="<?= e(get_setting('smtp_port', '587')) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" placeholder="587">
+        </div>
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">SMTP Username (your Gmail address)</label>
+          <input type="email" name="smtp_user" value="<?= e(get_setting('smtp_user', CONTACT_EMAIL)) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">App Password <span class="font-normal text-gray-400">(16 chars, no spaces)</span></label>
+          <input type="password" name="smtp_pass" value="" autocomplete="new-password"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" placeholder="Leave blank to keep current">
+          <p class="text-[11px] text-gray-500 mt-1 font-mono">Leave blank to keep the saved password. Only fill in when changing it.</p>
+        </div>
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">From Address</label>
+          <input type="email" name="smtp_from" value="<?= e(get_setting('smtp_from', CONTACT_EMAIL)) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-mono">
+        </div>
+        <div>
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 mb-2">From Name</label>
+          <input type="text" name="smtp_from_name" value="<?= e(get_setting('smtp_from_name', SITE_NAME . ' Website')) ?>"
+                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm">
+        </div>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs font-mono text-amber-800 leading-relaxed">
+        <strong>Gmail App Password — ek baar setup:</strong><br>
+        1. myaccount.google.com → Security → 2-Step Verification (ON karo agar nahi hai)<br>
+        2. Search "App passwords" → App name: "Faraan Site" → Generate<br>
+        3. 16-character password milega → upar paste karo<br>
+        <br>
+        Status: <?php
+          $p = get_setting('smtp_pass', '');
+          if ($p !== '') { echo '<span style="color:#166534">✓ App Password saved — SMTP active</span>'; }
+          else { echo '<span style="color:#92400e">⚠ No password saved — falling back to PHP mail() (unreliable)</span>'; }
+        ?>
+      </div>
     </div>
 
     <!-- Save Button Bar -->

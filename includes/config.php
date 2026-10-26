@@ -35,3 +35,14 @@ define('GEO_BLOCKED_COUNTRIES', ['PK', 'IN']);
 // ---- Image protection ----
 // Deterrent-level only: disables right-click/drag on product images.
 define('IMAGE_PROTECTION', true);
+
+// ---- SMTP (outgoing email for RFQ form) ----
+// Set SMTP_PASS to a Gmail App Password (16 chars, no spaces).
+// Generate at: myaccount.google.com → Security → App passwords
+// Store in a server-side override file (config.local.php) — never commit the real password.
+define('SMTP_HOST',     getenv('SMTP_HOST')     ?: 'smtp.gmail.com');
+define('SMTP_PORT',     (int)(getenv('SMTP_PORT')     ?: 587));
+define('SMTP_USER',     getenv('SMTP_USER')     ?: CONTACT_EMAIL);   // faraanimpex@gmail.com
+define('SMTP_PASS',     getenv('SMTP_PASS')     ?: '');               // fill in config.local.php
+define('SMTP_FROM',     getenv('SMTP_FROM')     ?: CONTACT_EMAIL);
+define('SMTP_FROM_NAME',getenv('SMTP_FROM_NAME')?: SITE_NAME . ' Website');
