@@ -16,8 +16,13 @@ define('DB_PASS', getenv('DB_PASS') ?: 'H716whwfWO6Hl8LF78IR');
 
 // ---- Site ----
 define('SITE_NAME', 'Faraan Impex');
-define('SITE_URL', getenv('SITE_URL') ?: 'https://lightgray-fly-854392.hostingersite.com');
+define('SITE_URL', getenv('SITE_URL') ?: 'https://faraanimpex.com');
 define('ADMIN_PATH', '/admin'); // keep admin on a non-blocked path
+
+// ---- Launch control ----
+// true  = site is live; Coming Soon page is never shown (overrides DB setting).
+// false = respect the Admin > Settings coming_soon_enabled toggle.
+define('SITE_LIVE', true);
 
 // ---- Contact (Gmail prioritized as primary per client instruction) ----
 define('CONTACT_EMAIL', 'faraanimpex@gmail.com');

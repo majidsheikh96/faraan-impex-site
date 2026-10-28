@@ -95,7 +95,10 @@ function geo_block_check(): void
         return;
     }
     if (isset($_GET['geo_bypass']) && hash_equals(strtolower(trim(get_setting('coming_soon_key', 'faraan')) ?: 'faraan'), strtolower((string)$_GET['geo_bypass']))) {
-        setcookie('geo_bypass', '1', ['expires' => time() + 86400 * 30, 'path' => '/', 'httponly' => true, 'samesite' => 'Lax', 'secure' => !empty($_SERVER['HTTPS'])]);
+        $opts = ['expires' => time() + 86400 * 30, 'path' => '/', 'httponly' => true, 'samesite' => 'Lax', 'secure' => !empty($_SERVER['HTTPS'])];
+        setcookie('geo_bypass', '1', $opts);
+        setcookie('preview_access', '1', $opts); // also bypass Coming Soon
+        $_SESSION['preview_access'] = true;
         return;
     }
     if (($_COOKIE['geo_bypass'] ?? '') === '1' || ($_COOKIE['preview_access'] ?? '') === '1' || !empty($_SESSION['preview_access'])) {
@@ -138,6 +141,11 @@ function coming_soon_check(): void
 
     // 2. Logged-in admin always has full bypass
     if (!empty($_SESSION['admin_id'])) {
+        return;
+    }
+
+    // 2b. Hard-coded launch override — set SITE_LIVE = true in config.php to go live
+    if (defined('SITE_LIVE') && SITE_LIVE) {
         return;
     }
 
