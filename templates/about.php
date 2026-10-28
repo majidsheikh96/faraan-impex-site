@@ -4,9 +4,9 @@ $page_title = 'About Us — OEM / ODM Leather & Textile Manufacturer, Sialkot | 
 $page_description = 'OEM and ODM contract manufacturing of leather garments, motorcycle apparel, technical textiles and western wear for brands worldwide.';
 $story1 = get_setting('about_story_1', '');
 $story2 = get_setting('about_story_2', '');
-$heroImg = get_setting('about_hero_image', '');
-$aboutTitle = get_setting('about_hero_title', '');
-$aboutLead  = get_setting('about_hero_lead', '');
+$heroImg    = get_setting('about_hero_image', '');
+$aboutTitle = get_setting('about_hero_title', 'Sialkot manufacturing authority.');
+$aboutLead  = get_setting('about_hero_lead', 'Faraan Impex is a direct B2B contract manufacturer specializing in high-performance motorcycle apparel, technical flannels, western outerwear, and bespoke artisan leather goods.');
 ?>
 <section class="page-hero">
   <div class="wrap">
@@ -14,9 +14,9 @@ $aboutLead  = get_setting('about_hero_lead', '');
     <div class="hero-split">
       <div class="l">
         <span class="eyebrow on-dark">ABOUT FARAAN IMPEX</span>
-        <h1 class="h-display h-xl"><?= e($aboutTitle ?: 'A Sialkot factory that builds to your spec') ?></h1>
+        <h1 class="h-display h-xl"><?= e($aboutTitle) ?></h1>
       </div>
-      <p style="max-width:440px"><?= e($aboutLead ?: 'OEM and ODM contract manufacturing of leather garments, motorcycle apparel, technical textiles and western wear for brands worldwide.') ?></p>
+      <p style="max-width:440px"><?= e($aboutLead) ?></p>
     </div>
     <?php if ($heroImg): ?><div class="photo" style="height:clamp(220px,32vw,420px)"><img src="<?= e($heroImg) ?>" alt="Faraan Impex factory floor, Sialkot"></div><?php endif; ?>
   </div>
