@@ -9,7 +9,9 @@ declare(strict_types=1);
 // ---- Database ----
 // This Hostinger account's MySQL runs on a separate server — srv1294.hstgr.io,
 // not localhost/127.0.0.1. All databases on this plan share that host.
-define('DB_HOST', getenv('DB_HOST') ?: 'srv1294.hstgr.io');
+// srv1294.hstgr.io resolves to an IPv6 address from the Hostinger server;
+// the DB user is only granted for IPv4. Use the literal IPv4 to force IPv4.
+define('DB_HOST', getenv('DB_HOST') ?: '193.203.166.165');
 define('DB_NAME', getenv('DB_NAME') ?: 'u174045762_faraanimpex');
 define('DB_USER', getenv('DB_USER') ?: 'u174045762_faraanimpex');
 define('DB_PASS', getenv('DB_PASS') ?: 'H716whwfWO6Hl8LF78IR');
