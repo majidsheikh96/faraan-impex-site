@@ -7,7 +7,7 @@ try { $featured = get_featured_products(8); } catch (Throwable $e) { $featured =
       <span class="eyebrow">04 &mdash; FACTORY HIGHLIGHTS</span>
       <h2 class="h-display h-lg">Styles ready for sampling</h2>
     </div>
-    <p style="max-width:380px">Custom branding on every style. Contact us for MOQ and pricing.</p>
+    <p style="max-width:380px"><?= e(get_setting('curated_moq_badge', 'Custom branding on every style. Contact us for MOQ and pricing.')) ?></p>
   </div>
   <div class="grid-4">
     <?php foreach ($featured as $p):

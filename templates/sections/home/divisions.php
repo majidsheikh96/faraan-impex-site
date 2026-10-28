@@ -3,10 +3,10 @@
   <div class="sec-head">
     <div>
       <span class="eyebrow">01 &mdash; MANUFACTURING DIVISIONS</span>
-      <h2 class="h-display h-lg">Four dedicated<br>production divisions</h2>
+      <h2 class="h-display h-lg"><?= nl2br(e(get_setting('divisions_heading', 'Four dedicated production divisions.'))) ?></h2>
     </div>
     <div style="max-width:400px">
-      <p style="margin:0;color:#333;font-size:17px">Each division has its own materials, patterns and floor, so your style is never an afterthought on someone else&rsquo;s line.</p>
+      <p style="margin:0;color:#333;font-size:17px"><?= e(get_setting('divisions_subheading', 'Each division has its own materials, patterns and floor, so your style is never an afterthought on someone else\'s line.')) ?></p>
       <div class="cat-stats"><?= (int)count_all_products() ?> STYLES &middot; <?= (int)count_product_lines() ?> PRODUCT LINES &middot; <?= count($divisions) ?> DIVISIONS</div>
     </div>
   </div>

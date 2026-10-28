@@ -3,8 +3,8 @@
   <div class="wrap">
     <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:24px">
       <span class="eyebrow">05 &mdash; REQUEST A QUOTE</span>
-      <h2 class="h-display h-lg">Tell us what you want to manufacture</h2>
-      <p class="lede" style="margin:0;max-width:420px">Send the details below and the factory desk replies with a formal FOB quotation within two hours.</p>
+      <h2 class="h-display h-lg"><?= e(get_setting('inquiry_heading', 'Tell us what you want to manufacture')) ?></h2>
+      <p class="lede" style="margin:0;max-width:420px"><?= e(get_setting('inquiry_subheading', 'Send the details below and the factory desk replies with a formal FOB quotation within two hours.')) ?></p>
       <div class="checklist">
         <span class="mono" style="font-size:12px;letter-spacing:.1em;font-weight:500">HELPFUL TO INCLUDE</span>
         <div class="row"><b>&mdash;</b><span>Tech pack, sketch or reference images</span></div>

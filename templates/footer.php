@@ -53,6 +53,11 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
       <span style="color:#A3A3A3;max-width:240px"><?= e($contactAddress) ?></span>
     </div>
   </div>
+  <?php $disclaimer = get_setting('footer_disclaimer', ''); if ($disclaimer): ?>
+  <div class="wrap" style="padding-top:0;padding-bottom:0">
+    <p style="font-size:11px;color:#6b6b6b;margin:0;padding:12px 0;border-top:1px solid #2a2a2a;line-height:1.6"><?= e($disclaimer) ?></p>
+  </div>
+  <?php endif; ?>
   <div class="wrap bottom">
     <span>&copy; <?= date('Y') ?> <?= e(strtoupper($siteName)) ?></span>
     <span>CE LEVEL 2 &middot; CE &amp; REACH COMPLIANT</span>
