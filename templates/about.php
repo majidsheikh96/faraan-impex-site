@@ -4,8 +4,9 @@ $page_title = 'About Us — OEM / ODM Leather & Textile Manufacturer, Sialkot | 
 $page_description = 'OEM and ODM contract manufacturing of leather garments, motorcycle apparel, technical textiles and western wear for brands worldwide.';
 $story1 = get_setting('about_story_1', '');
 $story2 = get_setting('about_story_2', '');
-// Real factory photo only (Admin > Pages: about_hero_image). The old stock/AI workshop picture is no longer used.
 $heroImg = get_setting('about_hero_image', '');
+$aboutTitle = get_setting('about_hero_title', '');
+$aboutLead  = get_setting('about_hero_lead', '');
 ?>
 <section class="page-hero">
   <div class="wrap">
@@ -13,9 +14,9 @@ $heroImg = get_setting('about_hero_image', '');
     <div class="hero-split">
       <div class="l">
         <span class="eyebrow on-dark">ABOUT FARAAN IMPEX</span>
-        <h1 class="h-display h-xl">A Sialkot factory that builds to your spec</h1>
+        <h1 class="h-display h-xl"><?= e($aboutTitle ?: 'A Sialkot factory that builds to your spec') ?></h1>
       </div>
-      <p style="max-width:440px">OEM and ODM contract manufacturing of leather garments, motorcycle apparel, technical textiles and western wear for brands worldwide.</p>
+      <p style="max-width:440px"><?= e($aboutLead ?: 'OEM and ODM contract manufacturing of leather garments, motorcycle apparel, technical textiles and western wear for brands worldwide.') ?></p>
     </div>
     <?php if ($heroImg): ?><div class="photo" style="height:clamp(220px,32vw,420px)"><img src="<?= e($heroImg) ?>" alt="Faraan Impex factory floor, Sialkot"></div><?php endif; ?>
   </div>
@@ -27,6 +28,27 @@ $heroImg = get_setting('about_hero_image', '');
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:32px 64px;font-size:18px;color:#333">
     <?php if ($story1 !== ''): ?><p style="margin:0"><?= nl2br(e($story1)) ?></p><?php endif; ?>
     <?php if ($story2 !== ''): ?><p style="margin:0"><?= nl2br(e($story2)) ?></p><?php endif; ?>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php
+$stats = [];
+for ($i = 1; $i <= 4; $i++) {
+    $n = get_setting("about_stat_{$i}_num", '');
+    $l = get_setting("about_stat_{$i}_label", '');
+    if ($n !== '') $stats[] = ['num' => $n, 'label' => $l];
+}
+if ($stats):
+?>
+<section class="wrap" style="padding-top:0;padding-bottom:64px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden">
+    <?php foreach ($stats as $s): ?>
+      <div style="background:var(--bg);padding:24px 20px;display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:700;line-height:1;color:var(--ink)"><?= e($s['num']) ?></span>
+        <span style="font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500"><?= e($s['label']) ?></span>
+      </div>
+    <?php endforeach; ?>
   </div>
 </section>
 <?php endif; ?>

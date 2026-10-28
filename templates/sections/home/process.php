@@ -2,7 +2,8 @@
 <section class="wrap sec" style="padding-bottom:24px">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:48px">
     <span class="eyebrow">03 &mdash; HOW IT WORKS</span>
-    <h2 class="h-display h-lg" style="max-width:760px">From CAD tech pack to export dock in four phases</h2>
+    <h2 class="h-display h-lg" style="max-width:760px"><?= e(get_setting('process_heading', 'From CAD tech pack to export dock in four phases.')) ?></h2>
+    <?php $processSub = get_setting('process_subheading', ''); if ($processSub): ?><p style="margin:0;max-width:560px;color:var(--muted)"><?= e($processSub) ?></p><?php endif; ?>
   </div>
   <div class="steps">
     <?php foreach ($steps as $i => $s): ?>

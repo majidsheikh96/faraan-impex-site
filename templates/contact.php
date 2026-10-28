@@ -11,7 +11,9 @@ $email = get_setting('contact_email', CONTACT_EMAIL);
 $phone = phone_display(get_setting('contact_phone', CONTACT_PHONE));
 $phone2 = phone_display(get_setting('contact_phone_2', CONTACT_PHONE_2));
 $address = get_setting('contact_address', CONTACT_ADDRESS);
-$intro = get_setting('contact_intro', '');
+$intro      = get_setting('contact_intro', '');
+$heroTitle  = get_setting('contact_hero_title', '');
+$heroLead   = get_setting('contact_hero_lead', '');
 $rfqId = 'c';
 $rfqFull = true;
 ?>
@@ -20,7 +22,8 @@ $rfqFull = true;
 </section>
 <section class="wrap" style="padding-top:32px;padding-bottom:40px;display:flex;flex-direction:column;gap:16px">
   <span class="eyebrow">CONTACT / RFQ</span>
-  <h1 class="h-display h-xl" style="max-width:900px">Tell us what you want to manufacture</h1>
+  <h1 class="h-display h-xl" style="max-width:900px"><?= e($heroTitle ?: 'Tell us what you want to manufacture') ?></h1>
+  <?php if ($heroLead): ?><p style="max-width:640px;font-size:18px;color:var(--muted);margin:0"><?= e($heroLead) ?></p><?php endif; ?>
 </section>
 
 <section class="wrap" style="padding-bottom:96px;display:flex;flex-wrap:wrap;gap:56px" id="rfq">
@@ -30,7 +33,7 @@ $rfqFull = true;
       <div><span class="k">EXPORT DESK EMAIL</span><a class="v" href="mailto:<?= e($email) ?>"><?= e($email) ?></a></div>
       <div><span class="k">WHATSAPP / PHONE</span><span class="v"><a href="<?= e(phone_href($phone)) ?>"><?= e($phone) ?></a><?= $phone2 ? '<br><a href="' . e(phone_href($phone2)) . '">' . e($phone2) . '</a>' : '' ?></span></div>
       <div><span class="k">FACTORY ADDRESS</span><span class="v"><?= e($address) ?></span></div>
-      <div><span class="k">QUOTE TURNAROUND</span><span class="v">Formal FOB quotation within 2 hours</span></div>
+      <div><span class="k">QUOTE TURNAROUND</span><span class="v"><?= e(get_setting('quote_turnaround', 'Under 2 hours')) ?>, FOB quotation</span></div>
       <?php if ($ali = alibaba_links()): ?><div><span class="k">GOLD SUPPLIER ON ALIBABA</span><span class="v"><?php foreach ($ali as $i => $a): ?><?= $i ? '<br>' : '' ?><a href="<?= e($a['url']) ?>" target="_blank" rel="noopener"><?= e($a['label']) ?> &#8599;</a><?php endforeach; ?></span></div><?php endif; ?>
     </div>
     <a class="btn btn-ghost" style="align-self:flex-start" href="<?= e(whatsapp_link('Hello, I would like to inquire about contract manufacturing with ' . SITE_NAME . '.')) ?>" target="_blank" rel="noopener">Message on WhatsApp</a>
