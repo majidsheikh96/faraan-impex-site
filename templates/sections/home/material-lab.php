@@ -4,7 +4,7 @@
     <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:20px;align-self:flex-start">
       <span class="eyebrow on-dark">02 &mdash; CAPABILITIES</span>
       <h2 class="h-display h-lg" style="color:var(--paper)"><?= e(get_setting('capabilities_heading', 'Engineered around your technical pack.')) ?></h2>
-      <p style="margin:0;color:#A3A3A3;font-size:17px;max-width:380px"><?= e(get_setting('capabilities_subheading', 'From hide grading to export packing, the work is organised so your spec survives every handoff.')) ?></p>
+      <p style="margin:0;color:#A3A3A3;font-size:17px;max-width:380px"><?= e(get_setting('capabilities_subheading', 'Our Sialkot manufacturing plant operates as your direct offshore production line. Capabilities span racing suits, technical flannels, western headwear, and bespoke leathercraft — each calibrated to your exact tolerances.')) ?></p>
     </div>
     <div class="caps">
       <?php foreach ($capabilities as $i => $c): ?>

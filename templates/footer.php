@@ -2,7 +2,7 @@
 
 <?php
 $siteName = get_setting('site_name', SITE_NAME);
-$footerAbout = get_setting('footer_about', 'OEM / ODM manufacturer and exporter of leather garments, motorcycle apparel, technical textiles and western wear from Sialkot, Pakistan.');
+$footerAbout = get_setting('footer_about', 'Direct OEM/ODM private-label manufacturer and exporter of motorcycle suits, technical flannels, western headwear, and artisan leather goods from Sialkot, Pakistan.');
 $contactEmail = get_setting('contact_email', CONTACT_EMAIL);
 $contactPhone = phone_display(get_setting('contact_phone', CONTACT_PHONE));
 $contactPhone2 = phone_display(get_setting('contact_phone_2', CONTACT_PHONE_2));
@@ -53,7 +53,7 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
       <span style="color:#A3A3A3;max-width:240px"><?= e($contactAddress) ?></span>
     </div>
   </div>
-  <?php $disclaimer = get_setting('footer_disclaimer', ''); if ($disclaimer): ?>
+  <?php $disclaimer = get_setting('footer_disclaimer', '* Faraan Impex operates strictly as a wholesale B2B contract manufacturer. Retail inquiries are not serviced. Production begins upon counter-sample signoff.'); if ($disclaimer): ?>
   <div class="wrap" style="padding-top:0;padding-bottom:0">
     <p style="font-size:11px;color:#6b6b6b;margin:0;padding:12px 0;border-top:1px solid #2a2a2a;line-height:1.6"><?= e($disclaimer) ?></p>
   </div>

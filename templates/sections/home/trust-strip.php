@@ -1,6 +1,6 @@
 <?php /** Proof strip — editable turnarounds from Admin > Settings, fixed factory certs. */
-$_qt = get_setting('quote_turnaround', 'Under 2 hours');
-$_st = get_setting('sample_turnaround', '7–10 days');
+$_qt = get_setting('quote_turnaround', 'Under 2 Hours');
+$_st = get_setting('sample_turnaround', '7–10 Business Days');
 ?>
 <section class="proof">
   <div class="wrap">

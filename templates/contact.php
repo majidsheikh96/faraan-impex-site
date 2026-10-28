@@ -12,8 +12,8 @@ $phone = phone_display(get_setting('contact_phone', CONTACT_PHONE));
 $phone2 = phone_display(get_setting('contact_phone_2', CONTACT_PHONE_2));
 $address = get_setting('contact_address', CONTACT_ADDRESS);
 $intro      = get_setting('contact_intro', '');
-$heroTitle  = get_setting('contact_hero_title', '');
-$heroLead   = get_setting('contact_hero_lead', '');
+$heroTitle  = get_setting('contact_hero_title', 'Production desk & quotation.');
+$heroLead   = get_setting('contact_hero_lead', 'Direct contract manufacturing desk. Submit your technical drawings, bill of materials, or sample inquiries for immediate factory costing and leather hide validation.');
 $rfqId = 'c';
 $rfqFull = true;
 ?>
@@ -22,8 +22,8 @@ $rfqFull = true;
 </section>
 <section class="wrap" style="padding-top:32px;padding-bottom:40px;display:flex;flex-direction:column;gap:16px">
   <span class="eyebrow">CONTACT / RFQ</span>
-  <h1 class="h-display h-xl" style="max-width:900px"><?= e($heroTitle ?: 'Tell us what you want to manufacture') ?></h1>
-  <?php if ($heroLead): ?><p style="max-width:640px;font-size:18px;color:var(--muted);margin:0"><?= e($heroLead) ?></p><?php endif; ?>
+  <h1 class="h-display h-xl" style="max-width:900px"><?= e($heroTitle) ?></h1>
+  <p style="max-width:640px;font-size:18px;color:var(--muted);margin:0"><?= e($heroLead) ?></p>
 </section>
 
 <section class="wrap" style="padding-bottom:96px;display:flex;flex-wrap:wrap;gap:56px" id="rfq">

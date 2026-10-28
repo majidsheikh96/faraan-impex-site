@@ -57,7 +57,7 @@ tailwind.config = { theme: { extend: {
       <a class="brand" href="/" aria-label="<?= e($siteName) ?> home">
         <img src="/assets/images/logo-wordmark.png" alt="<?= e($siteName) ?>" width="1306" height="330" style="height:44px;width:auto">
       </a>
-      <?php $tagline = get_setting('topbar_tagline', ''); if ($tagline): ?><span style="font-size:10px;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;font-weight:500;padding-left:2px"><?= e($tagline) ?></span><?php endif; ?>
+      <?php $tagline = get_setting('topbar_tagline', 'Sialkot Factory & Direct OEM/ODM Manufacturer'); if ($tagline): ?><span style="font-size:10px;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;font-weight:500;padding-left:2px"><?= e($tagline) ?></span><?php endif; ?>
     </div>
 
     <nav class="nav" aria-label="Primary">
