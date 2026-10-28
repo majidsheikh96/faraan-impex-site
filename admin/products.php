@@ -49,9 +49,10 @@ if ($flash) echo '<p class="bg-green-100 text-green-800 rounded px-4 py-2 mb-4 t
 </form>
 <div class="bg-white rounded-xl border overflow-x-auto">
 <table class="w-full text-sm">
-  <tr class="border-b text-left text-gray-500"><th class="p-3">Name</th><th class="p-3">SKU</th><th class="p-3">Category</th><th class="p-3">Featured</th><th class="p-3">Active</th><th class="p-3"></th></tr>
+  <tr class="border-b text-left text-gray-500"><th class="p-3 w-12"></th><th class="p-3">Name</th><th class="p-3">SKU</th><th class="p-3">Category</th><th class="p-3">Featured</th><th class="p-3">Active</th><th class="p-3"></th></tr>
   <?php foreach ($products as $p): ?>
   <tr class="border-b hover:bg-gray-50">
+    <td class="p-3"><?php if (!empty($p['image'])): ?><img src="/<?= e($p['image']) ?>" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:4px"><?php else: ?><div style="width:40px;height:40px;background:#f3f3f3;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa">No img</div><?php endif; ?></td>
     <td class="p-3 font-medium"><?= e($p['name']) ?></td>
     <td class="p-3 text-gray-500"><?= e($p['sku']) ?></td>
     <td class="p-3"><?= e($p['cat_name']) ?></td>

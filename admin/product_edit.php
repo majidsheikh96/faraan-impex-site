@@ -94,7 +94,10 @@ if ($error) echo '<p class="bg-red-100 text-red-800 rounded px-4 py-2 mb-4 text-
   <div><label class="text-sm font-medium">Meta Description (SEO)</label><input name="meta_description" value="<?= $v('meta_description') ?>" maxlength="255" class="mt-1 w-full border rounded px-3 py-2"></div>
   <div>
     <label class="text-sm font-medium">Product Image</label>
-    <?php if (!empty($product['image'])): ?><p class="text-xs text-gray-500 mb-1">Current: <?= e($product['image']) ?></p><?php endif; ?>
+    <?php if (!empty($product['image'])): ?>
+    <img src="/<?= e($product['image']) ?>" alt="Current product image" style="max-height:100px;border-radius:4px;margin-bottom:6px;display:block">
+    <p class="text-xs text-gray-500 mb-1"><?= e($product['image']) ?></p>
+    <?php endif; ?>
     <input type="file" name="image" accept="image/jpeg,image/png,image/webp" class="mt-1 text-sm">
   </div>
   <div class="flex gap-6 text-sm">
