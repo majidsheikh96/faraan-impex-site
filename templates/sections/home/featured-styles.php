@@ -1,4 +1,5 @@
-<?php /** Featured styles — products flagged is_featured in the catalogue (8). */ $featured = get_featured_products(8); ?>
+<?php /** Featured styles — products flagged is_featured in the catalogue (8). */
+try { $featured = get_featured_products(8); } catch (Throwable $e) { $featured = []; } ?>
 <?php if ($featured): ?>
 <section class="wrap sec-tight">
   <div class="sec-head" style="margin-bottom:40px">

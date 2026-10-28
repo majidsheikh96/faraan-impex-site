@@ -1,6 +1,6 @@
 <?php
 $siteName = get_setting('site_name', SITE_NAME);
-$topCats = get_top_categories();
+try { $topCats = get_top_categories(); } catch (Throwable $e) { $topCats = []; }
 $waNumber = get_setting('whatsapp_number', WHATSAPP_NUMBER);
 $contactEmail = get_setting('contact_email', CONTACT_EMAIL);
 $contactPhone = phone_display(get_setting('contact_phone', CONTACT_PHONE));

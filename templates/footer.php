@@ -16,7 +16,8 @@ $contactAddress = get_setting('contact_address', CONTACT_ADDRESS);
     </div>
     <div class="col">
       <span class="h">DIVISIONS</span>
-      <?php foreach (get_top_categories() as $cat): ?>
+      <?php try { $footerCats = get_top_categories(); } catch (Throwable $e) { $footerCats = []; }
+      foreach ($footerCats as $cat): ?>
         <a href="/<?= e($cat['slug']) ?>/"><?= e(display_name($cat['name'])) ?></a>
       <?php endforeach; ?>
     </div>
